@@ -1,0 +1,38 @@
+1. You need dependencies to run Snoek:
+   - python 2.6 +
+   
+   - Django site pack for python
+
+   - odfpy site pack for python
+
+   You could also download Django and odfpy in the dependency directory of
+
+   http://147.2.207.135/snoekv08.tar.bz2
+
+2. You probably do not want to patch settings.py and db.sqlite, this is the way to do it after 'git pull':
+
+        snoek/$ git update-index -assume-unchanged settings.py
+
+        snoek/$ git update-index -assume-unchanged db.sqlite
+   
+   In case you meet a problem the upstream changes these 2 files, the reversing operation is:
+
+        snoek/$ git update-index -no-assume-unchanged settings.py
+
+        snoek/$ git update-index -no-assume-unchanged db.sqlite
+
+   So, yes the db.sqlite is changing frequently since people wrote it. So to avoid the manual 
+   operation above, it is better to set your own db by change setting.py. Then let db.sqlite there alone.
+
+   For example:
+
+       snoek/$ cp db.sqlite db
+       
+       change DATABASE_NAME = '/home/qateam/snoek/db.sqlite' => DATABASE_NAME = '$YOUR_SNOEK_HOME/db' 
+
+3. edit settings.py for your own testing environment (replace all PATH info to your own snoek location)
+
+4. Run testing server
+
+   snoek/$ python manage.py runserver localhost:8080
+

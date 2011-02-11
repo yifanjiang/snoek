@@ -41,7 +41,7 @@ MEDIA_ROOT = '/home/qateam/snoek/templates/'
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 #MEDIA_URL = 'http://147.2.212.100'
-MEDIA_URL = 'http://147.2.207.135'
+MEDIA_URL = 'http://localhost'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
