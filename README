@@ -1,5 +1,17 @@
 Novell Snoek 11/Feb/2011 
 
+Contacts:
+------------
+    yfjiang
+    ysun
+    sqiu
+AaaT novell DOT com (to avoid spam spread, please pronounce them and translate.)
+
+Simple guide
+------------
+
+0. git clone http://147.2.207.136/repo/snoek.git
+
 1. You need dependencies to run Snoek:
    - python 2.6 +
    
@@ -17,24 +29,33 @@ Novell Snoek 11/Feb/2011
 
         snoek/$ git update-index -assume-unchanged db.sqlite
    
-   In case you meet a problem the upstream changes these 2 files, the reversing operation is:
+   In case you meet a problem when meeting pull problem, the reversing operation is:
 
         snoek/$ git update-index -no-assume-unchanged settings.py
 
         snoek/$ git update-index -no-assume-unchanged db.sqlite
 
-   So, yes the db.sqlite is changing frequently since people wrote it. So to avoid the manual 
-   operation above, it is better to set your own db by change setting.py. Then let db.sqlite there alone.
+   In normal case you won't use the above 2 lines since the change db.sqlite and setting are set not tracked 
+   on git server.
 
-   For example:
+3. edit settings.py for your own testing environment (replace all PATH info to your own snoek location), 
+for example, if you change the database to point to another one:
 
        snoek/$ cp db.sqlite db
        
        change DATABASE_NAME = '/home/qateam/snoek/db.sqlite' => DATABASE_NAME = '$YOUR_SNOEK_HOME/db' 
 
-3. edit settings.py for your own testing environment (replace all PATH info to your own snoek location)
-
 4. Run testing server
 
    snoek/$ python manage.py runserver localhost:8080
+
+5. If you are interested in, please send a patch to 'yfjiang' with:
+
+[quote from libreoffice community]
+    *  create the patch file that you want to mail. 
+       If you are in one repository you can use git 
+       directly to get e.g. the last change in your 
+       branch as a diff file with: 
+
+       git format-patch HEAD~1
 
