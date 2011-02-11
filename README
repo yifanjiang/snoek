@@ -25,15 +25,15 @@ Simple guide
 
 2. You probably do not want to patch settings.py and db.sqlite, this is the way to do it after 'git pull':
 
-        snoek/$ git update-index -assume-unchanged settings.py
+        snoek/$ git update-index --assume-unchanged settings.py
 
-        snoek/$ git update-index -assume-unchanged db.sqlite
+        snoek/$ git update-index --assume-unchanged db.sqlite
    
    In case you meet a problem when meeting pull problem, the reversing operation is:
 
-        snoek/$ git update-index -no-assume-unchanged settings.py
+        snoek/$ git update-index --no-assume-unchanged settings.py
 
-        snoek/$ git update-index -no-assume-unchanged db.sqlite
+        snoek/$ git update-index --no-assume-unchanged db.sqlite
 
    In normal case you won't use the above 2 lines since the change db.sqlite and setting are set not tracked 
    on git server.
