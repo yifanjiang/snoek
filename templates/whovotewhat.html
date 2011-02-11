@@ -1,0 +1,38 @@
+{% extends "base1.html" %}
+
+<!-- Who vote what -->
+
+{% block content %}
+{% autoescape off %}                                		
+<h2>Who Vote What for - <a href="/activity/{{avt.id}}">{{avt.summary}}</a></h2>
+
+
+
+        {% for vt in vote_tables %}
+
+
+            <table border=1 bordercolor=green cellspacing = 2 cellpadding=2 >
+                <tr>
+                  <td><b>{{vt.vote.summary}}<b></td>
+                  {% for c in vt.table.row_head %}
+                  <td><b>{{c.content}}</b></td>
+                  {% endfor%}
+	    	</tr>
+
+		{% for r in vt.table.user_table %}
+		<tr>
+                <td><b>{{r.row_head}}</b></td>
+
+         	{% for rb in r.row_body %}
+                <td align = center><img src="{{settings.MEDIA_URL}}/image/{{rb}}.png"></td>
+		{% endfor %}
+		</tr>
+                {% endfor%}
+            </table>
+
+            <hr>
+        {% endfor %}
+{% endautoescape %}
+
+{% endblock %}
+

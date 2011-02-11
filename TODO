@@ -1,0 +1,233 @@
+Hackweek 6 Summary
+
+We built up and implement the tool Snoek function areas during the
+hackweek, which can be found at:
+
+http://147.2.207.135:8080
+
+We focused on the main function parts in hackweek 6 duration, and we will
+focus more in backend security, database validation, bug fix and function
+improvement in the future.
+
+USAGE
+
+        1. Login the web site and click an activity you are interested in
+
+        2. Attend the vote by clicking Take Vote section
+
+                - You could only have one chance of voting at the moment
+
+                - You will not be able to vote for an activity if it is
+                  outdated
+
+        3. The statistics of votings are shown in the section Voting Results
+
+                - If only one vote is in the activity, there will be only one
+                  table to describe the results
+
+                - If multiple votes are created in the activity, multiple
+                  tables would be generated to describe:
+
+                        a. 1 dimension data for each votes
+
+                        b. 2 dimension data for for possible combinations of
+                        any two of the votes
+
+                - All voters' favourite choice can be found by clicking 'Who
+                  vote what' link
+
+        4. The ODF format of voting results can be downloaded by click
+        'Download me'
+
+        5. You may change your password by clicking the tiny icon beside the
+        user name
+        
+
+FUTURE
+
+        With the functions which a user can typical attend an activity to
+        vote, view voting results and export the results to ODF document, we
+        still got several features to be improved in the future:
+
+        - function Part
+
+                - Activity management to allow user create her own activity
+                  without asking admin to do so
+
+                        As we said in the requirement, any valid user is
+                        allowed to create an activity containing any number of
+                        Polls. However the activity creation model is not
+                        finished in the hackweek.
+
+                        Activity creator is allowed to remove/edit the
+                        activities her owned in the front page. The previledge
+                        is design in the front end (if login with 'ysun', see
+                        the difference besides the Activity 'Hackweek T-shirt
+                        registration'. But the button delt/edit is not
+                        actually working atm.
+
+                - Allow the activity deadline set to prcision of minutes
+
+                - Allow user to regret a vote and re-vote
+
+                - Allow to search activities by creation date, deadline, etc.
+
+                - Connect to Novell LDAP authentication and support user group
+
+                - Support richer text area for activity descriptions/vote
+                  questions
+
+                        We got some links as required for voting questions, we
+                        implement it by mixing html tags with questions data
+                        set. The example canbe seen here:
+
+                        http://147.2.207.135:8080/activity/4
+
+                        A.
+
+                        However, this is only a WORKAROUND since mixing html
+                        tag with real data in a database is not really
+                        acceptable solution.
+
+                        So we will re-consider how to handle this. We did not
+                        set this as a requirement spec in design phase. The
+                        simplest way may be to add a 'details' field in the
+                        table of database, in which html tag is allowed. With
+                        that activity creater can put rich stuff like
+                        hyperlinks, pictures etc. if she knows HTML.
+
+                        B.
+
+                        The workaround above is not working for
+                        ODS(libreoffice) export, you can see the raw html will
+                        be ugly exported as content with:
+
+                        http://147.2.207.135:8080/download_activity/4
+
+                        This would not be done before the point A is improved.
+
+        - UI
+
+                - Front page category view of activity list
+
+                - Front page paginate view of activity list
+
+                - Display activity creation date/time in front page
+
+                - Better UI with CSS design
+
+                - bar chart of the statistics when reviewing voting results
+
+                - Populate 'Who vote for what' table to odf file as well
+
+
+
+
+
+
+1. style setting ( VoteTableCell class)
+
+2. Further analysis
+
+   a. do we need consider optional vote in linked vote?
+
+3. LDAP connection
+
+------------------------------------------------------------
+
+1. current process
+
+- send mail to admin to create an activity
+
+2. submit hackweek 6 code
+
+
+3. 
+
++ future features:
+
+    - function
+
+        deadline - precise to minutes
+
+	search function
+
+        Connect to LDAP authentication	
+    
+        activity management
+	
+	'Cancel' vote and re-vote
+
+	support richer text area for activity descriptions/vote questions
+
+	display activity creation date/time in front page
+
+    - UI
+
+	front page category view of activity list
+	
+	front page paginate view of activity list    
+
+	Better UI with CSS design
+
+	bar chart of the statistics when reviewing voting results
+
+        Populate 'Who vote for what' table to odf file as well	
+
+
+    As we said in the requirement, any valid user is allowed to create an
+    activity containing any number of Polls. However the activity creation
+    model is not finished in the hackweek.
+
+    Activity creator is allowed to remove/edit the activities her owned in the
+    front page. The previledge is design in the front end (if login with
+    'ysun', see the difference besides the Activity 'Hackweek T-shirt
+    registration'. But the button delt/edit is not actually working atm.
+
+
+
+
+1.update it to server
+
+         physical location: /home/qateam/snoek
+
+         Intranet location: http://147.2.207.135:8080
+
+         User management: http://147.2.207.135:8080/admin (with root:2)
+
+2. The cute key icon besides user name at the top, to change password
+
+3. Update the demo vote in database with html tag then force to render it in browser. You
+can see the effect:
+
+        http://147.2.207.135:8080/activity/4
+
+        A.
+
+        However, I tend to think this is only a WORKAROUND since mixing html
+        tag with real data in a database is not really acceptable. It will
+        bring a lot of trouble in the future when we want real data only.
+
+        So we will re-consider how to handle this. The simplest way is to add
+        a 'details' field in the table of database, in which html tag is
+        allowed. With that activity creater can put rich stuff like
+        hyperlinks, pictures etc. if she knows HTML :)
+
+        Of course this will add more effort to adjust the current
+        code, and much more effort in Qiushuang's activity creation
+        work. So I suggest to take this as a next improvement feature.
+
+        B.
+
+        The workaround above is not working for ODS(libreoffice)
+        export, you can see the raw html will be ugly exported as
+        content with:
+        
+        http://147.2.207.135:8080/download_activity/4        
+
+        since rendering ODS is totally another piece of code
+        and I have no idea to find a simple way to deal with them
+        before the point A is improved.
+
+        So, can we also release-note this and fix it another time.    
+

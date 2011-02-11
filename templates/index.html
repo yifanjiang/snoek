@@ -1,0 +1,73 @@
+{% extends "base1.html" %}
+{% block content %}
+<br/>
+			<table>
+				<tr>
+
+					<td width="900"><h3><a href="#">Team
+					building</a>
+
+					    {% if user.is_authenticated %}
+					    <input type="BUTTON" value="New">
+					    {% endif %}
+
+					</h3></td>
+					<td width="900"><h3><a href="#">Order
+					Clothes</a>
+
+					    {% if user.is_authenticated %}					    
+					    <input type="BUTTON" value="New">
+					    {% endif %}					    
+
+					</h3></td>
+					
+					
+
+
+					<td width="900"><h3><a href="http://147.2.207.243:8081/">Friday's
+					Topic</a>
+
+					    {% if user.is_authenticated %}					    
+					    <input type="BUTTON" value="New">
+					    {% endif %}					    
+
+					</h3></td>					
+
+					<td width="900"><h3><a href="">Meeting
+					Room</a>
+
+					    {% if user.is_authenticated %}
+					    <input type="BUTTON" value="New"></h3>
+					    {% endif %}
+					  
+					</td>
+
+					<td width="900"><h3><a href="#">Others</a>
+
+					    {% if user.is_authenticated %}
+					    <input type="BUTTON" value="New"></h3>
+					    {% endif %}
+					  
+					</td>					
+				</tr>
+			</table>
+
+<hr color = navyblue>
+<h2> Activities list </h2>
+<br/>
+
+{% for a in avt %}
+
+<a href = 'activity/{{ a.id }}'> {{a.summary}} </a>&nbsp;
+
+<!-- show/hide edit delt button -->
+{% if a.user.id == user.id %}
+<a href = '#'>Delt</a>
+<a href = '#'>Edit</a><br/>
+{% else %}
+<br/>
+{% endif %}
+<br/>
+
+{% endfor%}
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends "base1.html" %}
+{% block content %}
+<script type="text/javascript">
+
+function checkpolls() {
+    
+    v = validatepolls();
+
+    if (v) {
+
+    	return true;
+
+    }else{
+
+	    alert('Please fill up all votes before submitting.');
+
+    }
+
+    return false;    
+
+}
+
+function validatepolls() {
+
+    var formElements = window.document.getElementById("polls").elements;
+    var formElement;
+    var radioArray = [];
+    var current_radio;
+    var radio_checked = false;
+
+    for (var i = 0; i < formElements.length; i++) {
+
+        formElement = formElements.item(i);
+
+        if (formElement.type === "radio") {
+
+            current_radio = formElements.item(i);
+
+            break;
+
+        }
+    }
+
+    for (var i = 0; i < formElements.length; i++) {
+
+        formElement = formElements.item(i);
+
+        if (formElement.type === "radio") {
+
+            if (formElement.id === current_radio.id){
+
+                radio_checked = formElement.checked || radio_checked ;
+
+            }else{
+
+                current_radio = formElement;
+
+                if (radio_checked) {
+
+                    radio_checked = false ;
+
+                    radio_checked = formElement.checked || radio_checked;
+
+                }else{
+
+                    return false;
+
+                }
+            }
+        }
+    }
+
+    return radio_checked;
+			
+}
+    
+</script>
+
+    <h2>Activity</h2>
+    
+	{% if not user.is_authenticated and not is_expired%}
+	<p><font color = "red" ><b><a href = "/accounts/login?next=/">Please login to attend vote</a></b></font></font>
+	{% endif %}
+
+	{% if user.is_authenticated and not is_valid_for_vote and not is_expired %}
+        <!-- forgive the suck code, we should have had a has_voted key :-) -->
+	<p><font color = "green" ><b>Hi {{user.username}} {{user.firstname}}, you have voted for
+	this activity</a></b></font>
+	{% endif %}
+
+        <p> Summary: {{ avt.summary }}
+        <p> Description: {{ avt.description }}
+        <p> Category: {{ avt.category }}
+        <p> Creater: {{ avt.user.first_name }} {{ avt.user.last_name }}
+
+	{% if not is_expired %}	  
+        <p> Expired on: {{ avt.deadline }}
+	{% else %}
+        <p> Expired on: {{ avt.deadline }} <font color = "red" ><b>(The Votes has been expired)</b></font></font>
+	{% endif %}	  	  
+
+	<p> <a href="/download_activity/{{ avt.id }}"> Download me </a> (download voting result as OpenDocument Format)
+
+
+<!-- Show voting for authenticated user, who hasn't voted yet -->
+
+{% if is_valid_for_vote %}
+<h2>Take Vote</h2>
+<form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
+<table border = 0 bordercolor=black>
+  <tr>
+  {% for vt in votes %}
+  <td bgcolor=gray>{{vt.summary}}</td>
+  {% endfor %}  
+  </tr>
+  
+<tr>
+{% for vt in vote_tables %}
+<td valign = top>
+  {% for q in vt.vote.questions%}
+     <input type="radio" name="vote{{vt.vote.id}}" value="{{ q.id }}" id="{{ vt.vote.id }}"/> 
+{% autoescape off %}
+     {{ q.content}}
+{% endautoescape %}
+     <br/>
+  {% endfor %}  
+</td>
+</form>
+{% endfor %}
+</tr>
+</table>
+<input type="submit" value="Vote" />
+
+
+
+{% endif %}
+<!--Show results - any body is allowed to see the result.-->
+
+
+    <h2>Voting Results</h2>
+    
+    <p><a href = "/whovotewhat/{{avt.id}}">Who vote what</a></b></font>
+
+        <hr>
+        {% for vt in vote_tables %}
+
+            <table border=1>
+                <tr>
+                  <td><b>{{vt.vote.summary}}</b></td>
+
+            {% if vt.table.is2D %}
+            {% for c in vt.table.col_head %}
+                  <td><b>{{c.content}}</b></td>
+            {% endfor %}
+            {% else %}
+                  <td><b>Result</b></td>
+            {% endif %}
+
+		</tr>
+{% autoescape off %}                
+            {% for t in vt.table.table_with_row %}
+                <tr>
+                  <td><b>{{ t.row_head.content }}</b></td>
+		  {% for rb in t.row_body %}
+	                  <td>{{ rb }}</td>
+                  {% endfor %}
+                </tr>
+            {% endfor %}
+{% endautoescape %}
+            </table>
+
+            <hr>
+          
+<!--            <h4>  Vote Summary: {{ vt.vote.summary }} </h4>
+              
+            <p>  {% for q in vt.vote.questions %}
+                     <p> {{q.content}} : {{ q.answernumber }}
+                     <p> &nbsp; &nbsp; vote by:
+                       {% for a in q.answers %}
+                            {{ a.user.username }} |
+                       {% endfor %}
+                 {% endfor %}
+
+
+
+		       
+-->
+                       
+
+{% endfor %}
+
+<p>  <a href="/download_activity/{{ avt.id }}"> Download me </a> (download voting result as OpenDocument Format)  
+{% endblock %}

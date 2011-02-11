@@ -1,0 +1,44 @@
+<html>
+<head>
+<style type="text/css">
+/* Remove margins from the 'html' and 'body' tags, and ensure the page takes up full screen height */
+html, body {height:100%; margin:0; padding:0;}
+/* Set the position and dimensions of the background image. */
+#page-background {position:fixed; top:0; left:0; width:100%; height:100%;}
+/* Specify the position and layering for the content that needs to appear in front of the background image. Must have a higher z-index value than the background image. Also add some padding to compensate for removing the margin from the 'html' and 'body' tags. */
+#content {position:relative; z-index:1;padding:10px;}
+</style>
+</head>
+<body>
+
+<div id="page-background"><img src="{{settings.MEDIA_URL}}/image/final_most_green_rc2.png" width="100%" height="100%" alt="Smile"></div> 
+
+<div id="content">
+  
+<table width = 100% border = 0 >
+<tr>
+
+  <td><img src="{{settings.MEDIA_URL}}/image/snoek.gif" width = 150 height = 50 alt="snoek logo"></td>
+  <td><h1>Snoek v0.8 - Novell Beijing R&D Team Activities </h1></b></td>
+  {% if user.is_authenticated %}
+
+
+    <td align = right>
+      <b>Snoeker: {{user.username}}</b><a href =  '/accounts/chpwd'><img src="{{settings.MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
+      <a href =  '/accounts/logout?next=/'>Logout</a>
+    </td>
+      <td align = right><a href = '/'>Home</a></td>        
+  {% else %}
+    <td align = right><a href = '/accounts/login?next=/'>Login</a></td>
+    <td align = right><a href = '/'>Home</a></td>        
+  {% endif %}
+
+</tr>
+</table>
+
+{% block content %}{% endblock %}
+</div>
+
+</body>
+
+</html>

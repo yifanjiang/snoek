@@ -1,0 +1,4 @@
+# backup and temporary files
+*~
+*.pyc
+.*.sw[op]
