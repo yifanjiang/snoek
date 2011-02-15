@@ -193,5 +193,5 @@ def _isExpired(avt):
     # return if activity is expired
 
     d = avt.deadline
-    return datetime.datetime(d.year, d.month, d.day) < datetime.datetime.now()
+    return datetime.datetime(d.year, d.month, d.day) <= datetime.datetime.now()
 
