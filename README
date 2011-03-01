@@ -1,16 +1,24 @@
 Novell Snoek 11/Feb/2011 
+------------------------
 
 Contacts:
-------------
+---------
     yfjiang
     ysun
     sqiu
 AaaT novell DOT com (to avoid spam spread, please pronounce them and translate.)
 
-Simple guide
-------------
+Simple development guide
+------------------------
 
-0. git clone http://147.2.207.136/repo/snoek.git
+* If you want to push the increnmental change of snoek, please send your public 
+ssh key to any of the authors.
+
+0a. git clone ssh://git@147.2.207.136/~/snoek.git
+
+[or]
+
+0b. git clone http://147.2.207.136/repo/snoek.git
 
 1. You need dependencies to run Snoek:
    - python 2.6 +
@@ -19,9 +27,7 @@ Simple guide
 
    - odfpy site pack for python
 
-   You could also download Django and odfpy in the dependency directory of
-
-   http://147.2.207.135/snoekv08.tar.bz2
+   They are in dep directory of git repo as well.
 
 2. You probably do not want to patch settings.py and db.sqlite, this is the way to do it after 'git pull':
 
@@ -49,7 +55,17 @@ for example, if you change the database to point to another one:
 
    snoek/$ python manage.py runserver localhost:8080
 
-5. If you are interested in, please send a patch to 'yfjiang' with:
+5. The typical command of push your code to repo is:
+   
+   - You did some nice work of code improvement
+   
+   - snoek/$ git commit -a -m 'your tips goes here'
+
+   - snoek/$ git pull -r
+
+   - snoek/$ git push
+
+6. If you are interested but do not have a ssh permission, please send a patch to any of the author via:
 
 [quote from libreoffice community]
     *  create the patch file that you want to mail. 
@@ -58,4 +74,3 @@ for example, if you change the database to point to another one:
        branch as a diff file with: 
 
        git format-patch HEAD~1
-
