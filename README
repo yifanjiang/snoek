@@ -59,4 +59,3 @@ for example, if you change the database to point to another one:
 
        git format-patch HEAD~1
 
-6. TODO ssh and push support :)
