@@ -112,6 +112,8 @@ FUTURE
 
                 - Front page paginate view of activity list
 
+                - Display the total vote number in the activity display page
+
                 - Display activity creation date/time in front page
 
                 - Better UI with CSS design
