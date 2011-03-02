@@ -119,3 +119,7 @@ FUTURE
                 - bar chart of the statistics when reviewing voting results
 
                 - Populate 'Who vote for what' table to odf file as well
+
+KNOWN ISSUES:
+
+        - The activity name cannot have '/', otherwise download odf will be failed
