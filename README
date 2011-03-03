@@ -8,6 +8,41 @@ Contacts:
     sqiu
 AaaT novell DOT com (to avoid spam spread, please pronounce them and translate.)
 
+Usage
+-----
+
+        1. Login the web site and click an activity you are interested in
+
+        2. Attend the vote by clicking Take Vote section
+
+                - You could only have one chance of voting at the moment
+
+                - You will not be able to vote for an activity if it is
+                  outdated
+
+        3. The statistics of votings are shown in the section Voting Results
+
+                - If only one vote is in the activity, there will be only one
+                  table to describe the results
+
+                - If multiple votes are created in the activity, multiple
+                  tables would be generated to describe:
+
+                        a. 1 dimension data for each votes
+
+                        b. 2 dimension data for for possible combinations of
+                        any two of the votes
+
+                - All voters' favourite choice can be found by clicking 'Who
+                  vote what' link
+
+        4. The ODF format of voting results can be downloaded by click
+        'Download me'
+
+        5. You may change your password by clicking the tiny icon beside the
+        user name
+
+
 Simple development guide
 ------------------------
 

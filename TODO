@@ -9,40 +9,6 @@ We focused on the main function parts in hackweek 6 duration, and we will
 focus more in backend security, database validation, bug fix and function
 improvement in the future.
 
-USAGE
-
-        1. Login the web site and click an activity you are interested in
-
-        2. Attend the vote by clicking Take Vote section
-
-                - You could only have one chance of voting at the moment
-
-                - You will not be able to vote for an activity if it is
-                  outdated
-
-        3. The statistics of votings are shown in the section Voting Results
-
-                - If only one vote is in the activity, there will be only one
-                  table to describe the results
-
-                - If multiple votes are created in the activity, multiple
-                  tables would be generated to describe:
-
-                        a. 1 dimension data for each votes
-
-                        b. 2 dimension data for for possible combinations of
-                        any two of the votes
-
-                - All voters' favourite choice can be found by clicking 'Who
-                  vote what' link
-
-        4. The ODF format of voting results can be downloaded by click
-        'Download me'
-
-        5. You may change your password by clicking the tiny icon beside the
-        user name
-        
-
 FUTURE
 
         With the functions which a user can typical attend an activity to
@@ -125,3 +91,6 @@ FUTURE
 KNOWN ISSUES:
 
         - The activity name cannot have '/', otherwise download odf will be failed
+
+        - base1.html will cause severe performance issue in some firefox(3.6.6) as I noticed.
+        <div id="page-background"><img src="{{settings.MEDIA_URL}}/image/final_most_green_rc2.png" width="100%" height="100%" alt="Smile"></div>
