@@ -82,3 +82,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'snoek.activities',
 )
+
+# Snoek settings
+VERSION = "0.8"
+TITLE = "Novell Beijing R&D Team Activities"
