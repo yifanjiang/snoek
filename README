@@ -70,14 +70,22 @@ ssh key to any of the authors.
 
         snoek/$ git update-index --assume-unchanged db.sqlite
    
-   In case you meet a problem when meeting pull problem, the reversing operation is:
+   In case you meet a problem when meeting pull problem (the files are modified on git server for example), 
+   the reversing operation is:
 
         snoek/$ git update-index --no-assume-unchanged settings.py
 
         snoek/$ git update-index --no-assume-unchanged db.sqlite
 
-   In normal case you won't use the above 2 lines since the change db.sqlite and setting are set not tracked 
-   on git server.
+   The typical scenario after the no-assume-changed is 
+
+        a. copy your own copy out to somewhere safe 
+
+        b. pull the latest version of settings.py or db.sqlite
+
+        c. copy back your own copy, and merge your own work if necessary
+
+        d. finally --assume-unchanged again to the files
 
 3. edit settings.py for your own testing environment (replace all PATH info to your own snoek location), 
 for example, if you change the database to point to another one:
