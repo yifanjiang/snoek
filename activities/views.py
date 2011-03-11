@@ -20,6 +20,56 @@ from snoek import settings
 
 from snoek.activities.VoteTable import VoteTable
 
+def new_activity(request,category):
+    user=request.user
+    return render_to_response('new_activity.html',{'user':user,
+                                                   'category':category,
+                                                   'settings':settings,
+						   'avt':reversed(list(Activity.objects.all()))})
+
+def save_activity(request):
+    if request.method=='POST':
+       s=request.POST
+    datelist=s['deadline'].split('-')
+    year=int(datelist[0])
+    mon=int(datelist[1])
+    day=int(datelist[2])
+    p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(year,mon,day),category=s['category'])
+    p.save()
+    return render_to_response('new_votes.html',{'user':request.user,
+                                                'settings':settings,
+                                                'act':p})
+
+def save_vote(request,aid):
+    if request.method=='POST':
+       s=request.POST
+    act=Activity.objects.get(id=aid)
+    if s['v1s']!='':
+       vote1=Vote(summary=s['v1s'],description=s['v1d'],activity=act)
+       vote1.save()
+       for content in ['v1q1','v1q2','v1q3','v1q4','v1q5']:
+           if s[content]!='':
+              Question(content=s[content],vote=vote1).save()
+    if s['v2s']!='':
+       vote2=Vote(summary=s['v2s'],description=s['v2d'],activity=act)
+       vote2.save()
+       for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
+           if s[content]!='':       
+              Question(content=s[content],vote=vote2).save()
+    return render_to_response('index.html', {'user': request.user,
+                                             'settings': settings,
+                                             'avt': reversed(list(Activity.objects.all()))})    
+def delt_activity(request,aid):
+    p=Activity.objects.get(id=aid)
+    for v in Vote.objects.filter(activity=p):
+        for a in Question.objects.filter(vote=v):
+            Answer.objects.filter(question=a).delete()
+        Question.objects.filter(vote=v).delete()
+    Vote.objects.filter(activity=p).delete()
+    p.delete()
+    return render_to_response('index.html', {'user': request.user,
+                                             'settings': settings,
+                                             'avt': reversed(list(Activity.objects.all()))})
 def index(request, category = None):
     # Controller interface: View an activity
     # input: An activity id

@@ -8,7 +8,7 @@
 					building</a>
 
 					    {% if user.is_authenticated %}
-					    <input type="BUTTON" value="New">
+					    <input type="BUTTON" value="New" onclick="self.location.href='/newteambuilding'">
 					    {% endif %}
 
 					</h3></td>
@@ -16,7 +16,7 @@
 					Clothes</a>
 
 					    {% if user.is_authenticated %}					    
-					    <input type="BUTTON" value="New">
+					    <input type="BUTTON" value="New" onclick="self.location.href='/newclothes'">
 					    {% endif %}					    
 
 					</h3></td>
@@ -62,7 +62,7 @@
 
 <!-- show/hide edit delt button -->
 {% if a.user.id == user.id %}
-<a href = '#'>Delt</a>
+<a href = '/deltact{{a.id}}'>Delt</a>
 <a href = '#'>Edit</a><br/>
 {% else %}
 <br/>
