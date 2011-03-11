@@ -2,6 +2,7 @@
 import os, datetime
 
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
@@ -20,6 +21,7 @@ from snoek import settings
 
 from snoek.activities.VoteTable import VoteTable
 
+@login_required
 def new_activity(request,category):
     user=request.user
     return render_to_response('new_activity.html',{'user':user,
@@ -27,6 +29,7 @@ def new_activity(request,category):
                                                    'settings':settings,
 						   'avt':reversed(list(Activity.objects.all()))})
 
+@login_required
 def save_activity(request):
     if request.method=='POST':
        s=request.POST
@@ -39,7 +42,7 @@ def save_activity(request):
     return render_to_response('new_votes.html',{'user':request.user,
                                                 'settings':settings,
                                                 'act':p})
-
+@login_required
 def save_vote(request,aid):
     if request.method=='POST':
        s=request.POST
@@ -58,18 +61,28 @@ def save_vote(request,aid):
               Question(content=s[content],vote=vote2).save()
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,
-                                             'avt': reversed(list(Activity.objects.all()))})    
+                                             'avt': reversed(list(Activity.objects.all()))})
+
+@login_required
 def delt_activity(request,aid):
+
     p=Activity.objects.get(id=aid)
-    for v in Vote.objects.filter(activity=p):
-        for a in Question.objects.filter(vote=v):
-            Answer.objects.filter(question=a).delete()
-        Question.objects.filter(vote=v).delete()
-    Vote.objects.filter(activity=p).delete()
-    p.delete()
+
+    if request.user == p.user:    
+        for v in Vote.objects.filter(activity=p):
+            for a in Question.objects.filter(vote=v):
+                Answer.objects.filter(question=a).delete()
+            Question.objects.filter(vote=v).delete()
+        Vote.objects.filter(activity=p).delete()
+        p.delete()
+    else:
+        return False
+    
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,
                                              'avt': reversed(list(Activity.objects.all()))})
+
+
 def index(request, category = None):
     # Controller interface: View an activity
     # input: An activity id

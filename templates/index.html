@@ -1,5 +1,16 @@
 {% extends "base1.html" %}
 {% block content %}
+<script language="javascript">
+
+function confirmRemoveActivity(aid){
+    var agree = confirm('Do you really want to Delete this Activity?\nAll voting results will be removed after Deletion.');
+    if (agree)
+        window.location.href="/deltact" + aid
+    else
+        return
+}
+
+</script>
 <br/>
 			<table>
 				<tr>
@@ -62,7 +73,7 @@
 
 <!-- show/hide edit delt button -->
 {% if a.user.id == user.id %}
-<a href = '/deltact{{a.id}}'>Delt</a>
+<a href = '#' onclick="confirmRemoveActivity({{a.id}})">Delet</a>
 <a href = '#'>Edit</a><br/>
 {% else %}
 <br/>
