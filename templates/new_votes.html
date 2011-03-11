@@ -1,0 +1,29 @@
+{% extends "base1.html" %}
+{% block content %}
+summary:{{act.summary}}
+
+description:{{act.description}}
+
+deadline:{{act.deadline}}
+
+category:{{act.category}}
+
+<form action="/vote_submit{{act.id}}" method="post">
+  <p>summary for vote1:<input type="text" name="v1s" /></p>
+  <p>description for vote1:<input type="text" name="v1d" /></p>
+      <p>question1: <input type="text" name="v1q1" /></p>
+      <p>question2: <input type="text" name="v1q2" /></p>
+      <p>question3: <input type="text" name="v1q3" /></p>
+      <p>question4: <input type="text" name="v1q4" /></p>
+      <p>question5: <input type="text" name="v1q5" /></p>
+  <p>summary for Vote2: <input type="text" name="v2s" /></p>
+  <p>description for vote2:<input type="text" name="v2d" /></p>
+      <p>question1: <input type="text" name="v2q1" /></p>
+      <p>question2: <input type="text" name="v2q2" /></p>
+      <p>question3: <input type="text" name="v2q3" /></p>
+      <p>question4: <input type="text" name="v2q4" /></p>
+      <p>question5: <input type="text" name="v2q5" /></p>
+  <input type="submit" value="Submit" />
+</form>
+
+{%endblock%}
