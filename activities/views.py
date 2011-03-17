@@ -112,6 +112,7 @@ def edit_submit(request,aid):
         else:
            v.summary=s[str(v.id)]
            v.description=s['d'+str(v.id)]
+           v.save()
            lenq=len(Question.objects.filter(vote=v))
            for q in Question.objects.filter(vote=v):
                if s[str(v.id)+'-'+str(q.id)]=="":  
@@ -120,6 +121,7 @@ def edit_submit(request,aid):
                elif s[str(v.id)+'-'+str(q.id)]!=q.content:
                   Answer.objects.filter(question=q).delete()
                   q.content=s[str(v.id)+'-'+str(q.id)]
+                  q.save()
                else:
                   pass
            if lenq<5:
