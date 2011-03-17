@@ -72,6 +72,17 @@ FUTURE
 
                         This would not be done before the point A is improved.
 
+                - When edit an activity's question item, we should allow the
+                  activity creater choosing to Remove related vote or NOT. The
+                  current mechanism removed all of the questions forcely when
+                  editing a question's content.
+
+                - Based on the activity edit function, we should consider the
+                  2-dimension table when a user doesn't vote for all of the
+                  votes in an activity. We may will add a description of how
+                  many users were not calculated in the 2-dimension table
+                  because of the incomplete votes.
+
         - UI
 
                 - Front page category view of activity list
