@@ -74,7 +74,7 @@ function confirmRemoveActivity(aid){
 <!-- show/hide edit delt button -->
 {% if a.user.id == user.id %}
 <a href = '#' onclick="confirmRemoveActivity({{a.id}})">Delet</a>
-<a href = '#'>Edit</a><br/>
+<a href = 'edit_activity{{a.id}}' >Edit</a><br/>
 {% else %}
 <br/>
 {% endif %}

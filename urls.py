@@ -26,5 +26,7 @@ urlpatterns = patterns('',
     (r'^activity_submit$',save_activity),
     (r'^vote_submit(\d+)$',save_vote),
     (r'^deltact(\d+)$',delt_activity),
+    (r'^edit_activity(\d+)$',edit_activity),
+    (r'^edit_submit(\d+)$',edit_submit),
 #    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change_done'),
 )

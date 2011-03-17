@@ -59,9 +59,10 @@ def save_vote(request,aid):
        for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
            if s[content]!='':       
               Question(content=s[content],vote=vote2).save()
-    return render_to_response('index.html', {'user': request.user,
-                                             'settings': settings,
-                                             'avt': reversed(list(Activity.objects.all()))})
+    return HttpResponseRedirect('/')
+  #  return render_to_response('index.html', {'user': request.user,
+   #                                          'settings': settings,
+    #                                         'avt': reversed(list(Activity.objects.all()))})
 
 @login_required
 def delt_activity(request,aid):
@@ -77,12 +78,64 @@ def delt_activity(request,aid):
         p.delete()
     else:
         return False
-    
-    return render_to_response('index.html', {'user': request.user,
-                                             'settings': settings,
-                                             'avt': reversed(list(Activity.objects.all()))})
-
-
+    return HttpResponseRedirect('/')
+   
+def edit_activity(request,aid):
+    p=Activity.objects.get(id=aid)
+    vote=list(Vote.objects.filter(activity=p))
+    votetable=[]
+    for v in vote:
+        q=list(Question.objects.filter(vote=v))
+        if len(q)<5:
+           q=q+['']*(5-len(q))
+        votetable.append([v,q])
+    if len(votetable)<2:
+       votetable=votetable+['']*(2-len(votetable))
+    return render_to_response('edit_activity.html',{'user':request.user,
+                                                    'settings':settings,
+                                                    'avt':p, 
+                                                    'vq':votetable,
+                                                    'ql':range(1,6)})
+def edit_submit(request,aid):
+    if request.method=='POST':
+       s=request.POST
+    dl=s['deadline'].split('-')
+    p=Activity(id=aid,user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(int(dl[0]),int(dl[1]),int(dl[2])),category=s['category'])
+    p.save()
+    lenvote=len(Vote.objects.filter(activity=p))    
+    for v in Vote.objects.filter(activity=p):
+        if s[str(v.id)]=='':
+           for q in Question.objects.filter(vote=v):
+               Answer.objects.filter(question=q).delete()
+               q.delete()
+           v.delete()
+        else:
+           v.summary=s[str(v.id)]
+           v.description=s['d'+str(v.id)]
+           lenq=len(Question.objects.filter(vote=v))
+           for q in Question.objects.filter(vote=v):
+               if s[str(v.id)+'-'+str(q.id)]=="":  
+                  Answer.objects.filter(question=q).delete()
+                  q.delete()
+               elif s[str(v.id)+'-'+str(q.id)]!=q.content:
+                  Answer.objects.filter(question=q).delete()
+                  q.content=s[str(v.id)+'-'+str(q.id)]
+               else:
+                  pass
+           if lenq<5:
+              for i in range(lenq+1,6):
+                  if s[str(v.id)+'p'+str(i)]!="":
+                     Question(content=s[str(v.id)+'p'+str(i)],vote=v).save()
+    if lenvote<2:
+        for i in range(lenvote+1,3):
+            if s['v'+str(i)]!='':
+               vn=Vote(summary=s['v'+str(i)],description=s['vd'+str(i)],activity=p)
+               vn.save()
+               for j in range(1,6):
+                   if s['v'+str(i)+'p'+str(j)]!='':
+                      Question(content=s['v'+str(i)+'p'+str(j)],vote=vn).save()
+    return HttpResponseRedirect('/')
+              
 def index(request, category = None):
     # Controller interface: View an activity
     # input: An activity id
