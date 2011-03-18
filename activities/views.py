@@ -21,8 +21,62 @@ from snoek import settings
 
 from snoek.activities.VoteTable import VoteTable
 
+# First Page
+############
+
+def index(request, category = None):
+    # Controller interface: View an activity
+    # input: An activity id
+    # return: Rendering an activity page
+
+    user = request.user
+    if category:                        # Show activities in a specific category.
+        pass
+    else:
+        return render_to_response('index.html', {'user': user,
+                                                 'settings': settings,
+                                                 'avt': reversed(list(Activity.objects.all()))})
+
+# ACTIVITIES
+############
+
+def view_activity(request, a_id):
+    # Controller interface: View an activity
+    # input: An activity id
+    # return: Rendering an activity page
+
+    user = request.user    
+
+    avt = Activity.objects.get(id = a_id)
+    votes = Vote.objects.filter(activity = a_id)
+    vote_tables = []
+
+    # Generate all 1D table
+    for v in votes:
+        vote_tables.append({'vote': v, 'table': VoteTable(v.id)})
+    
+    # Generate all possible 2D table
+    for i in range(len(votes)):
+        for j in range(i+1, len(votes)):
+            vote_tables.append({'vote': 'v', 'table': VoteTable(votes[i].id, votes[j].id)})
+    #debug
+    #for v in votes:
+    #    for q in list(v.question_set.all()):
+    #        print q.content
+        #for q in list(v.question_set):
+        #    print q.content
+
+    return render_to_response('show_activity.html', {'avt': avt,
+                                                     'votes': votes,
+                                                     'vote_tables': vote_tables,
+                                                     'user':user,
+                                                     'settings': settings,
+                                                     'is_valid_for_vote': _isValidForVote(user, avt),
+                                                     'is_expired': _isExpired(avt),                                                     
+                                                     })
+
 @login_required
-def new_activity(request,category):
+def view_create_activity(request,category):
     user=request.user
     return render_to_response('new_activity.html',{'user':user,
                                                    'category':category,
@@ -30,7 +84,26 @@ def new_activity(request,category):
 						   'avt':reversed(list(Activity.objects.all()))})
 
 @login_required
-def save_activity(request):
+def view_update_activity(request,aid):
+    p=Activity.objects.get(id=aid)
+    vote=list(Vote.objects.filter(activity=p))
+    votetable=[]
+    for v in vote:
+        q=list(Question.objects.filter(vote=v))
+        if len(q)<5:
+           q=q+['']*(5-len(q))
+        votetable.append([v,q])
+    if len(votetable)<2:
+       votetable=votetable+['']*(2-len(votetable))
+    return render_to_response('edit_activity.html',{'user':request.user,
+                                                    'settings':settings,
+                                                    'avt':p, 
+                                                    'vq':votetable,
+                                                    'ql':range(1,6)})
+
+
+@login_required
+def create_activity(request):
     if request.method=='POST':
        s=request.POST
     datelist=s['deadline'].split('-')
@@ -42,8 +115,10 @@ def save_activity(request):
     return render_to_response('new_votes.html',{'user':request.user,
                                                 'settings':settings,
                                                 'act':p})
+
+
 @login_required
-def save_vote(request,aid):
+def save_vote_in_activity(request,aid):
     if request.method=='POST':
        s=request.POST
     act=Activity.objects.get(id=aid)
@@ -80,23 +155,8 @@ def delt_activity(request,aid):
         return False
     return HttpResponseRedirect('/')
    
-def edit_activity(request,aid):
-    p=Activity.objects.get(id=aid)
-    vote=list(Vote.objects.filter(activity=p))
-    votetable=[]
-    for v in vote:
-        q=list(Question.objects.filter(vote=v))
-        if len(q)<5:
-           q=q+['']*(5-len(q))
-        votetable.append([v,q])
-    if len(votetable)<2:
-       votetable=votetable+['']*(2-len(votetable))
-    return render_to_response('edit_activity.html',{'user':request.user,
-                                                    'settings':settings,
-                                                    'avt':p, 
-                                                    'vq':votetable,
-                                                    'ql':range(1,6)})
-def edit_submit(request,aid):
+@login_required
+def update_activity(request,aid):
     if request.method=='POST':
        s=request.POST
     dl=s['deadline'].split('-')
@@ -137,83 +197,7 @@ def edit_submit(request,aid):
                    if s['v'+str(i)+'p'+str(j)]!='':
                       Question(content=s['v'+str(i)+'p'+str(j)],vote=vn).save()
     return HttpResponseRedirect('/')
-              
-def index(request, category = None):
-    # Controller interface: View an activity
-    # input: An activity id
-    # return: Rendering an activity page
 
-    user = request.user
-    if category:                        # Show activities in a specific category.
-        pass
-    else:
-        return render_to_response('index.html', {'user': user,
-                                                 'settings': settings,
-                                                 'avt': reversed(list(Activity.objects.all()))})
-
-
-def view(request, a_id):
-    # Controller interface: View an activity
-    # input: An activity id
-    # return: Rendering an activity page
-
-    user = request.user    
-
-    avt = Activity.objects.get(id = a_id)
-    votes = Vote.objects.filter(activity = a_id)
-    vote_tables = []
-
-    # Generate all 1D table
-    for v in votes:
-        vote_tables.append({'vote': v, 'table': VoteTable(v.id)})
-    
-    # Generate all possible 2D table
-    for i in range(len(votes)):
-        for j in range(i+1, len(votes)):
-            vote_tables.append({'vote': 'v', 'table': VoteTable(votes[i].id, votes[j].id)})
-    #debug
-    #for v in votes:
-    #    for q in list(v.question_set.all()):
-    #        print q.content
-        #for q in list(v.question_set):
-        #    print q.content
-
-    return render_to_response('show_activity.html', {'avt': avt,
-                                                     'votes': votes,
-                                                     'vote_tables': vote_tables,
-                                                     'user':user,
-                                                     'settings': settings,
-                                                     'is_valid_for_vote': _isValidForVote(user, avt),
-                                                     'is_expired': _isExpired(avt),                                                     
-                                                     })
-
-def view_by_all_users(request, a_id):
-    # Controller interface: View an activity voting results by User
-    # input: An activity id
-    # return: Rendering an who vote for what table
-
-    user = request.user
-    avt = Activity.objects.get(id = a_id)
-    vote_tables = []    
-    votes = Vote.objects.filter(activity = a_id)
-
-    for v in votes:
-        vt = VoteTable(v.id)
-        vote_tables.append({'vote': v, 'table': vt})
-
-    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user})
-
-def vote(request, a_id):
-    u_id = request.user.id
-
-    for v in request.POST:
-        q_id = request.POST[v]
-        answer = Answer(question=Question.objects.get(pk=q_id), user=User.objects.get(pk=u_id))
-        answer.save()
-
-    return HttpResponseRedirect('/activity/' + a_id)
-
-    
 def download_activity(request, a_id):
     # Controller interface: Download an activity
     # input: An activity id
@@ -238,6 +222,39 @@ def download_activity(request, a_id):
     response = HttpResponse(f, mimetype='application/vnd.oasis.opendocument.spreadsheet')
     response['Content-Disposition'] = 'attachment;filename="%s"' % os.path.basename(f.name)
     return response
+
+# VOTES
+#######
+
+def view_votes_by_all_users(request, a_id):
+    # Controller interface: View an activity voting results by User
+    # input: An activity id
+    # return: Rendering an who vote for what table
+
+    user = request.user
+    avt = Activity.objects.get(id = a_id)
+    vote_tables = []    
+    votes = Vote.objects.filter(activity = a_id)
+
+    for v in votes:
+        vt = VoteTable(v.id)
+        vote_tables.append({'vote': v, 'table': vt})
+
+    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user})
+
+def take_vote(request, a_id):
+    u_id = request.user.id
+
+    for v in request.POST:
+        q_id = request.POST[v]
+        answer = Answer(question=Question.objects.get(pk=q_id), user=User.objects.get(pk=u_id))
+        answer.save()
+
+    return HttpResponseRedirect('/activity/' + a_id)
+
+    
+# Internal functions
+####################
 
 def _toODSFile(odf_table_list, filename):
     

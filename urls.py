@@ -13,20 +13,30 @@ urlpatterns = patterns('',
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+
+    (r'^$', index),
     (r'^admin/', include(admin.site.urls)),
-    (r'^$', index),                                              
-    (r'^activity/(\d+)$', view),
-    (r'^whovotewhat/(\d+)$', view_by_all_users),
-    (r'^download_activity/(\d+)$', download_activity),
-    (r'^activity/(\d+)/vote/$', vote),                       
-    (r'^accounts/logout.*$', 'django.contrib.auth.views.logout'),
-    (r'^accounts/login.*$', 'django.contrib.auth.views.login'),
-    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
-    (r'^new(.*)$',new_activity),
-    (r'^activity_submit$',save_activity),
-    (r'^vote_submit(\d+)$',save_vote),
-    (r'^deltact(\d+)$',delt_activity),
-    (r'^edit_activity(\d+)$',edit_activity),
-    (r'^edit_submit(\d+)$',edit_submit),
+
+    # Activity                       
+    (r'^activity/(\d+)$',           view_activity),
+    (r'^edit_activity(\d+)$',       view_update_activity),
+    (r'^edit_submit(\d+)$',         update_activity),
+    (r'^new(.*)$',                  view_create_activity),
+    (r'^activity_submit$',          create_activity),
+    (r'^vote_submit(\d+)$',         save_vote_in_activity),
+    (r'^deltact(\d+)$',             delt_activity),
+    (r'^download_activity/(\d+)$',  download_activity),                       
+
+    # Vote specific
+    (r'^whovotewhat/(\d+)$',        view_votes_by_all_users),
+    (r'^activity/(\d+)/vote/$',     take_vote),
+
+    # User management
+    (r'^accounts/logout.*$',        'django.contrib.auth.views.logout'),
+    (r'^accounts/login.*$',         'django.contrib.auth.views.login'),
+    (r'^accounts/chpwd/$',          'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
+
+
+
 #    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change_done'),
 )

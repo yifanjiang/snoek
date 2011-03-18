@@ -11,6 +11,14 @@ class Activity(models.Model):
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
 
+    def getAllAnswers(self):
+        result = []
+        for v in self.vote_set.all():
+            for q in v.question_set.all():
+                for a in q.answer_set.all():
+                    result.append(a)
+        return result                    
+
 class Vote(models.Model):
 
     summary = models.CharField(max_length=100)    
