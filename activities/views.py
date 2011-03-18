@@ -252,6 +252,22 @@ def take_vote(request, a_id):
 
     return HttpResponseRedirect('/activity/' + a_id)
 
+def take_revote(request, a_id):
+    # TODO unfinished
+    
+    u_id = request.user.id
+    avt = Activity.objects.get(id = a_id)
+    
+    for a in avt.getAllAnswers():
+        a.delete()
+
+    for v in request.POST:
+        q_id = request.POST[v]
+        answer = Answer(question=Question.objects.get(pk=q_id), user=User.objects.get(pk=u_id))
+        answer.save()        
+
+    return HttpResponseRedirect('/activity/' + a_id)
+
     
 # Internal functions
 ####################

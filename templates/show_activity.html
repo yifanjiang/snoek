@@ -105,6 +105,7 @@ function validatepolls() {
 <!-- Show voting for authenticated user, who hasn't voted yet -->
 
 {% if is_valid_for_vote %}
+
 <h2>Take Vote</h2>
 <form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
 <table border = 0 bordercolor=black>
@@ -119,9 +120,13 @@ function validatepolls() {
 <td valign = top>
   {% for q in vt.vote.questions%}
      <input type="radio" name="vote{{vt.vote.id}}" value="{{ q.id }}" id="{{ vt.vote.id }}"/> 
+
 {% autoescape off %}
+     
      {{ q.content}}
+     
 {% endautoescape %}
+     
      <br/>
   {% endfor %}  
 </td>
@@ -131,9 +136,8 @@ function validatepolls() {
 </table>
 <input type="submit" value="Vote" />
 
-
-
 {% endif %}
+
 <!--Show results - any body is allowed to see the result.-->
 
 
