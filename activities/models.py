@@ -35,7 +35,14 @@ class Vote(models.Model):
     def getAllQuestions(self):
         return Question.objects.filter(vote = self.id)
 
-    questions = property(getAllQuestions)    
+    def getAllAnswersCount(self):
+        num = 0
+        for q in self.question_set.all():
+            num = num + q.answer_set.count()
+        return num
+
+    questions = property(getAllQuestions)
+    answerscount = property(getAllAnswersCount)
 
 class Question(models.Model):
 

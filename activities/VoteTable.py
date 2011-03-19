@@ -8,13 +8,15 @@ class VoteTable:
     def __init__(self, v_id_row = 0, v_id_col = 0):
         self.v_id_row = v_id_row
         self.v_id_col = v_id_col
+        self.is2d = self.is2D()        
         self.voters = self._getVoterList()
         self.title = self.getTableTitle()
         self.row_head = self.getTableRowHead()
         self.col_head = self.getTableColHead()
         self.table_with_row = self.getTableWithRow()
         self.table_body = self.getTableBody()
-        self.user_table = self.getUserTable()        
+        self.user_table = self.getUserTable()
+
 
     def is2D(self):
         # return True if this is a 2D table

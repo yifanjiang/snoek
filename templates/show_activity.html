@@ -156,6 +156,7 @@ function validatepolls() {
 
 
     <h2>Voting Results</h2>
+
     
     <p><a href = "/whovotewhat/{{avt.id}}">Who vote what</a></b></font>
 
@@ -174,7 +175,7 @@ function validatepolls() {
                   <td><b>Result</b></td>
             {% endif %}
 
-		</tr>
+        		</tr>
 {% autoescape off %}                
             {% for t in vt.table.table_with_row %}
                 <tr>
@@ -185,6 +186,13 @@ function validatepolls() {
                 </tr>
             {% endfor %}
 {% endautoescape %}
+                <tr>
+
+                  {% if not vt.table.is2d %}
+                  <td align = right><b> Total </b></td>
+                  <td><b> {{vt.vote.answerscount}} </b></td>
+                  {% endif %}
+                </tr>
             </table>
 
             <hr>
