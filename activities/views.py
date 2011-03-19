@@ -71,7 +71,7 @@ def view_activity(request, a_id):
                                                      'vote_tables': vote_tables,
                                                      'user':user,
                                                      'settings': settings,
-                                                     'is_valid_for_vote': _isValidForVote(user, avt),
+                                                     'has_voted': _hasVoted(user, avt),
                                                      'is_expired': _isExpired(avt),                                                     
                                                      })
 
@@ -258,7 +258,7 @@ def take_revote(request, a_id):
     u_id = request.user.id
     avt = Activity.objects.get(id = a_id)
     
-    for a in avt.getAllAnswers():
+    for a in avt.getAllAnswers(request.user):
         a.delete()
 
     for v in request.POST:
@@ -321,24 +321,38 @@ def _toODSTable(v_table):
     #doc.save('/tmp/test', True)
     return table
     
-def _isValidForVote(usr, avt):
-    # return if votes in a activity is allowed
+# def _isValidForVote(usr, avt):
+#     # return if votes in a activity is allowed
 
-    # TODO if activity is expired
-    if _isExpired(avt):
-        return False
+#     # TODO if activity is expired
+#     if _isExpired(avt):
+#         return False
     
+#     # if user is invalid
+#     for v in avt.vote_set.all():        
+#         for q in v.question_set.all():
+#             try:
+#                 if q.answer_set.filter(user = usr):
+#                     return False        # usr has voted
+#                 else:
+#                     continue
+#             except TypeError:
+#                 return False            # usr is anonymous
+#     return True
+
+def _hasVoted(usr, avt):
+
     # if user is invalid
     for v in avt.vote_set.all():        
         for q in v.question_set.all():
             try:
                 if q.answer_set.filter(user = usr):
-                    return False        # usr has voted
+                    return True        # usr has voted
                 else:
                     continue
             except TypeError:
-                return False            # usr is anonymous
-    return True
+                return True            # usr is anonymous
+    return False
 
 def _isExpired(avt):
     # return if activity is expired

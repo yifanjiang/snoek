@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     # Vote specific
     (r'^whovotewhat/(\d+)$',        view_votes_by_all_users),
     (r'^activity/(\d+)/vote/$',     take_vote),
+    (r'^activity/(\d+)/revote/$',   take_revote),
 
     # User management
     (r'^accounts/logout.*$',        'django.contrib.auth.views.logout'),

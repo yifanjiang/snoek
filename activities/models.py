@@ -11,13 +11,20 @@ class Activity(models.Model):
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
 
-    def getAllAnswers(self):
-        result = []
-        for v in self.vote_set.all():
-            for q in v.question_set.all():
-                for a in q.answer_set.all():
-                    result.append(a)
-        return result                    
+    def getAllAnswers(self, voter=""):
+        # voter is a User object
+        result = []        
+        if voter == "":
+            for v in self.vote_set.all():
+                for q in v.question_set.all():
+                    for a in q.answer_set.all():
+                        result.append(a)
+        else:
+            for v in self.vote_set.all():
+                for q in v.question_set.all():
+                    for a in q.answer_set.filter(user = voter):
+                        result.append(a)
+        return result
 
 class Vote(models.Model):
 

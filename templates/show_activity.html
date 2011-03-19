@@ -82,11 +82,7 @@ function validatepolls() {
 	<p><font color = "red" ><b><a href = "/accounts/login?next=/">Please login to attend vote</a></b></font></font>
 	{% endif %}
 
-	{% if user.is_authenticated and not is_valid_for_vote and not is_expired %}
-        <!-- forgive the suck code, we should have had a has_voted key :-) -->
-	<p><font color = "green" ><b>Hi {{user.username}} {{user.firstname}}, you have voted for
-	this activity</a></b></font>
-	{% endif %}
+
 
         <p> Summary: {{ avt.summary }}
         <p> Description: {{ avt.description }}
@@ -103,18 +99,24 @@ function validatepolls() {
 
 
 <!-- Show voting for authenticated user, who hasn't voted yet -->
+{% if user.is_authenticated %}
 
-{% if is_valid_for_vote %}
+{% if not is_expired %}
 
 <h2>Take Vote</h2>
-<form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
+
+{% if has_voted %}
+    <form method="POST" action="{{avt.id}}/revote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
+{% else %}
+    <form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
+{% endif %}  
 <table border = 0 bordercolor=black>
   <tr>
   {% for vt in votes %}
-  <td bgcolor=gray>{{vt.summary}}</td>
+      <td bgcolor=gray>{{vt.summary}}</td>
   {% endfor %}  
   </tr>
-  
+
 <tr>
 {% for vt in vote_tables %}
 <td valign = top>
@@ -134,9 +136,21 @@ function validatepolls() {
 {% endfor %}
 </tr>
 </table>
-<input type="submit" value="Vote" />
+{% if has_voted %}
+    <p>
+    <font color = "green" ><b>Hi {{user.username}} {{user.firstname}}, you have voted for this activity. Click Re-vote to revote. (Re-voting will <font color = "red"> OVERWRITE </font> your previous voting.)</a></b></font>
+    <p>
+    
+    <p>
+    <input type="submit" value="Re-Vote" style="background-color:#c00; color:#fff; font-weight: bold;" />
+{% else %}
+    <input type="submit" value="Vote" />
+{% endif %}
 
 {% endif %}
+
+{% endif %}    
+
 
 <!--Show results - any body is allowed to see the result.-->
 
