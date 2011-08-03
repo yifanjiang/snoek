@@ -36,6 +36,8 @@ FUTURE
 
                 - Allow user to regret a vote and re-vote
 
+                - Allow user to remove re-vote
+
                 - Allow to search activities by creation date, deadline, etc.
 
                 - Connect to Novell LDAP authentication and support user group
