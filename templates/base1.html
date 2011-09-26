@@ -1,34 +1,22 @@
+<!DOCTYPE HTML>  
 <html>
 <head>
 <title>Novell Beijing R&D Team Activities</title>
-<style type="text/css">
-/* Remove margins from the 'html' and 'body' tags, and ensure the page takes up full screen height */
-html, body {height:100%; margin:0; padding:0;}
-/* Set the position and dimensions of the background image. */
-body {
-    background-image: url("{{settings.MEDIA_URL}}/image/final_most_green_rc2.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-#content {position:relative; z-index:1;padding:10px;}
-
-</style>
+<link rel="stylesheet" type="text/css" href="http://localhost/css/style.css" />
 </head>
 <body>
-
-<div id="content">
-  
-<table width = 100% border = 0 >
+<table class="header_table">
 <tr>
 
   <td><img src="{{settings.MEDIA_URL}}/image/snoek.gif" width = 150 height = 50 alt="snoek logo"></td>
-  <td><h1>Snoek v{{settings.VERSION}} - {{settings.TITLE}} </h1></b></td>
+  <td><header class="title">Snoek v{{settings.VERSION}} - {{settings.TITLE}} </header></b></td>
   {% if user.is_authenticated %}
-
-
     <td align = right>
-      <b>Snoeker: {{user.username}}</b><a href =  '/accounts/chpwd'><img src="{{settings.MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
+      <header class="login">
+      Snoeker: {{user.username}}
+      <a href =  '/accounts/chpwd'><img src="{{settings.MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
       <a href =  '/accounts/logout?next=/'>Logout</a>
+      </header>
     </td>
       <td align = right><a href = '/'>Home</a></td>        
   {% else %}
@@ -38,10 +26,7 @@ body {
 
 </tr>
 </table>
-
 {% block content %}{% endblock %}
-</div>
-
 </body>
 
 </html>

@@ -12,7 +12,7 @@ function confirmRemoveActivity(aid){
 
 </script>
 <br/>
-			<table>
+			<table class="nav">
 				<tr>
 
 					<td width="900"><h3><a href="#">Team
@@ -31,10 +31,6 @@ function confirmRemoveActivity(aid){
 					    {% endif %}					    
 
 					</h3></td>
-					
-					
-
-
 					<td width="900"><h3><a href="http://147.2.207.243:8081/">Friday's
 					Topic</a>
 
@@ -63,22 +59,26 @@ function confirmRemoveActivity(aid){
 				</tr>
 			</table>
 
-<hr color = navyblue>
-<h2> Activities list </h2>
+<h1> Activities list </h1>
 <br/>
 
-{% for a in avt %}
+<section class="avt_lst">
 
-<a href = 'activity/{{ a.id }}'> {{a.summary}} </a>&nbsp;
+    {% for a in avt %}
 
-<!-- show/hide edit delt button -->
-{% if a.user.id == user.id %}
-<a href = '#' onclick="confirmRemoveActivity({{a.id}})">Delet</a>
-<a href = 'edit_activity{{a.id}}' >Edit</a><br/>
-{% else %}
-<br/>
-{% endif %}
-<br/>
+    <a href = 'activity/{{ a.id }}'> {{a.summary}} </a>&nbsp;
 
-{% endfor%}
+    <!-- show/hide edit delt button -->
+    {% if a.user.id == user.id %}
+    <a href = '#' onclick="confirmRemoveActivity({{a.id}})">Delet</a>
+    <a href = 'edit_activity{{a.id}}'>Edit</a><br/>
+    {% else %}
+    <br/>
+    {% endif %}
+    <br/>
+
+    {% endfor%}
+
+</section>
+
 {% endblock %}

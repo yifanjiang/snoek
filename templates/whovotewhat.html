@@ -4,16 +4,16 @@
 
 {% block content %}
 {% autoescape off %}                                		
-<h2>Who Vote What for - <a href="/activity/{{avt.id}}">{{avt.summary}}</a></h2>
+<h3>Who Vote What for - <a href="/activity/{{avt.id}}">{{avt.summary}}</a></h3>
 
 
 
         {% for vt in vote_tables %}
 
 
-            <table border=1 bordercolor=green cellspacing = 2 cellpadding=2 >
+            <table id="who_vote_what">
                 <tr>
-                  <td><b>{{vt.vote.summary}}<b></td>
+                  <th>{{vt.vote.summary}}</th>
                   {% for c in vt.table.row_head %}
                   <td><b>{{c.content}}</b></td>
                   {% endfor%}
@@ -29,8 +29,7 @@
 		</tr>
                 {% endfor%}
             </table>
-
-            <hr>
+            <br />
         {% endfor %}
 {% endautoescape %}
 

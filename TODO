@@ -27,7 +27,7 @@ FUTURE
 
                         Activity creator is allowed to remove/edit the
                         activities her owned in the front page. The previledge
-                        is design in the front end (if login with 'ysun', see
+
                         the difference besides the Activity 'Hackweek T-shirt
                         registration'. But the button delt/edit is not
                         actually working atm.
@@ -36,11 +36,13 @@ FUTURE
 
                 - Allow user to regret a vote and re-vote
 
-                - Allow user to remove re-vote
+                - Allow user to remove own vote
 
                 - Allow to search activities by creation date, deadline, etc.
 
                 - Connect to Novell LDAP authentication and support user group
+
+                - Password recall (send mail)
 
                 - Support richer text area for activity descriptions/vote
                   questions
@@ -84,6 +86,10 @@ FUTURE
                   votes in an activity. We may will add a description of how
                   many users were not calculated in the 2-dimension table
                   because of the incomplete votes.
+
+                - Vote in a specific range of users (individuals, groups)
+
+                - Send spam mail to push user vote
 
         - UI
 
