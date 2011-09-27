@@ -242,6 +242,7 @@ def view_votes_by_all_users(request, a_id):
 
     return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user})
 
+@login_required
 def take_vote(request, a_id):
     u_id = request.user.id
 
@@ -252,9 +253,9 @@ def take_vote(request, a_id):
 
     return HttpResponseRedirect('/activity/' + a_id)
 
+@login_required
 def take_revote(request, a_id):
-    # TODO unfinished
-    
+
     u_id = request.user.id
     avt = Activity.objects.get(id = a_id)
     
@@ -268,6 +269,16 @@ def take_revote(request, a_id):
 
     return HttpResponseRedirect('/activity/' + a_id)
 
+@login_required
+def del_vote(request, a_id):
+
+    u_id = request.user.id
+    avt = Activity.objects.get(id = a_id)
+
+    for a in avt.getAllAnswers(request.user):
+        a.delete()
+
+    return HttpResponseRedirect('/activity/' + a_id)        
     
 # Internal functions
 ####################

@@ -1,27 +1,20 @@
 {% extends "base1.html" %}
 {% block content %}
+
 <script type="text/javascript">
 
 function checkpolls() {
-    
     v = validatepolls();
 
     if (v) {
-
     	return true;
-
     }else{
-
 	    alert('Please fill up all votes before submitting.');
-
     }
-
     return false;    
-
 }
 
 function validatepolls() {
-
     var formElements = window.document.getElementById("polls").elements;
     var formElement;
     var radioArray = [];
@@ -29,185 +22,137 @@ function validatepolls() {
     var radio_checked = false;
 
     for (var i = 0; i < formElements.length; i++) {
-
         formElement = formElements.item(i);
-
         if (formElement.type === "radio") {
-
             current_radio = formElements.item(i);
-
             break;
-
         }
     }
 
     for (var i = 0; i < formElements.length; i++) {
-
         formElement = formElements.item(i);
-
         if (formElement.type === "radio") {
-
             if (formElement.id === current_radio.id){
-
                 radio_checked = formElement.checked || radio_checked ;
-
             }else{
-
                 current_radio = formElement;
-
                 if (radio_checked) {
-
                     radio_checked = false ;
-
                     radio_checked = formElement.checked || radio_checked;
-
                 }else{
-
                     return false;
-
                 }
             }
         }
     }
-
     return radio_checked;
-			
 }
-    
+
 </script>
 
-    <h2>Activity</h2>
+<!-- Activity summary -->
+
+<h2>Activity</h2>
     
-	{% if not user.is_authenticated and not is_expired%}
-	<p><a href = "/accounts/login?next=/">Please login to attend vote</a>
-	{% endif %}
+{% if not user.is_authenticated and not is_expired%}
+    <p><a href = "/accounts/login?next=/">Please login to attend vote</a>
+{% endif %}
 
-        <p> <b>Summary:</b> {{ avt.summary }}
-        <p> <b>Description:</b> {{ avt.description }}
-        <p> <b>Category:</b> {{ avt.category }}
-        <p> <b>Creater:</b> {{ avt.user.first_name }} {{ avt.user.last_name }}
+<p> <b>Summary:</b> {{ avt.summary }}
+<p> <b>Description:</b> {{ avt.description }}
+<p> <b>Category:</b> {{ avt.category }}
+<p> <b>Creater:</b> {{ avt.user.first_name }} {{ avt.user.last_name }} &lt;{{ avt.user.email }}&gt;
 
-	{% if not is_expired %}	  
-        <p class="general_warning"> Expired on: {{ avt.deadline }}
-	{% else %}
-        <p class="general_error"> The Votes
-	has been expired ( on {{ avt.deadline }} )
-	{% endif %}	  	  
-
-	<p> <a href="/download_activity/{{ avt.id }}"> Download me </a> (download voting result as OpenDocument Format)
-
-<!-- Show voting for authenticated user, who hasn't voted yet -->
-<section class="take_vote">
-{% if user.is_authenticated %}
-
-{% if not is_expired %}
-
-<h2>Take Vote</h2>
-
-{% if has_voted %}
-    <form method="POST" action="{{avt.id}}/revote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
+{% if not is_expired %}	  
+    <p class="general_warning"> Expired on: {{ avt.deadline }}
 {% else %}
-    <form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()" >
-{% endif %}  
+    <p class="general_error"> The Votes	has been expired ( on {{ avt.deadline }} )
+{% endif %}
 
-<table id="take_vote">
-   <tr>
-       {% for vt in votes %}
-           <th>{{vt.summary}}</th>
-       {% endfor %}     
-   </tr>
+<p><a href = "/whovotewhat/{{avt.id}}">Who vote what</a>  <a href="/download_activity/{{ avt.id }}"> Download me </a> (download voting result as OpenDocument Format)
 
-    <tr>
-        {% for vt in votes %}
-            <td valign = top>
-                {% for q in vt.questions%}
-                    <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/> 
-                    {% autoescape off %}
-                        {{ q.content}}
-                    {% endautoescape %}
-                    <br/>
-                {% endfor %}  
-            </td>
-        {% endfor %}
-    </tr>
-</table>
+<!-- Show take vote for an authenticated user who hasn't voted yet -->
 
-    {% if has_voted %}
-        <p>
-        <font color = "green" ><b>Hi {{user.username}} {{user.firstname}}, you have voted for this activity. Re-vote will <font color = "red"> OVERWRITE </font> your previous voting.</a></b></font>
-        <p>
-        <p>
-        <input type="submit" value="Re-Vote" style="background-color:#c00; color:#fff; font-weight: bold;" />
-    {% else %}
-        <input type="submit" value="Vote" />
+<section class="take_vote">
+    {% if user.is_authenticated %}
+        {% if not is_expired %}
+            <h2>Take Vote</h2>
+            {% if has_voted %}
+                <form method="POST" action="{{avt.id}}/revote/" id = "polls"  name = "polls" onSubmit="return checkpolls()">
+            {% else %}
+                <form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()">
+            {% endif %}  
+
+            <table id="take_vote">
+               <tr>
+               {% for vt in votes %}
+                   <th>{{vt.summary}}</th>
+               {% endfor %}
+               </tr>
+
+               <tr>
+               {% for vt in votes %}
+                    <td valign = top>
+                    {% for q in vt.questions%}
+                        <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/> 
+                        {% autoescape off %}
+                            {{ q.content}}
+                        {% endautoescape %}
+                        <br/>
+                    {% endfor %}  
+                    </td>
+                {% endfor %}
+                </tr>
+            </table>
+
+            {% if has_voted %}
+                <p> Hi {{user.username}} {{user.firstname}}, you have voted for this activity. Re-vote will OVERWRITE your previous voting.
+                <p>
+                <p>
+                <input type="submit" value="Re-Vote" style="background-color:#c00; color:#fff; font-weight: bold;" />
+            {% else %}
+                <input type="submit" value="Vote" />
+            {% endif %}
+            </form>
+        {% endif %}
     {% endif %}
-
-{% endif %}
-
-{% endif %}
-</form>
-
 </section>
 
 <!--Show results - anybody is allowed to see the result.-->
 
 <section class="vote_result">
-
     <h2>Voting Results</h2>
-    
-
-
-        {% for vt in vote_tables %}
-
-            <table id="vote_result">
-                <tr class="alt">
-                  <td><b>{{vt.vote.summary}}</b></td>
-
-            {% if vt.table.is2D %}
-            {% for c in vt.table.col_head %}
-                  <td><b>{{c.content}}</b></td>
-            {% endfor %}
-            {% else %}
-                  <td><b>Result</b></td>
-            {% endif %}
-
-        		</tr>
-{% autoescape off %}                
+    {% for vt in vote_tables %}
+        <table id="vote_result">
+            <tr class="alt">
+                <td><b>{{vt.vote.summary}}</b></td>
+                {% if vt.table.is2D %}
+                    {% for c in vt.table.col_head %}
+                        <td><b>{{c.content}}</b></td>
+                    {% endfor %}
+                {% else %}
+                    <td><b>Result</b></td>
+                {% endif %}
+            </tr>
+            {% autoescape off %}                
             {% for t in vt.table.table_with_row %}
                 <tr>
-                  <td><b>{{ t.row_head.content }}</b></td>
-		  {% for rb in t.row_body %}
-	                  <td>{{ rb }}</td>
-                  {% endfor %}
+                    <td><b>{{ t.row_head.content }}</b></td>
+                    {% for rb in t.row_body %}
+                        <td>{{ rb }}</td>
+                    {% endfor %}
                 </tr>
             {% endfor %}
-{% endautoescape %}
-                <tr class="alt">
-
-                  {% if not vt.table.is2d %}
-                  <td align = right><b> Total </b></td>
-                  <td><b> {{vt.vote.answerscount}} </b></td>
-                  {% endif %}
-                </tr>
-            </table>
-
-            <br />
-          
-<!--            <h4>  Vote Summary: {{ vt.vote.summary }} </h4>
-              
-            <p>  {% for q in vt.vote.questions %}
-                     <p> {{q.content}} : {{ q.answernumber }}
-                     <p> &nbsp; &nbsp; vote by:
-                       {% for a in q.answers %}
-                            {{ a.user.username }} |
-                       {% endfor %}
-                 {% endfor %}
-
-
-
-		       
--->
-{% endfor %}
+            {% endautoescape %}
+            <tr class="alt">
+            {% if not vt.table.is2d %}
+                <td align = right><b> Total </b></td>
+                <td><b> {{vt.vote.answerscount}} </b></td>
+            {% endif %}
+            </tr>
+        </table>
+        <br />
+    {% endfor %}
 
     <p><a href = "/whovotewhat/{{avt.id}}">Who vote what</a>  <a href="/download_activity/{{ avt.id }}"> Download me </a> (download voting result as OpenDocument Format)  
 
