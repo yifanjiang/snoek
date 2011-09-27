@@ -3,13 +3,14 @@
 
 <script type="text/javascript">
 
+
 function checkpolls() {
     v = validatepolls();
 
     if (v) {
     	return true;
     }else{
-	    alert('Please fill up all votes before submitting.');
+        alert('Please fill up all votes before submitting.');
     }
     return false;    
 }
@@ -48,6 +49,38 @@ function validatepolls() {
     return radio_checked;
 }
 
+function vote() {
+
+   window.document.polls.action = "{{avt.id}}/vote/";
+   p = checkpolls();
+   if (p){
+       window.document.polls.submit();
+       return true;
+   }else{
+       return false;
+   }
+}
+
+function revote() {
+
+    window.document.polls.action = "{{avt.id}}/revote/";
+    p = checkpolls();
+    if (p){
+        window.document.polls.submit();
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function delvote() {
+
+    document.polls.action = "{{avt.id}}/delvote/";
+    document.polls.submit();
+    return true;
+
+}                        
+
 </script>
 
 <!-- Activity summary -->
@@ -77,11 +110,7 @@ function validatepolls() {
     {% if user.is_authenticated %}
         {% if not is_expired %}
             <h2>Take Vote</h2>
-            {% if has_voted %}
-                <form method="POST" action="{{avt.id}}/revote/" id = "polls"  name = "polls" onSubmit="return checkpolls()">
-            {% else %}
-                <form method="POST" action="{{avt.id}}/vote/" id = "polls"  name = "polls" onSubmit="return checkpolls()">
-            {% endif %}  
+            <form method="POST" name="polls" id="polls">
 
             <table id="take_vote">
                <tr>
@@ -106,13 +135,20 @@ function validatepolls() {
             </table>
 
             {% if has_voted %}
-                <p> Hi {{user.username}} {{user.firstname}}, you have voted for this activity. Re-vote will OVERWRITE your previous voting.
+                <p> Hi {{user.username}} {{user.firstname}}, you have voted
+                for this activity.
+                <input type="button" value="Re-Vote" style="background-color:#F8981D; color:#fff; font-weight: bold;" onclick="return revote();"/>
+                will OVERWRITE your previous
+                voting, 
+                <input type="button" value="Un-Vote" style="background-color:#ED1C24;color:#fff; font-weight: bold;" onclick="return delvote()"/>
+                will REMOVE your previous voting.
                 <p>
                 <p>
-                <input type="submit" value="Re-Vote" style="background-color:#c00; color:#fff; font-weight: bold;" />
             {% else %}
-                <input type="submit" value="Vote" />
+                <p>
+                <input type="button" value="Take Vote" style="background-color:#7AC142;color:#fff; font-weight: bold;" onclick="return vote();"/>
             {% endif %}
+
             </form>
         {% endif %}
     {% endif %}
