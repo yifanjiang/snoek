@@ -47,16 +47,16 @@ h3 {
 }
 
 /* Define error, warning and notice msg styles */
-p.general_error{
+.general_error{
 
     color: red;
     font-weight: bold;
 
 }
 
-p.general_warning{
+.general_warning{
 
-    color: orange;
+    color: #F8981D;
     font-weight: bold;
 
 }

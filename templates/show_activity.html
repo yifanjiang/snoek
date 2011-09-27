@@ -138,10 +138,10 @@ function delvote() {
                 <p> Hi {{user.username}} {{user.firstname}}, you have voted
                 for this activity.
                 <input type="button" value="Re-Vote" style="background-color:#F8981D; color:#fff; font-weight: bold;" onclick="return revote();"/>
-                will OVERWRITE your previous
+                <span class="general_warning">OVERWRITES</span> your previous
                 voting, 
                 <input type="button" value="Un-Vote" style="background-color:#ED1C24;color:#fff; font-weight: bold;" onclick="return delvote()"/>
-                will REMOVE your previous voting.
+                <span class="general_error">REMOVES</span> your previous voting.
                 <p>
                 <p>
             {% else %}
