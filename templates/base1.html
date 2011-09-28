@@ -6,25 +6,27 @@
 </head>
 <body>
 <table class="header_table">
-<tr>
 
-  <td><img src="{{settings.MEDIA_URL}}/image/snoek.gif" width = 150 height = 50 alt="snoek logo"></td>
+<tr>
+<header class="login">
+  <td><img src="{{settings.MEDIA_URL}}/image/snoek.png" width = 150 height = 50 alt="snoek logo"></td>
   <td><header class="title">Snoek v{{settings.VERSION}} - {{settings.TITLE}} </header></b></td>
   {% if user.is_authenticated %}
     <td align = right>
-      <header class="login">
+
       Snoeker: {{user.username}}
       <a href =  '/accounts/chpwd'><img src="{{settings.MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
       <a href =  '/accounts/logout?next=/'>Logout</a>
-      </header>
+
     </td>
       <td align = right><a href = '/'>Home</a></td>        
   {% else %}
     <td align = right><a href = '/accounts/login?next=/'>Login</a></td>
     <td align = right><a href = '/'>Home</a></td>        
   {% endif %}
-
+</header>
 </tr>
+
 </table>
 {% block content %}{% endblock %}
 </body>
