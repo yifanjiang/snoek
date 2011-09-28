@@ -46,8 +46,9 @@ class Vote(models.Model):
 
 class Question(models.Model):
 
-    content = models.CharField(max_length=100)    
     vote = models.ForeignKey(Vote)
+    content = models.CharField(max_length=100)
+    hyperlink = models.CharField(max_length=1000)
 
     def getAnswersNumber(self):
         return len(Answer.objects.filter(question = self.id))

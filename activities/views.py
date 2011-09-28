@@ -72,7 +72,8 @@ def view_activity(request, a_id):
                                                      'user':user,
                                                      'settings': settings,
                                                      'has_voted': _hasVoted(user, avt),
-                                                     'is_expired': _isExpired(avt),                                                     
+                                                     'is_expired': _isExpired(avt),
+                                                     'settings': settings
                                                      })
 
 @login_required
@@ -233,7 +234,7 @@ def view_votes_by_all_users(request, a_id):
 
     user = request.user
     avt = Activity.objects.get(id = a_id)
-    vote_tables = []    
+    vote_tables = []
     votes = Vote.objects.filter(activity = a_id)
 
     for v in votes:

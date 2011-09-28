@@ -125,7 +125,10 @@ function delvote() {
                     {% for q in vt.questions%}
                         <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/> 
                         {% autoescape off %}
-                            {{ q.content}}
+                            {{ q.content }}
+                            {% if q.hyperlink != False %}
+                                <a href= {{q.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                            {% endif %}
                         {% endautoescape %}
                         <br/>
                     {% endfor %}  
@@ -159,27 +162,37 @@ function delvote() {
 <section class="vote_result">
     <h2>Voting Results</h2>
     {% for vt in vote_tables %}
+        {% autoescape off %}
         <table id="vote_result">
             <tr class="alt">
                 <td><b>{{vt.vote.summary}}</b></td>
                 {% if vt.table.is2D %}
                     {% for c in vt.table.col_head %}
-                        <td><b>{{c.content}}</b></td>
+                        <td><b>{{c.content}}
+                        {% if c.hyperlink != False %}
+                            <a href= {{c.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                        {% endif %}
+                        </b></td>
                     {% endfor %}
                 {% else %}
                     <td><b>Result</b></td>
                 {% endif %}
             </tr>
-            {% autoescape off %}                
+
             {% for t in vt.table.table_with_row %}
                 <tr>
-                    <td><b>{{ t.row_head.content }}</b></td>
+                    <td><b>{{ t.row_head.content }}
+                    {% if t.row_head.hyperlink != False %}
+                        <a href= {{t.row_head.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                    {% endif %}
+                    </b></td>                        
                     {% for rb in t.row_body %}
                         <td>{{ rb }}</td>
+
                     {% endfor %}
                 </tr>
             {% endfor %}
-            {% endautoescape %}
+
             <tr class="alt">
             {% if not vt.table.is2d %}
                 <td align = right><b> Total </b></td>
@@ -187,6 +200,7 @@ function delvote() {
             {% endif %}
             </tr>
         </table>
+        {% endautoescape %}        
         <br />
     {% endfor %}
 
