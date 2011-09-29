@@ -89,5 +89,5 @@ INSTALLED_APPS = (
 )
 
 # Snoek settings
-VERSION = "0.99"
+VERSION = "0.9"
 TITLE = "Novell Beijing R&D Team Activities"

@@ -1,4 +1,5 @@
-Hackweek 6 Summary
+Latest summary
+==============
 
 We built up and implement the tool Snoek function areas during the
 hackweek, which can be found at:
@@ -17,26 +18,16 @@ FUTURE
 
         - function Part
 
-                - Activity management to allow user create her own activity
-                  without asking admin to do so
+                - Support richer text area for activity descriptions/vote questions. Allow
+                  add links to questions in activity creating phase.        
 
-                        As we said in the requirement, any valid user is
-                        allowed to create an activity containing any number of
-                        Polls. However the activity creation model is not
-                        finished in the hackweek.
+                - meeting room reservation implementation
 
-                        Activity creator is allowed to remove/edit the
-                        activities her owned in the front page. The previledge
-
-                        the difference besides the Activity 'Hackweek T-shirt
-                        registration'. But the button delt/edit is not
-                        actually working atm.
-
+                - allow Activities creater to create votes and questions as
+                  many as they want (rather than fixed number of votes and
+                  questions)
+                  
                 - Allow the activity deadline set to prcision of minutes
-
-                - Allow user to regret a vote and re-vote
-
-                - Allow user to remove own vote
 
                 - Allow to search activities by creation date, deadline, etc.
 
@@ -44,64 +35,27 @@ FUTURE
 
                 - Password recall (send mail)
 
-                - Support richer text area for activity descriptions/vote
-                  questions
-
-                        We got some links as required for voting questions, we
-                        implement it by mixing html tags with questions data
-                        set. The example canbe seen here:
-
-                        http://147.2.207.135:8080/activity/4
-
-                        A.
-
-                        However, this is only a WORKAROUND since mixing html
-                        tag with real data in a database is not really
-                        acceptable solution.
-
-                        So we will re-consider how to handle this. We did not
-                        set this as a requirement spec in design phase. The
-                        simplest way may be to add a 'details' field in the
-                        table of database, in which html tag is allowed. With
-                        that activity creater can put rich stuff like
-                        hyperlinks, pictures etc. if she knows HTML.
-
-                        B.
-
-                        The workaround above is not working for
-                        ODS(libreoffice) export, you can see the raw html will
-                        be ugly exported as content with:
-
-                        http://147.2.207.135:8080/download_activity/4
-
-                        This would not be done before the point A is improved.
+                - Send spam mail to push user vote when an activity is about
+                  to expired
 
                 - When edit an activity's question item, we should allow the
                   activity creater choosing to Remove related vote or NOT. The
                   current mechanism removed all of the questions forcely when
                   editing a question's content.
 
-                - Based on the activity edit function, we should consider the
-                  2-dimension table when a user doesn't vote for all of the
-                  votes in an activity. We may will add a description of how
-                  many users were not calculated in the 2-dimension table
-                  because of the incomplete votes.
-
                 - Vote in a specific range of users (individuals, groups)
 
-                - Send spam mail to push user vote
-
         - UI
+
+                - Better UI with CSS design
+
+                - Display activity creation date/time in front page
 
                 - Front page category view of activity list
 
                 - Front page paginate view of activity list
 
                 - Display the total vote number in the activity display page
-
-                - Display activity creation date/time in front page
-
-                - Better UI with CSS design
 
                 - bar chart of the statistics when reviewing voting results
 
@@ -113,3 +67,12 @@ KNOWN ISSUES:
 
         - base1.html will cause severe performance issue in some firefox(3.6.6) as I noticed.
         <div id="page-background"><img src="{{settings.MEDIA_URL}}/image/final_most_green_rc2.png" width="100%" height="100%" alt="Smile"></div>
+
+
+Features implemented in hackweek 7:
+===================================
+
+    - Activity management to allow user create her own activity
+      without asking admin to do so
+
+    - Allow user to regret a vote and re-vote            
