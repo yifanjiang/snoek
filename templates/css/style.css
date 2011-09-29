@@ -45,6 +45,18 @@ h3 {
     padding: 0px 0;
     
 }
+footer { 
+    position: fixed;
+    clear: both;
+    width: 100%;
+    height: 16px;
+    bottom: 0;
+    border: none;
+    padding: 2px 0 0 0;
+    text-align: center;
+    color: #335500;
+    background-color: #cccccc;
+}
 
 /* Define error, warning and notice msg styles */
 .general_error{
@@ -79,7 +91,6 @@ header.title{
     /* line-height: 44px; */
     /* padding: 5px 0; */
 }
-
 
 header.login{
 
@@ -116,6 +127,38 @@ a:hover{
     color: rgba(67, 149, 57, 0.8);    
 }
 
+a.strong:link{
+
+    font-family: Verdana;        
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #A7C942;        
+    text-decoration: none;
+
+}
+a.strong:visited{
+
+    font-family: Verdana;        
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: #A7C942;    
+    text-decoration: none;
+
+}
+
+a.strong:hover{
+
+    font-family: Verdana;        
+    font-size: 16px;
+    font-weight: bold;
+    color: #000;
+    background-color: yellow;    
+    text-decoration: none;
+
+}
+
 table.header_table{
 
     padding: 0;
@@ -141,7 +184,7 @@ section.avt_lst{
 
 }
 
-section.avt_lst a:link{
+section.avt_lst a:link.normal{
 
     font-family: Verdana;        
     font-size: 16px;
@@ -151,7 +194,7 @@ section.avt_lst a:link{
 
 }
 
-section.avt_lst a:visited{
+section.avt_lst a:visited.normal{
 
     font-family: Verdana;        
     font-size: 16px;
@@ -160,7 +203,7 @@ section.avt_lst a:visited{
 
 }
 
-section.avt_lst a:hover{
+section.avt_lst a:hover.normal{
 
     font-family: Verdana;
     font-size: 16px;
