@@ -1,31 +1,31 @@
 {% extends "base1.html" %}
 {% block content %}
 <form action="/edit_submit{{avt.id}}" method="post">
- <p>summary: <input type="text" value="{{avt.summary}}" name="summary" /></p>
- <p>description: <input type="text" value="{{avt.description}}" name="description" /></p>
- <p>deadline: <input type="text" value="{{avt.deadline|date:"Y-m-d"}}" name="deadline" /></p>
- <p>category: <input type="text" value="{{avt.category}}" name="category" /></p>
+  <p>summary: <input type="text" value="{{avt.summary}}" name="summary" /></p>
+  <p>description: <input type="text" value="{{avt.description}}" name="description" /></p>
+  <p>deadline: <input type="text" value="{{avt.deadline|date:"Y-m-d"}}" name="deadline" /></p>
+  <p>category: <input type="text" value="{{avt.category}}" name="category" /></p>
 
- {% for v in vq  %}
+  {% for v in vq  %}
     {% if v.0 %}
-    <p>summary for vote{{forloop.counter}}:<input type="text" value="{{v.0.summary}}" name={{v.0.id}} /></p>
-    <p>description for vote{{forloop.counter}}:<input type="text" value="{{v.0.description}}" name=d{{v.0.id}} /></p>
-    {% for q in v.1 %}
-       {% if q %}
-       <p>question{{forloop.counter}}:<input type="text" value="{{q.content}}" name={{v.0.id}}-{{q.id}} /></p>
-       {% else %}
-       <p>question{{forloop.counter}}:<input type="text" name={{v.0.id}}p{{forloop.counter}} /></p>
-       {% endif %}
-    {% endfor %}
-   {% else %}
-   <p>summary for vote{{forloop.counter}}:<input type="text" name=v{{forloop.counter}} /></p>
-   <p>description for vote{{forloop.counter}}:<input type="text" name=vd{{forloop.counter}} /></p>
-   {% for i in ql %}
-       <p>question{{i}}:<input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></p>
-   {% endfor %}
-   {% endif %}
-{% endfor %}
-<input type="submit" value="Submit" />
+      <p>summary for vote{{forloop.counter}}:<input type="text" value="{{v.0.summary}}" name={{v.0.id}} /></p>
+      <p>description for vote{{forloop.counter}}:<input type="text" value="{{v.0.description}}" name=d{{v.0.id}} /></p>
+      {% for q in v.1 %}
+        {% if q %}
+          <p>question{{forloop.counter}}:<input type="text" value="{{q.content}}" name={{v.0.id}}-{{q.id}} /></p>
+        {% else %}
+          <p>question{{forloop.counter}}:<input type="text" name={{v.0.id}}p{{forloop.counter}} /></p>
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      <p>summary for vote{{forloop.counter}}:<input type="text" name=v{{forloop.counter}} /></p>
+      <p>description for vote{{forloop.counter}}:<input type="text" name=vd{{forloop.counter}} /></p>
+      {% for i in ql %}
+        <p>question{{i}}:<input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></p>
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+  <input type="submit" value="Submit" />
 </form>
 
 {% endblock %}
