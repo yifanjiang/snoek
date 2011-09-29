@@ -1,30 +1,52 @@
 {% extends "base1.html" %}
 {% block content %}
 <form action="/edit_submit{{avt.id}}" method="post">
-  <p>summary: <input type="text" value="{{avt.summary}}" name="summary" /></p>
-  <p>description: <input type="text" value="{{avt.description}}" name="description" /></p>
-  <p>deadline: <input type="text" value="{{avt.deadline|date:"Y-m-d"}}" name="deadline" /></p>
-  <p>category: <input type="text" value="{{avt.category}}" name="category" /></p>
-
+  <br />
+  <table name="Summary">
+    <tr>
+      <th>Summary:</th>
+      <td><input type="text" value="{{avt.summary}}" name="summary" /></td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td><input type="text" value="{{avt.description}}" name="description" /></td>
+    </tr>
+    <tr>
+      <th>Deadline:</th>
+      <td><input type="text" value="{{avt.deadline|date:"Y-m-d"}}" name="deadline" /></td>
+    </tr>
+    <tr>
+      <th>Category:</th>
+      <td><input type="text" value="{{avt.category}}" name="category" /></td>
+    </tr>
+  </table>
+  <br />
+  <table name="VotesQuestions">
   {% for v in vq  %}
     {% if v.0 %}
-      <p>summary for vote{{forloop.counter}}:<input type="text" value="{{v.0.summary}}" name={{v.0.id}} /></p>
-      <p>description for vote{{forloop.counter}}:<input type="text" value="{{v.0.description}}" name=d{{v.0.id}} /></p>
+    <tr>
+      <td>Summary for vote{{forloop.counter}}:<input type="text" value="{{v.0.summary}}" name={{v.0.id}} />&nbsp;&nbsp;&nbsp;
+          Description for vote{{forloop.counter}}:<input type="text" value="{{v.0.description}}" name=d{{v.0.id}} /></td>
+    </tr><tr></tr>
       {% for q in v.1 %}
         {% if q %}
-          <p>question{{forloop.counter}}:<input type="text" value="{{q.content}}" name={{v.0.id}}-{{q.id}} /></p>
+	<tr><td>Question{{forloop.counter}}:&nbsp;<input type="text" value="{{q.content}}" name={{v.0.id}}-{{q.id}} /></td></tr>
         {% else %}
-          <p>question{{forloop.counter}}:<input type="text" name={{v.0.id}}p{{forloop.counter}} /></p>
+	<tr><td>Question{{forloop.counter}}:<input type="text" name={{v.0.id}}p{{forloop.counter}} /></td></tr>
         {% endif %}
       {% endfor %}
     {% else %}
-      <p>summary for vote{{forloop.counter}}:<input type="text" name=v{{forloop.counter}} /></p>
-      <p>description for vote{{forloop.counter}}:<input type="text" name=vd{{forloop.counter}} /></p>
-      {% for i in ql %}
-        <p>question{{i}}:<input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></p>
-      {% endfor %}
+    <tr>
+      <td>Summary for vote{{forloop.counter}}:<input type="text" name=v{{forloop.counter}} />&nbsp;&nbsp;&nbsp;
+          Description for vote{{forloop.counter}}:<input type="text" name=vd{{forloop.counter}} /></td>
+    </tr><tr></tr>
+    {% for i in ql %}
+    <tr><td>Question{{i}}:</td><td><input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></td></tr>
+    {% endfor %}
     {% endif %}
-  {% endfor %}
+    </tr><tr></tr><tr></tr>
+    {% endfor %}
+  </table>
   <input type="submit" value="Submit" />
 </form>
 
