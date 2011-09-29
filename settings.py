@@ -1,3 +1,7 @@
+import os
+
+selfdir = os.path.dirname(os.path.abspath(__file__))
+
 # Django settings for snoek project.
 
 DEBUG = True
@@ -11,7 +15,7 @@ MANAGERS = ADMINS
 
 DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 #YOUR HOME here
-DATABASE_NAME = '/home/qateam/snoek/db.sqlite'             # Or path to database file if using sqlite3.
+DATABASE_NAME = os.sep.join([selfdir, 'db.sqlite'])             # Or path to database file if using sqlite3.
 DATABASE_USER = ''             # Not used with sqlite3.
 DATABASE_PASSWORD = ''         # Not used with sqlite3.
 DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
@@ -36,7 +40,7 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/qateam/snoek/templates/'
+MEDIA_ROOT = os.sep.join([selfdir, 'templates', os.sep])
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -71,12 +75,13 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/qateam/snoek/templates',
+    os.sep.join([selfdir, 'templates'])    
+
 )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
-    'django.contrib.admin',    
+    'django.contrib.admin',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
@@ -84,5 +89,5 @@ INSTALLED_APPS = (
 )
 
 # Snoek settings
-VERSION = "0.8"
+VERSION = "0.99"
 TITLE = "Novell Beijing R&D Team Activities"
