@@ -7,32 +7,24 @@
 <br />
 <form action="/vote_submit{{act.id}}" method="post">
   <div>
-     Summary for vote1:&nbsp;<input type="text" name="v1s" /><br />
+     Summary for vote1:&nbsp;<input type="text" name="v1s" />
      Description for vote1:&nbsp;<input type="text" name="v1d" />
      <input type="button" value="+" onclick="addsumm()"/>
-     <span id="addsummary"></span>
-     <div>Question1:&nbsp;<input type="text" name="v1q1" />&nbsp;
+     <div>Question1:&nbsp;<input type="text" name="v1q1" />
 	<input type="button" value="+" onclick="addques()">
 	<span id="addquestion"></span>
      </div>
+     <span id="addsummary"></span>
   </div>
-<!--  <p>summary for Vote2: <input type="text" name="v2s" /></p>
-  <p>description for vote2:<input type="text" name="v2d" /></p>
-      <p>question1: <input type="text" name="v2q1" /></p>
-      <p>question2: <input type="text" name="v2q2" /></p>
-      <p>question3: <input type="text" name="v2q3" /></p>
-      <p>question4: <input type="text" name="v2q4" /></p>
-      <p>question5: <input type="text" name="v2q5" /></p>
--->
   <input type="submit" value="Submit" />
 </form>
-{%endblock%}
 <script>
 var addques = function () {
 	$('#addquestion').append('<div>Question1:&nbsp;<input type="text" name="v1q1" />&nbsp;<input type="button" value="+" onclick="addques()"><span id="addquestion"></span></div>');
 }
 
 var addsumm = function () {
-	$('#addsummary').append('<div>Summary for vote1:&nbsp;<input type="text" name="v1s" /><br />Description for vote1:&nbsp;<input type="text" name="v1d" /><input type="button" value="+" onclick="addsumm()"/><span id="addsummary"></span><div>Question1:&nbsp;<input type="text" name="v1q1" />&nbsp;<input type="button" value="+" onclick="addques()"><span id="addquestion"></span></div></div>');
+	$('#addsummary').append('<div>Summary for vote1:&nbsp;<input type="text" name="v1s" />&nbsp;Description for vote1:&nbsp;<input type="text" name="v1d" /><input type="button" value="+" onclick="addsumm()"/><span id="addsummary"></span><div>Question1:&nbsp;<input type="text" name="v1q1" />&nbsp;<input type="button" value="+" onclick="addques()"><span id="addquestion"></span></div></div>');
 }
 </script>
+{%endblock%}
