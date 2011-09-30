@@ -41,7 +41,7 @@
           Description for vote{{forloop.counter}}:<input type="text" name=vd{{forloop.counter}} /></td>
     </tr><tr></tr>
     {% for i in ql %}
-    <tr><td>Question{{i}}:</td><td><input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></td></tr>
+    <tr><td>Question{{i}}:<input type="text" name=v{{forloop.parentloop.counter}}p{{i}} /></td></tr>
     {% endfor %}
     {% endif %}
     </tr><tr></tr><tr></tr>
