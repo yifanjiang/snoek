@@ -20,32 +20,32 @@ body {
 }
 
 h1 {
-    
+
     font-size: 28px;
     color: #ffffff;
     line-height: 44px;
     padding: 0px 0;
-    background: rgba(67, 149, 57, 0.8);    
-    
+    background: rgba(67, 149, 57, 0.8);
+
 }
 
 h2 {
-    
+
     font-size: 22px;
     line-height: 44px;
     padding: 0px 0;
     background: rgba(67, 149, 57, 0.3);
-    
+
 }
 
 h3 {
-    
+
     font-size: 16px;
     line-height: 22px;
     padding: 0px 0;
-    
+
 }
-footer { 
+footer {
     position: fixed;
     clear: both;
     width: 100%;
@@ -77,7 +77,7 @@ footer {
 
 header.title{
 
-    font-family: Gill Sans, Verdana;    
+    font-family: Gill Sans, Verdana;
     color: #666;
     margin: 0;
     padding: 0px 0px 6px 0px;
@@ -85,7 +85,7 @@ header.title{
     line-height: 44px;
     letter-spacing: -2px;
     font-weight: bold;
-    
+
     /* font-size: 32px; */
     /* font-weight: bold;     */
     /* line-height: 44px; */
@@ -94,17 +94,17 @@ header.title{
 
 header.login{
 
-    font-family: Gill Sans, Verdana;        
+    font-family: Gill Sans, Verdana;
     font-size: 16px;
     font-weight: bold;
     line-height: 44px;
     padding: 5px 0;
-    
+
 }
 
 a:link{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     font-weight: bold;
     color: #222;
@@ -114,47 +114,47 @@ a:link{
 
 a:visited{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     color: #666;
-    text-decoration: none;    
+    text-decoration: none;
 
 }
 
 a:hover{
 
     font-family: Verdana;
-    color: rgba(67, 149, 57, 0.8);    
+    color: rgba(67, 149, 57, 0.8);
 }
 
 a.strong:link{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    background-color: #A7C942;        
+    background-color: #A7C942;
     text-decoration: none;
 
 }
 a.strong:visited{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    background-color: #A7C942;    
+    background-color: #A7C942;
     text-decoration: none;
 
 }
 
 a.strong:hover{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     font-weight: bold;
     color: #000;
-    background-color: yellow;    
+    background-color: yellow;
     text-decoration: none;
 
 }
@@ -179,14 +179,14 @@ table.nav{
 /* Define Activity list in the portal page. */
 
 section.avt_lst{
-    
+
     padding-left: 16px;
 
 }
 
 section.avt_lst a:link.normal{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     font-weight: bold;
     color: #222;
@@ -196,10 +196,10 @@ section.avt_lst a:link.normal{
 
 section.avt_lst a:visited.normal{
 
-    font-family: Verdana;        
+    font-family: Verdana;
     font-size: 16px;
     color: #666;
-    text-decoration: none;    
+    text-decoration: none;
 
 }
 

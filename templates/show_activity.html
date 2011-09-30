@@ -12,7 +12,7 @@ function checkpolls() {
     }else{
         alert('Please fill up all votes before submitting.');
     }
-    return false;    
+    return false;
 }
 
 function validatepolls() {
@@ -79,14 +79,14 @@ function delvote() {
     document.polls.submit();
     return true;
 
-}                        
+}
 
 </script>
 
 <!-- Activity summary -->
 
 <h2>Activity</h2>
-    
+
 {% if not user.is_authenticated and not is_expired%}
     <p><a href = "/accounts/login?next=/">Please login to attend vote</a>
 {% endif %}
@@ -96,7 +96,7 @@ function delvote() {
 <p> <b>Category:</b> {{ avt.category }}
 <p> <b>Creater:</b> {{ avt.user.first_name }} {{ avt.user.last_name }} &lt;{{ avt.user.email }}&gt;
 
-{% if not is_expired %}	  
+{% if not is_expired %}	
     <p class="general_warning"> Expired on: {{ avt.deadline }}
 {% else %}
     <p class="general_error"> The Votes	has been expired ( on {{ avt.deadline }} )
@@ -123,7 +123,7 @@ function delvote() {
                {% for vt in votes %}
                     <td valign = top>
                     {% for q in vt.questions%}
-                        <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/> 
+                        <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/>
                         {% autoescape off %}
                             {{ q.content }}
                             {% if q.hyperlink != False %}
@@ -131,7 +131,7 @@ function delvote() {
                             {% endif %}
                         {% endautoescape %}
                         <br/>
-                    {% endfor %}  
+                    {% endfor %}
                     </td>
                 {% endfor %}
                 </tr>
@@ -142,7 +142,7 @@ function delvote() {
                 for this activity.
                 <input type="button" value="Re-Vote" style="background-color:#F8981D; color:#fff; font-weight: bold;" onclick="return revote();"/>
                 <span class="general_warning">OVERWRITES</span> your previous
-                voting, 
+                voting,
                 <input type="button" value="Un-Vote" style="background-color:#ED1C24;color:#fff; font-weight: bold;" onclick="return delvote()"/>
                 <span class="general_error">REMOVES</span> your previous voting.
                 <p>
@@ -185,7 +185,7 @@ function delvote() {
                     {% if t.row_head.hyperlink != False %}
                         <a href= {{t.row_head.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
                     {% endif %}
-                    </b></td>                        
+                    </b></td>
                     {% for rb in t.row_body %}
                         <td>{{ rb }}</td>
 
@@ -200,7 +200,7 @@ function delvote() {
             {% endif %}
             </tr>
         </table>
-        {% endautoescape %}        
+        {% endautoescape %}
         <br />
     {% endfor %}
 

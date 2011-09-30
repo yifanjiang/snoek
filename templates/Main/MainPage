@@ -21,10 +21,10 @@
 			</table>
 			<table>
 				<tr>
-					<td width="900"><h3>1. <a href="http://www.sina.com">Meeting Room Reservation</a>  <input type="BUTTON" value="New"></h3></td> 
+					<td width="900"><h3>1. <a href="http://www.sina.com">Meeting Room Reservation</a>  <input type="BUTTON" value="New"></h3></td>
 					<td width="900"><h3>2. <a href="http://www.sina.com">Team building/Meal</a>  <input type="BUTTON" value="New"></h3></td>
 					<td width="900"><h3>3. <a href="http://www.sina.com">Order T-shirt</a>  <input type="BUTTON" value="New"></h3></td>
-					<td width="900"><h3>4. <a href="http://147.2.207.243:8081">Friday's Topic</a>  <input type="BUTTON" value="New"></h3></td> 
+					<td width="900"><h3>4. <a href="http://147.2.207.243:8081">Friday's Topic</a>  <input type="BUTTON" value="New"></h3></td>
 					<td width="900"><h3>5. <a href="http://147.2.207.243:8081">Others</a>  <input type="BUTTON" value="New"></h3></td>
 				</tr>
 			</table>
