@@ -10,7 +10,7 @@ section, header, footer, aside, nav, article {
 /* Define global styles */
 
 body {
-    margin: 0 auto;
+    margin: 0;
     /* width: 940px; */
     /* font: 13px/22px Helvetica, Arial, sans-serif; */
     /* background: #f0f0f0; */
@@ -26,7 +26,8 @@ h1 {
     font-size: 28px;
     color: #ffffff;
     line-height: 36px;
-    padding: 0px 0;
+    padding: 0;
+
     background: rgba(67, 149, 57, 0.8);
 
 }
@@ -394,8 +395,9 @@ ul.topnav {
 ul.topnav li {
 	float: left;
 	margin: 0;
-	padding: 0 15px 0 0;
+	padding: 0 16px 0 0;
 	position: relative; /*--Declare X and Y axis base for sub navigation--*/
+
 }
 ul.topnav li a{
 	padding: 10px 5px;
@@ -411,6 +413,7 @@ ul.topnav li span { /*--Drop down trigger styles--*/
 	width: 17px;
 	height: 35px;
 	float: left;
+
 	background: url(subnav_btn.gif) no-repeat center top;
 }
 ul.topnav li span.subhover {background-position: center bottom; cursor: pointer;} /*--Hover effect for trigger--*/
@@ -439,7 +442,7 @@ html ul.topnav li ul.subnav li a {
 	padding-left: 20px;
 }
 html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
-	background: rgba(67, 149, 57, 0.5) url(dropdown_linkbg.gif) no-repeat 10px center;        
+	background: rgba(67, 149, 57, 0.5) url(dropdown_linkbg.gif) no-repeat 10px center;
 	/* background: #222 url(dropdown_linkbg.gif) no-repeat 10px center; */
 }
 
