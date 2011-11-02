@@ -26,7 +26,8 @@ DATABASE_PORT = ''             # Set to empty string for default. Not used with 
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'America/Chicago'
+#TIME_ZONE = 'America/Chicago'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -86,8 +87,24 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'snoek.activities',
+    'snoek.meeting',
 )
 
 # Snoek settings
 VERSION = "0.9"
 TITLE = "Novell Beijing R&D Team Activities"
+# Snoek Meeting settings
+STARTTIME     = 8
+ENDTIME       = 18
+UNITCOLOR     = {True: "GRAY", False: 'WHITE'}
+ROOMNO        = (
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+)

@@ -1,0 +1,31 @@
+{% extends "base1.html" %}
+
+{% block content %}
+
+{% include 'meeting/comtitle.html' %}
+
+{% for e in events %}
+    {% if forloop.first %}
+	<pre><h2 class="meeting">{{ user.username }}: you have reserved {{ forloop.revcounter}} meeting(s).</h2></pre>
+    {% endif %}
+
+    <TABLE style="margin-bottom:70px" BORDER=1 BGCOLOR=WHITE>
+    <FORM action="/meetingroom/delevent_{{e.id}}/" method="get" name="del">
+    <pre><Font size=5>{{ forloop.counter }}.                          {{ e.meeting_room.date }}</Font>   <input type="SUBMIT" value="Delete"></pre>
+    </FORM>
+    <TR><TH WIDTH=15>Room {{ e.meeting_room.room_no }}</TH><TH WIDTH=450 ALIGN="left"> {{ e.start_time}} -- {{ e.end_time }} </TH> 
+    <TR><TH WIDTH=15>Participants: </TH><TD WIDTH=450>{% for a in e.getAud %} 
+        {% if not forloop.last %}
+            &nbsp;{{ a.username }},
+        {% else %}
+            &nbsp;{{ a.username }}.
+        {% endif %}
+    {% endfor %}</TD>
+    <TR><TH WIDTH=15>Purpose: </TH><TD WIDTH=450>&nbsp;{{ e.purpose }}</TD>
+    </TABLE>
+    </FORM>
+{% empty %}
+    <pre><h2 class="meeting"> {{ user.username }}: you have not reserved meeting yet.</h2></pre>
+{% endfor %}
+
+{% endblock %}

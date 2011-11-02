@@ -38,6 +38,13 @@ h2 {
     line-height: 44px;
     padding: 0px 0;
     background: rgba(67, 149, 57, 0.3);
+}
+
+h2.meeting {
+
+    font-size: 22px;
+    color: #3851d6;
+    background: #ffffff
 
 }
 
@@ -48,6 +55,7 @@ h3 {
     padding: 0px 0;
 
 }
+
 footer {
     position: fixed;
     clear: both;
@@ -308,11 +316,30 @@ td.nav{
 
 }
 
+td.meeting{
+
+    font-size: 16px;
+    text-align: left;
+    padding: 0;
+    padding-left: 15px;
+
+}
+
 table.nav{
 
     /* background-color: #eeeeee */
     width:100%;
     border: 5;
+
+}
+
+table.meeting{
+
+    float:left;
+    margin-bottom:80px;
+    margin-left:80px;
+    margin-right:50px;
+    background-color: #ffffff
 
 }
 
@@ -445,4 +472,3 @@ html ul.topnav li ul.subnav li a:hover { /*--Hover effect for subnav links--*/
 	background: rgba(67, 149, 57, 0.5) url(dropdown_linkbg.gif) no-repeat 10px center;
 	/* background: #222 url(dropdown_linkbg.gif) no-repeat 10px center; */
 }
-

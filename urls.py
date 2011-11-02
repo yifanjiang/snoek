@@ -42,3 +42,15 @@ urlpatterns = patterns('',
 
 #    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change_done'),
 )
+
+urlpatterns += patterns('snoek.meeting.views',
+    # Meeting room
+    (r'^meetingroom/$',                      'index'),
+    (r'^meetingroom/showmeeting/$',          'show_meeting'),
+    (r'^meetingroom/showevent/$',            'show_event'),
+    (r'^meetingroom/getstatus/$',            'get_status'),
+    (r'^meetingroom/booking/$',              'new_event'),
+    (r'^meetingroom/set_event/$',            'set_event'),
+    (r'^meetingroom/showstatus/$',           'show_status'),
+    (r'^meetingroom/delevent_(\d+)/$',       'del_event'),
+)

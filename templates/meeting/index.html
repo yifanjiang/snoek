@@ -1,0 +1,24 @@
+{% extends "base1.html" %}
+{% block content %}
+
+{% include 'meeting/comtitle.html' %}
+
+{% if user.is_authenticated %}
+
+<pre><h2 class="meeting">{{ user.username }}: Employee self service </h2></pre>
+
+<a href = '/meetingroom/showmeeting'><Font size=4>Check meeting schedule</Font></a>
+<br/><br/>
+
+<a href = '/meetingroom/showevent'><Font size=4>Check the reservation status</Font></a>
+<br/><br/>
+
+<a href = '/meetingroom/booking'><Font size=4>Booking meeting room</Font></a>
+<br/><br/>
+
+{% endif %}
+
+<a href = '/meetingroom/getstatus'><Font size=4>Show meeting room status</Font></a>
+<br/><br/>
+
+{% endblock %}
