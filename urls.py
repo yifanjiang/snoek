@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Example:
     # (r'^snoek/', include('snoek.foo.urls')),
 
-    # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
+    # Uncomment the admin/doc line below and add 'django.contrib.admindocs'
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     (r'^$', index),
     (r'^admin/', include(admin.site.urls)),
 
-    # Activity                       
+    # Activity
     (r'^activity/(\d+)$',           view_activity),
     (r'^edit_activity(\d+)$',       view_update_activity),
     (r'^edit_submit(\d+)$',         update_activity),
@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     (r'^activity_submit$',          create_activity),
     (r'^vote_submit(\d+)$',         save_vote_in_activity),
     (r'^deltact(\d+)$',             delt_activity),
-    (r'^download_activity/(\d+)$',  download_activity),                       
+    (r'^download_activity/(\d+)$',  download_activity),
 
     # Vote specific
     (r'^whovotewhat/(\d+)$',        view_votes_by_all_users),

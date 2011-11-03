@@ -9,7 +9,7 @@
 
 function isDate(str)
 {
-    var d = str.match(/^(\d{1,4})-(\d{1,2})-(\d{1,2})$/); 
+    var d = str.match(/^(\d{1,4})-(\d{1,2})-(\d{1,2})$/);
     if(d==null) {
 	document.event.date.value='';
          alert ("Input Date error!  Syntax is year-month-day. eg,2011-9-28");
@@ -22,7 +22,7 @@ function isDate(str)
 	    document.event.date.value='';
             alert ("Input Date error!  Day must be in 1..31");
         }
-    
+
         var today = new Date();
         var day = new Date(str);
         if ((day.getTime()+24*60*60*1000) < today.getTime()){
@@ -33,12 +33,12 @@ function isDate(str)
 }
 
 function isTime(time)
-{ 
-//    var regex = /(^[0-2]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})?$/; 
-    var t = time.match(/(^[1-2]?[0-9]{1}):([0-5]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})?$/); 
+{
+//    var regex = /(^[0-2]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})?$/;
+    var t = time.match(/(^[1-2]?[0-9]{1}):([0-5]{1}[0-9]{1})(:[0-5]{1}[0-9]{1})?$/);
 //    if( !regex.test(time) ) { 
     if( t==null ) { 
-	alert("Input time error! Enter a valid time in HH:MM[:ss] format. "); 
+	alert("Input time error! Enter a valid time in HH:MM[:ss] format. ");
     }
     if (parseInt(t[1])>24 || (parseInt(t[1])<{{settings.STARTTIME}}) || (parseInt(t[1])> {{settings.ENDTIME}}) ) {
         //Not available in offtime meeting
@@ -65,7 +65,7 @@ function compareTime(stime,etime)
        var starttime=new Date(String("2011"),String("9"),String("28"),String(arrs[0]),String(arrs[1]-1),String(arrs[2]));
    }
    var starttimes=starttime.getTime();
-      
+
    var arre=etime.split(":");
    if (arre[2]==null){
        var endtime=new Date(String("2011"),String("9"),String("28"),String(arre[0]),String(arre[1]-1));
@@ -98,13 +98,13 @@ body {
     <pre>StartTime:     <input type="text" maxlength="10" name="starttime" onblur="isTime(this.value)"></pre>
     <pre>EndTime:       <input type="text" maxlength="10" name="endtime" onblur="compareTime(document.event.starttime.value,this.value)" ></pre>
     <pre>MeetingRoom:   <select name="roomno" >
-        <option value="" selected> 
-	{% for room in settings.ROOMNO %} 
+        <option value="" selected>
+	{% for room in settings.ROOMNO %}
             <option value="{{ room }}" > {{ room }}
         {% endfor %}
     </select></pre>
     <pre>Holder:        <select name="holder" >
-	{% for n in alluser %} 
+	{% for n in alluser %}
 	    {% ifequal n user %}
                 <option value="{{ n.username }}" selected> {{ n.username }}
             {% else %}
@@ -113,7 +113,7 @@ body {
         {% endfor %}
     </select></pre>
     <p><pre>Participant:   </pre><pre>               <select multiple name="participant" size="6">
-	{% for m in alluser %} 
+	{% for m in alluser %}
 	    {% ifequal m user %}
                 <option value="{{ m }}" selected> {{ m.username }}
             {% else %}

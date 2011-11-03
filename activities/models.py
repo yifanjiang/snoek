@@ -13,7 +13,7 @@ class Activity(models.Model):
 
     def getAllAnswers(self, voter=""):
         # voter is a User object
-        result = []        
+        result = []
         if voter == "":
             for v in self.vote_set.all():
                 for q in v.question_set.all():
@@ -28,7 +28,7 @@ class Activity(models.Model):
 
 class Vote(models.Model):
 
-    summary = models.CharField(max_length=100)    
+    summary = models.CharField(max_length=100)
     description = models.TextField()
     activity = models.ForeignKey(Activity)
 
@@ -52,7 +52,7 @@ class Question(models.Model):
 
     def getAnswersNumber(self):
         return len(Answer.objects.filter(question = self.id))
-    
+
     def getAllAnswers(self):
         return Answer.objects.filter(question = self.id)
 
@@ -60,11 +60,11 @@ class Question(models.Model):
     answers = property(getAllAnswers)
 
 class Answer(models.Model):
-    
+
     question = models.ForeignKey(Question)
     user = models.ForeignKey(User)
-    
+
     def getAllVoters(self):
         return User.objects.filter(id = user)
-    
+
     voters = property(getAllVoters)

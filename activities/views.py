@@ -45,7 +45,7 @@ def view_activity(request, a_id):
     # input: An activity id
     # return: Rendering an activity page
 
-    user = request.user    
+    user = request.user
 
     avt = Activity.objects.get(id = a_id)
     votes = Vote.objects.filter(activity = a_id)
@@ -54,7 +54,7 @@ def view_activity(request, a_id):
     # Generate all 1D table
     for v in votes:
         vote_tables.append({'vote': v, 'table': VoteTable(v.id)})
-    
+
     # Generate all possible 2D table
     for i in range(len(votes)):
         for j in range(i+1, len(votes)):
@@ -98,7 +98,7 @@ def view_update_activity(request,aid):
        votetable=votetable+['']*(2-len(votetable))
     return render_to_response('edit_activity.html',{'user':request.user,
                                                     'settings':settings,
-                                                    'avt':p, 
+                                                    'avt':p,
                                                     'vq':votetable,
                                                     'ql':range(1,6)})
 
@@ -133,7 +133,7 @@ def save_vote_in_activity(request,aid):
        vote2=Vote(summary=s['v2s'],description=s['v2d'],activity=act)
        vote2.save()
        for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
-           if s[content]!='':       
+           if s[content]!='':
               Question(content=s[content],vote=vote2).save()
     return HttpResponseRedirect('/')
   #  return render_to_response('index.html', {'user': request.user,
@@ -145,7 +145,7 @@ def delt_activity(request,aid):
 
     p=Activity.objects.get(id=aid)
 
-    if request.user == p.user:    
+    if request.user == p.user:
         for v in Vote.objects.filter(activity=p):
             for a in Question.objects.filter(vote=v):
                 Answer.objects.filter(question=a).delete()
@@ -155,7 +155,7 @@ def delt_activity(request,aid):
     else:
         return False
     return HttpResponseRedirect('/')
-   
+
 @login_required
 def update_activity(request,aid):
     if request.method=='POST':
@@ -163,7 +163,7 @@ def update_activity(request,aid):
     dl=s['deadline'].split('-')
     p=Activity(id=aid,user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(int(dl[0]),int(dl[1]),int(dl[2])),category=s['category'])
     p.save()
-    lenvote=len(Vote.objects.filter(activity=p))    
+    lenvote=len(Vote.objects.filter(activity=p))
     for v in Vote.objects.filter(activity=p):
         if s[str(v.id)]=='':
            for q in Question.objects.filter(vote=v):
@@ -176,7 +176,7 @@ def update_activity(request,aid):
            v.save()
            lenq=len(Question.objects.filter(vote=v))
            for q in Question.objects.filter(vote=v):
-               if s[str(v.id)+'-'+str(q.id)]=="":  
+               if s[str(v.id)+'-'+str(q.id)]=="":
                   Answer.objects.filter(question=q).delete()
                   q.delete()
                elif s[str(v.id)+'-'+str(q.id)]!=q.content:
@@ -212,14 +212,14 @@ def download_activity(request, a_id):
     # Generate all 1D table
     for v in votes:
         odf_table_list.append(_toODSTable(VoteTable(v.id)))
-    
+
     # Generate all possible 2D table
     for i in range(len(votes)):
         for j in range(i+1, len(votes)):
             odf_table_list.append(_toODSTable(VoteTable(votes[i].id, votes[j].id)))
 
     f = _toODSFile(odf_table_list, filename)
-    
+
     response = HttpResponse(f, mimetype='application/vnd.oasis.opendocument.spreadsheet')
     response['Content-Disposition'] = 'attachment;filename="%s"' % os.path.basename(f.name)
     return response
@@ -259,14 +259,14 @@ def take_revote(request, a_id):
 
     u_id = request.user.id
     avt = Activity.objects.get(id = a_id)
-    
+
     for a in avt.getAllAnswers(request.user):
         a.delete()
 
     for v in request.POST:
         q_id = request.POST[v]
         answer = Answer(question=Question.objects.get(pk=q_id), user=User.objects.get(pk=u_id))
-        answer.save()        
+        answer.save()
 
     return HttpResponseRedirect('/activity/' + a_id)
 
@@ -279,13 +279,13 @@ def del_vote(request, a_id):
     for a in avt.getAllAnswers(request.user):
         a.delete()
 
-    return HttpResponseRedirect('/activity/' + a_id)        
-    
+    return HttpResponseRedirect('/activity/' + a_id)
+
 # Internal functions
 ####################
 
 def _toODSFile(odf_table_list, filename):
-    
+
     doc = OpenDocumentSpreadsheet()
     for t in odf_table_list:
         doc.spreadsheet.addElement(t)
@@ -311,37 +311,37 @@ def _toODSTable(v_table):
         table.addElement(tr)
         td= TableCell()
         td.addElement(P(text='Head'))
-        tr.addElement(td)                            
+        tr.addElement(td)
         for headcell in v_table.col_head:
             td= TableCell()
             td.addElement(P(text=headcell.content))
-            tr.addElement(td)                    
-    
+            tr.addElement(td)
+
     for cursorRow in v_table.table_with_row:
         tr= TableRow()
         table.addElement(tr)
         td= TableCell()
         td.addElement(P(text=cursorRow['row_head'].content))
-        tr.addElement(td)                    
+        tr.addElement(td)
 
         for val in cursorRow['row_body']:
-            td= TableCell()            
+            td= TableCell()
             td.addElement(P(text=val))
-            tr.addElement(td)    
+            tr.addElement(td)
 
     #myFile= tempfile.TemporaryFile('/tmp/')
     #doc.save('/tmp/test', True)
     return table
-    
+
 # def _isValidForVote(usr, avt):
 #     # return if votes in a activity is allowed
 
 #     # TODO if activity is expired
 #     if _isExpired(avt):
 #         return False
-    
+
 #     # if user is invalid
-#     for v in avt.vote_set.all():        
+#     for v in avt.vote_set.all():
 #         for q in v.question_set.all():
 #             try:
 #                 if q.answer_set.filter(user = usr):
@@ -355,7 +355,7 @@ def _toODSTable(v_table):
 def _hasVoted(usr, avt):
 
     # if user is invalid
-    for v in avt.vote_set.all():        
+    for v in avt.vote_set.all():
         for q in v.question_set.all():
             try:
                 if q.answer_set.filter(user = usr):

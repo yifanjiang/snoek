@@ -52,12 +52,12 @@ public ssh key to any of the contacts.
 1. You need dependencies to run Snoek:
 
     - Python 2.6 +
-   
+
     - Django for python
 
     - odfpy for python
-    
-    - A static http server (apache, lighttp, etc.)    
+
+    - A static http server (apache, lighttp, etc.)
 
     The Django and odfpy packs are put in the "dep" directory.
 
@@ -81,7 +81,7 @@ way to do it after 'git pull':
         snoek/$ git update-index --assume-unchanged settings.py
 
         snoek/$ git update-index --assume-unchanged db.sqlite
-   
+
    In case you meet a problem when meeting pull problem (the files are
    modified on git server for example), the reversing operation is:
 
@@ -112,9 +112,9 @@ jquery canbe imported to Snoek.
    snoek/$ python manage.py runserver localhost:8080
 
 6. The typical command of push your code to repo is:
-   
+
    - You did some nice work of code improvement
-   
+
    - snoek/$ git commit -a -m 'your tips goes here'
 
    - snoek/$ git pull -r

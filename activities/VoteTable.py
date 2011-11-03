@@ -8,7 +8,7 @@ class VoteTable:
     def __init__(self, v_id_row = 0, v_id_col = 0):
         self.v_id_row = v_id_row
         self.v_id_col = v_id_col
-        self.is2d = self.is2D()        
+        self.is2d = self.is2D()
         self.voters = self._getVoterList()
         self.title = self.getTableTitle()
         self.row_head = self.getTableRowHead()
@@ -23,10 +23,10 @@ class VoteTable:
         return self.v_id_row and self.v_id_col
 
     def isValidate(self):
-        # TODO        
+        # TODO
         # Validate the input of v_ids for 2D table
         # The 2 votes should have the same user set.
-        return True      
+        return True
 
     def getTableTitle(self):
 
@@ -34,11 +34,11 @@ class VoteTable:
             return Vote.objects.get(id = self.v_id_row).summary + '.VS.' + Vote.objects.get(id = self.v_id_col).summary
         else:
             return Vote.objects.get(id = self.v_id_row).summary
-        
+
     def getTableRowHead(self):
-        # Row Head is a list of Questions        
+        # Row Head is a list of Questions
         # [Object Question, Object Question, Object Question, Object Question,]
-        
+
         row = []
         for q in Question.objects.filter(vote = self.v_id_row):
             row.append(q)
@@ -47,25 +47,25 @@ class VoteTable:
     def getTableColHead(self):
         # Col head is a list of Questions
         # [Object Question, Object Question, Object Question, Object Question,]
-        
+
         col = []
         for q in Question.objects.filter(vote = self.v_id_col):
             col.append(q)
         return col
-            
+
     def getTableWithRow(self):
         # Get a table body with row information - for rendering convenience
         #
-        # 
+        #
         # [
-        # 
+        #
         #   { 'row_head' : Object Question}, { 'row_body' : [value01, value02, ...]}
         #   { 'row_head' : Object Question}, { 'row_body' : [value11, value12, ...]}
         #   { 'row_head' : Object String3}, { 'row_body' : [value21, value22, ...]}
         #   { 'row_head' : Object String4}, { 'row_body' : [value31, value32, ...]}
-        #   
+        #
         #   ...
-        #   
+        #
         # ]
         #
         # For 1D table, the value pair for 'row_body' is a list with only one
@@ -94,7 +94,7 @@ class VoteTable:
             for u in self.voters:
                 voter = Voter(u.id)
                 for c_q in self.col_head:
-                    for r_q in self.row_head:                    
+                    for r_q in self.row_head:
                         col_answer = voter.getAnswerOfQuestion(c_q)
                         row_answer = voter.getAnswerOfQuestion(r_q)
                         if (not col_answer == False) and (not row_answer == False):
@@ -111,7 +111,7 @@ class VoteTable:
         #
         #   [value01, value02, ...]
         #   [value11, value22, ...]
-        #   [value31, value32, ...]        
+        #   [value31, value32, ...]
         #
         #   ...
         #
@@ -124,15 +124,15 @@ class VoteTable:
     def getUserTable(self):
         # table structure is a list of dictionaries:
         #
-        # 
+        #
         # [
-        # 
+        #
         #   { 'row_head' : Object User, 'row_body' : [value01, value02, ...]},
         #   { 'row_head' : Object User, 'row_body' : [value11, value12, ...]},
         #   { 'row_head' : Object User, 'row_body' : [value21, value22, ...]},
-        #   
+        #
         #   ...
-        #   
+        #
         # ]
 
         table = []
@@ -151,16 +151,16 @@ class VoteTable:
                     rowbody.append(0)
             table.append({'row_head': a.user, 'row_body': rowbody})
             rowbody = []
-        return table    
+        return table
 
 
     def _getVoterList(self):
 
         ul = []
         v = Vote.objects.get(pk=self.v_id_row)
-        
+
         for q in v.question_set.all():
             for a in q.answer_set.all():
                 ul.append(a.user)
-                
+
         return ul

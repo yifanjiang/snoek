@@ -176,7 +176,7 @@ def show_status(request):
 
             gdate=datetime.date(gdate_year,gdate_month,gdate_day)
             key=gdate.isoformat()+u"   Room: "+unicode(no)
-            
+
 	    room=MeetingRoom(dayroom=key,date=gdate,room_no=no)
 
 	    dia=MeetingDiagram(room)

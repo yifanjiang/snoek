@@ -14,7 +14,7 @@ from odf.table import Table, TableColumn, TableRow, TableCell
 #     # generate an ods file to download
 #     # input: VoteTable
 #     # output: ods.table
-    
+
 #     doc= OpenDocumentSpreadsheet()
 #     table= Table(name="Extremely Simple Table")
 
@@ -23,20 +23,20 @@ from odf.table import Table, TableColumn, TableRow, TableCell
 #         table.addElement(tr)
 #         td= TableCell()
 #         td.addElement(P(text=cursorRow['row_head'].content))
-#         tr.addElement(td)                    
+#         tr.addElement(td)
 
 #         for val in cursorRow['row_body']:
-#             td= TableCell()            
+#             td= TableCell()
 #             td.addElement(P(text=val))
-#             tr.addElement(td)    
+#             tr.addElement(td)
 
 #     doc.spreadsheet.addElement(table)
 #     #myFile= tempfile.TemporaryFile('/tmp/')
-#     doc.save('/tmp/test', True)    
+#     doc.save('/tmp/test', True)
 
 # vt_1 = VoteTable(1)
 # vt_2 = VoteTable(2)
-# vt_3 = VoteTable(3)        
+# vt_3 = VoteTable(3)
 # vt_4 = VoteTable(4, 5) # 2D table
 
 # ods_table = []

@@ -22,12 +22,12 @@ FUTURE
                   voters to show as anonymous voter.
 
                 - Support richer text area for activity descriptions/vote questions. Allow
-                  add links to questions in activity creating phase.        
+                  add links to questions in activity creating phase.
 
                 - allow Activities creater to create votes and questions as
                   many as they want (rather than fixed number of votes and
                   questions)
-                  
+
                 - Allow the activity deadline set to prcision of minutes
 
                 - Allow to search activities by creation date, deadline, etc.
@@ -76,6 +76,6 @@ Features implemented in hackweek 7:
     - Activity management to allow user create her own activity
       without asking admin to do so
 
-    - Allow user to regret a vote and re-vote            
+    - Allow user to regret a vote and re-vote
 
     - Meeting room reservation implementation
