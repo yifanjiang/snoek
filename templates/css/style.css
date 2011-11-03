@@ -170,6 +170,12 @@ a.strong:hover{
 
 }
 
+a.meeting:hover{
+
+    font-family: Verdana;
+    color: #0551cf;
+}
+
 table.header_table{
 
     padding: 0;
@@ -336,7 +342,7 @@ table.nav{
 table.meeting{
 
     float:left;
-    margin-bottom:80px;
+    margin-bottom:60px;
     margin-left:80px;
     margin-right:50px;
     background-color: #ffffff

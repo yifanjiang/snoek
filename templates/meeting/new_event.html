@@ -51,6 +51,7 @@ function isTime(time)
 function compareTime(stime,etime)
 {
    if (stime==''){
+       document.event.endtime.value='';
        alert("Please input StartTime first!");
        return false;
    }

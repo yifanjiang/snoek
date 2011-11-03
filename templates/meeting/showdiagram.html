@@ -11,7 +11,7 @@
         {% for unit in dia.units %}
 	<TR><TH ROWSPAN=1>{{ unit.0 }} <TD class="meeting" BGCOLOR={{ unit.1 }}>
             {% for event in unit.2 %}
-	    <a title="{{event.1}}">{{ event.0 }}</a> <br>
+	    <a class="meeting" title="{{event.1}}">{{ event.0 }}</a> <br>
             {% endfor %}
 	{% endfor %}
     </TABLE>
