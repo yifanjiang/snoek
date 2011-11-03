@@ -127,8 +127,20 @@ def set_event(request):
     return render_to_response('meeting/userevent.html',{'user':request.user,'settings':settings,'events':events})
 
 def get_status(request):
-    # Show meeting room status of today and get requirement
-    return render_to_response('meeting/status.html',{'user':request.user,'settings':settings})
+    # Show meeting room status of today
+    diagram_list=[]
+    today = datetime.date.today()
+
+    for no in settings.ROOMNO:
+        key = today.isoformat()+u"   Room: "+unicode(no)
+        room=MeetingRoom(dayroom=key,date=today,room_no=no)
+
+        dia=MeetingDiagram(room)
+
+        dia.setEvents()
+        diagram_list.append(dia)
+
+    return render_to_response('meeting/showdiagram.html',{'user':request.user,'settings':settings,'diagrams':diagram_list})
 
 def show_status(request):
     # Show all meeting room status

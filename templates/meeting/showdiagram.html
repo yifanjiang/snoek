@@ -4,6 +4,47 @@
 
 {% include 'meeting/comtitle.html' %}
 
+<script language="javascript">
+<!-- Hide From Other Browsers.
+
+function isDate(str)
+{
+    if(str=='') {
+    }else{
+        var d = str.match(/^(\d{1,4})-(\d{1,2})-(\d{1,2})$/); 
+	if(d==null) {
+	    document.dayroom.date.value='';
+	    alert("Input Date error!  Syntax is year-month-day. eg,2011-9-28");
+        }else{
+            if (parseInt(d[2])>12 || parseInt(d[2])<1) {
+                document.dayroom.date.value='';
+                alert ("Input Date error!  Month must be in 1..12");
+            } 
+            if (parseInt(d[3])>31 || parseInt(d[3])<1) {
+	        document.dayroom.date.value='';
+                alert ("Input Date error!  Day must be in 1..31");
+            }
+       }
+    }
+}
+
+//stop hidden-->
+</script>
+<TABLE>
+<TR>
+<form action="/meetingroom/showstatus/" method="get" name="dayroom" >
+<TD><pre>          Date:  <input type="text" maxlength="12" name="date" onblur="isDate(this.value)"></pre></TD>
+<TD><pre>     MeetingRoom:  <select name="roomno" >
+        <option value="" selected> 
+        {% for room in settings.ROOMNO %}
+            <option value="{{ room }}" > {{ room }}
+        {% endfor %}
+    </select>      </pre></TD>
+<TD><input type="submit" value="Submit" ></TD>
+</form>
+</TR>
+</TABLE>
+
 {% for dia in diagrams %}
     <TABLE class="meeting" BORDER=2>
     <CAPTION  WIDTH=30>{{ dia.meetingroom }}</CAPTION>
@@ -16,5 +57,7 @@
 	{% endfor %}
     </TABLE>
 {% endfor %}
+<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
+<br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/> <br/>
 
 {% endblock %}
