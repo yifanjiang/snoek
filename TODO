@@ -18,10 +18,11 @@ FUTURE
 
         - function Part
 
+                - Allow vote sponsor hide the overall results from UI, allow
+                  voters to show as anonymous voter.
+
                 - Support richer text area for activity descriptions/vote questions. Allow
                   add links to questions in activity creating phase.        
-
-                - meeting room reservation implementation
 
                 - allow Activities creater to create votes and questions as
                   many as they want (rather than fixed number of votes and
@@ -76,3 +77,5 @@ Features implemented in hackweek 7:
       without asking admin to do so
 
     - Allow user to regret a vote and re-vote            
+
+    - Meeting room reservation implementation
