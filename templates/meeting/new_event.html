@@ -83,6 +83,11 @@ function compareTime(stime,etime)
 
 }
 
+function selectRoom(roomno)
+{
+    document.event.roomno.value=roomno
+}
+
 //stop hidden-->
 </script>
 
@@ -92,7 +97,77 @@ body {
 }
 </style>
 
-<div style="position:absolute;left:450px; top:230px" ><img src="{{settings.MEDIA_URL}}/image/beijing.png" width=660; height=550></div>
+{% ifequal settings.ROOMHOTPOT "ON" %}
+<!-- This field should be changed once the picture or meeting room change.Using ismap to find the coordinates -->
+<div style="position:absolute;left:450px; top:230px" >
+<a href="#"><img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" usemap="#bjmap" width=660; height=550 /></a>
+</div>
+
+<map name="bjmap" id="bjmap">
+
+<area
+shape="poly"
+coords="540,324,604,306,629,394,564,412"
+onclick="selectRoom('1')"
+title="1" />
+
+<area
+shape="poly"
+coords="533,419,629,394,648,463,646,474,639,480,546,480,547,465"
+onclick="selectRoom('2')"
+title="2" />
+
+<area
+shape="poly"
+coords="497,429,533,419,547,465,546,480,511,480"
+onclick="selectRoom('3')"
+title="3" />
+
+<area
+shape="poly"
+coords="460,439,497,429,511,480,471,480"
+onclick="selectRoom('4')"
+title="4" />
+
+<area
+shape="poly"
+coords="374,365,403,358,414,394,385,401"
+onclick="selectRoom('5')"
+title="5" />
+
+<area
+shape="poly"
+coords="335,375,374,365,385,401,346,411"
+onclick="selectRoom('6')"
+title="6" />
+
+<area
+shape="poly"
+coords="176,300,212,290,220,316,183,326"
+onclick="selectRoom('7')"
+title="7" />
+
+<area
+shape="poly"
+coords="160,246,197,236,204,260,168,269"
+onclick="selectRoom('8')"
+title="8" />
+
+<area
+shape="poly"
+coords="62,69,90,61,100,98,72,106"
+onclick="selectRoom('9')"
+title="9" />
+
+</map>
+<!-- field end -->
+
+{% else %}
+
+<div style="position:absolute;left:450px; top:230px" >
+<img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" width=660; height=550 /></div>
+
+{% endifequal %}
 
 <form action="/meetingroom/set_event/" method="post" name="event" >
     <pre>Date:          <input type="text" maxlength="12" name="date" onblur="isDate(this.value)"></pre>

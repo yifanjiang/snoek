@@ -97,6 +97,9 @@ TITLE = "Novell Beijing R&D Team Activities"
 STARTTIME     = 8
 ENDTIME       = 18
 UNITCOLOR     = {True: "GRAY", False: 'WHITE'}
+# Better to change a new picture and redefine the hot pot in templates/meeting/new_event.html
+# Or just disable the mapping function of image - set ROOMHOTPOT to OFF
+ROOMHOTPOT    = "ON"
 ROOMNO        = (
     1,
     2,
