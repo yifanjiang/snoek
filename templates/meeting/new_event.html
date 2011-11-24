@@ -9,7 +9,7 @@
 
 function isDate(str)
 {
-    var d = str.match(/^(\d{1,4})-(\d{1,2})-(\d{1,2})$/);
+    var d = str.match(/^(\d{4})-(\d{1,2})-(\d{1,2})$/);
     if(d==null) {
 	document.event.date.value='';
          alert ("Input Date error!  Syntax is year-month-day. eg,2011-9-28");
@@ -24,8 +24,11 @@ function isDate(str)
         }
 
         var today = new Date();
-        var day = new Date(str);
-        if ((day.getTime()+24*60*60*1000) < today.getTime()){
+        var day = new Date();
+        <!-- month syntax is 0-11 -->
+        day.setFullYear(parseInt(d[1]), (parseInt(d[2])-1), parseInt(d[3]));
+
+        if (day.getTime() < today.getTime()){
 	    document.event.date.value='';
             alert("Could not reserve meeting room in past date.");
         }
