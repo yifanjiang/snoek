@@ -37,6 +37,11 @@ def index(request, category = None):
                                                  'settings': settings,
                                                  'avt': reversed(list(Activity.objects.all()))})
 
+def about(request):
+
+    user = request.user
+    return render_to_response('about.html', {'user': user, 'settings': settings})
+
 # ACTIVITIES
 ############
 

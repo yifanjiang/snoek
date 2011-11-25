@@ -17,6 +17,9 @@ urlpatterns = patterns('',
     (r'^$', index),
     (r'^admin/', include(admin.site.urls)),
 
+    # About page
+    (r'^about/', about),
+
     # Activity
     (r'^activity/(\d+)$',           view_activity),
     (r'^edit_activity(\d+)$',       view_update_activity),
