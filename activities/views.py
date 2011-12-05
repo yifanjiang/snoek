@@ -158,10 +158,10 @@ def save_vote_in_activity(request,aid):
                 index = int(regmatch_que.group(1))-1
                 key = regmatch_que.group(0)
                 l_votes[index]['questions'].append(dic_req[key])
-                
+
         return l_votes
 
-    l_votes = parseVotes(r) 
+    l_votes = parseVotes(r)
 
     for v in l_votes:
         if v['summary'] != '':
@@ -173,23 +173,9 @@ def save_vote_in_activity(request,aid):
         else:
             continue
 
-    
-    # if s['v1s']!='':
-    #    vote1=Vote(summary=s['v1s'],description=s['v1d'],activity=act)
-    #    vote1.save()
-    #    for content in ['v1q1','v1q2','v1q3','v1q4','v1q5']:
-    #        if s[content]!='':
-    #           Question(content=s[content],vote=vote1).save()
-    # if s['v2s']!='':
-    #    vote2=Vote(summary=s['v2s'],description=s['v2d'],activity=act)
-    #    vote2.save()
-    #    for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
-    #        if s[content]!='':
-    #           Question(content=s[content],vote=vote2).save()
-    return HttpResponseRedirect('/')
-      # return render_to_response('index.html', {'user': request.user,
-      #                                          'settings': settings,
-      #                                          'avt': reversed(list(Activity.objects.all()))})
+    return render_to_response('index.html', {'user': request.user,
+                                             'settings': settings,
+                                             'avt': reversed(list(Activity.objects.all()))})
 
 @login_required
 def delt_activity(request,aid):
