@@ -1,5 +1,5 @@
 # Create your views here.
-import os, datetime
+import os, datetime, re
 
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
@@ -126,24 +126,70 @@ def create_activity(request):
 @login_required
 def save_vote_in_activity(request,aid):
     if request.method=='POST':
-       s=request.POST
+       r=request.POST
     act=Activity.objects.get(id=aid)
-    if s['v1s']!='':
-       vote1=Vote(summary=s['v1s'],description=s['v1d'],activity=act)
-       vote1.save()
-       for content in ['v1q1','v1q2','v1q3','v1q4','v1q5']:
-           if s[content]!='':
-              Question(content=s[content],vote=vote1).save()
-    if s['v2s']!='':
-       vote2=Vote(summary=s['v2s'],description=s['v2d'],activity=act)
-       vote2.save()
-       for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
-           if s[content]!='':
-              Question(content=s[content],vote=vote2).save()
+
+    def parseVotes(dic_req):
+
+        size = 100
+        l_votes=[]
+        for i in range(size):
+            l_votes.append({"summary":'', "description":'', "questions":[]})
+
+        r_sum = re.compile("v(\d+)s")
+        r_des = re.compile("v(\d+)d")
+        r_que = re.compile("v(\d+)q\d+")
+
+        for k in dic_req.keys():
+
+            regmatch_sum = r_sum.match(k)
+            regmatch_des = r_des.match(k)
+            regmatch_que = r_que.match(k)
+
+            if regmatch_sum != None:
+                index = int(regmatch_sum.group(1))-1
+                key = regmatch_sum.group(0)
+                l_votes[index]['summary'] = dic_req[key]
+            elif regmatch_des != None:
+                index = int(regmatch_des.group(1))-1
+                key = regmatch_des.group(0)
+                l_votes[index]['description'] = dic_req[key]
+            elif regmatch_que != None:
+                index = int(regmatch_que.group(1))-1
+                key = regmatch_que.group(0)
+                l_votes[index]['questions'].append(dic_req[key])
+                
+        return l_votes
+
+    l_votes = parseVotes(r) 
+
+    for v in l_votes:
+        if v['summary'] != '':
+            vt = Vote(summary=v['summary'], description=v['description'], activity=act)
+            vt.save()
+            for q in v['questions']:
+                if q != '':
+                    Question(content=q,vote=vt).save()
+        else:
+            continue
+
+    
+    # if s['v1s']!='':
+    #    vote1=Vote(summary=s['v1s'],description=s['v1d'],activity=act)
+    #    vote1.save()
+    #    for content in ['v1q1','v1q2','v1q3','v1q4','v1q5']:
+    #        if s[content]!='':
+    #           Question(content=s[content],vote=vote1).save()
+    # if s['v2s']!='':
+    #    vote2=Vote(summary=s['v2s'],description=s['v2d'],activity=act)
+    #    vote2.save()
+    #    for content in ['v2q1','v2q2','v2q3','v2q4','v2q5']:
+    #        if s[content]!='':
+    #           Question(content=s[content],vote=vote2).save()
     return HttpResponseRedirect('/')
-  #  return render_to_response('index.html', {'user': request.user,
-   #                                          'settings': settings,
-    #                                         'avt': reversed(list(Activity.objects.all()))})
+      # return render_to_response('index.html', {'user': request.user,
+      #                                          'settings': settings,
+      #                                          'avt': reversed(list(Activity.objects.all()))})
 
 @login_required
 def delt_activity(request,aid):
