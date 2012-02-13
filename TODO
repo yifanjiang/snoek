@@ -46,6 +46,39 @@ FUTURE
 
                 - Vote in a specific range of users (individuals, groups)
 
+                - Interview arrangement module
+
+                    The interview arrangement module is designed for
+                    scheduling and supervising employee interview status.
+
+                    It should be able to:
+
+                        - Schedule interviewee's information schedule into a
+                          particular time slot in a explicit calendar.
+
+                        - The interviewee's information inside a calendar
+                          should include:
+
+                            - name
+                            - sex
+                            - contact info: email / phone number
+                            - target position
+                            - Round of interview is the candidate going
+                              to participate? (1st/2nd/3rd...)
+                            - the status of the interview: pending?pass?fail?
+                            - the status of the timeslot of the interviewer: NotAvailable?
+                            - interviewer's comments of the interview
+
+                        - We should allow shchedule admin to search for the
+                          history information of a particular candidate, for
+                          example: if a candidate has ever attended a
+                          interview long time before?
+
+                    In snoek git repo, the mockup/interview-timeslot.ots is
+                    the libreoffice template we are using to track employee
+                    interview schedule and status. It could be something we
+                    initialize the design of this Snoek module.
+
         - UI
 
                 - Better UI with CSS design
