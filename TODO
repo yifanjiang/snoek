@@ -56,18 +56,18 @@ FUTURE
                         - Schedule interviewee's information schedule into a
                           particular time slot in a explicit calendar.
 
-                        - The interviewee's information inside a calendar
-                          should include:
+                        - The information inside a timeslot of the calendar should include:
 
-                            - name
-                            - sex
-                            - contact info: email / phone number
+                            - interviewee CV attachment
+                            - interviewee name
+                            - interviewee sex
+                            - interviewee contact info: email / phone number
                             - target position
                             - Round of interview is the candidate going
-                              to participate? (1st/2nd/3rd...)
-                            - the status of the interview: pending?pass?fail?
-                            - the status of the timeslot of the interviewer: NotAvailable?
-                            - interviewer's comments of the interview
+                              to participate. (1st/2nd/3rd...)
+                            - Status of the interview: pending?pass?fail?
+                            - Interviewer's avialability of the timeslot.
+                            - Interviewer's name and comments of the interview.
 
                         - We should allow shchedule admin to search for the
                           history information of a particular candidate, for
@@ -78,7 +78,6 @@ FUTURE
                     the libreoffice template we are using to track employee
                     interview schedule and status. It could be something we
                     initialize the design of this Snoek module.
-
         - UI
 
                 - Better UI with CSS design
