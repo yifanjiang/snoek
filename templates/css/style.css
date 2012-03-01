@@ -353,6 +353,15 @@ table.meeting{
 
 }
 
+th{
+	text-align:left;
+}
+
+#example {
+	color:#ff0000;
+	font-weight: bold;
+}
+
 /* ul.topnav { */
 /* 	list-style: none; */
 /* 	padding: 0; */
