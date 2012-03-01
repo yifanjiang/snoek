@@ -1,10 +1,20 @@
 {% extends "base1.html" %}
 {% block content %}
 <form action="/activity_submit" method="post">
-  <p>summary: <input type="text" name="summary" /></p>
-  <p>description: <input type="text" name="description" /></p>
-  <p>deadline: <input type="text" name="deadline" /></p>
-  <p>category: <input type="text" value="{{category}}" name="category" /></p>
+  <table>
+	<tr>
+	  <th>Summary:</th><td><input type="text" name="summary" /></td>
+	</tr>
+	<tr>
+	  <th>Description:</th><td><input type="text" name="description" /></td>
+	</tr>
+	<tr>
+	  <th>Deadline:</th><td><input type="text" name="deadline" /></td>
+	</tr>
+	<tr>
+	  <th>Category:</th><td><input type="text" value="{{category}}" name="category" /></td>
+	</tr>
+  </table>
   <input type="submit" value="Submit" />
 </form>
 {% endblock %}
