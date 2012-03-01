@@ -102,7 +102,7 @@ body {
 
 {% ifequal settings.ROOMHOTPOT "ON" %}
 <!-- This field should be changed once the picture or meeting room change.Using ismap to find the coordinates -->
-<div style="position:absolute;left:450px; top:230px" >
+<div style="position:absolute;left:550px; top:230px" >
 <a href="#"><img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" usemap="#bjmap" width=660; height=550 /></a>
 </div>
 
@@ -167,41 +167,70 @@ title="9" />
 
 {% else %}
 
-<div style="position:absolute;left:450px; top:230px" >
+<div style="position:absolute;left:550px; top:230px" >
 <img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" width=660; height=550 /></div>
 
 {% endifequal %}
 
 <form action="/meetingroom/set_event/" method="post" name="event" >
-    <pre>Date:          <input type="text" maxlength="12" name="date" onblur="isDate(this.value)"></pre>
-    <pre>StartTime:     <input type="text" maxlength="10" name="starttime" onblur="isTime(this.value)"></pre>
-    <pre>EndTime:       <input type="text" maxlength="10" name="endtime" onblur="compareTime(document.event.starttime.value,this.value)" ></pre>
-    <pre>MeetingRoom:   <select name="roomno" >
-        <option value="" selected>
-	{% for room in settings.ROOMNO %}
-            <option value="{{ room }}" > {{ room }}
-        {% endfor %}
-    </select></pre>
-    <pre>Holder:        <select name="holder" >
-	{% for n in alluser %}
-	    {% ifequal n user %}
-                <option value="{{ n.username }}" selected> {{ n.username }}
+  <table>
+    <tr>
+	  <th>Date:</th>
+	  <td><input type="text" maxlength="12" name="date" onblur="isDate(this.value)" title="date format: YYYY-MM-DD"> (eg: 2012-03-01)</td>
+    </tr>
+	<tr>
+	  <th>StartTime:</th>
+	  <td><input type="text" maxlength="10" name="starttime" onblur="isTime(this.value)" title="time format: HH:MM"> (eg: 08:30)</td>
+    </tr>
+	<tr>
+      <th>EndTime:</th>
+	  <td><input type="text" maxlength="10" name="endtime" onblur="compareTime(document.event.starttime.value,this.value)" title="time format: HH:MM"> (eg: 08:30)</td>
+    </tr>
+	<tr>
+      <th>MeetingRoom:</th>
+	  <td>
+        <select name="roomno">
+          <option value="" selected>
+	        {% for room in settings.ROOMNO %}
+          <option value="{{ room }}" > {{ room }}
+            {% endfor %}
+        </select>
+      </td>
+    </tr>
+	<tr>
+      <th>Holder:</th>
+      <td>
+        <select name="holder" >
+          {% for n in alluser %}
+	        {% ifequal n user %}
+              <option value="{{ n.username }}" selected> {{ n.username }}
             {% else %}
-                <option value="{{ n.username }}"> {{ n.username }}
+              <option value="{{ n.username }}"> {{ n.username }}
             {% endifequal %}
-        {% endfor %}
-    </select></pre>
-    <p><pre>Participant:   </pre><pre>               <select multiple name="participant" size="6">
-	{% for m in alluser %}
-	    {% ifequal m user %}
-                <option value="{{ m }}" selected> {{ m.username }}
+          {% endfor %}
+		</select>
+	  </td>
+    </tr>
+	<tr>
+      <th>Participant:</th>
+      <td>
+        <select multiple name="participant" size="6">
+	      {% for m in alluser %}
+	        {% ifequal m user %}
+              <option value="{{ m }}" selected> {{ m.username }}
             {% else %}
-                <option value="{{ m }}"> {{ m.username }}
+              <option value="{{ m }}"> {{ m.username }}
             {% endifequal %}
-        {% endfor %}
-    </select></pre></p>
-    <p><pre>Purpose of reservation:      </pre><textarea name="purpose" cols="40" rows="5" wrap="Virtual"></textarea></p>
-    <input type="submit" value="Submit" onsubmit="test()" ></pre>
+          {% endfor %}
+		</select>
+	  </td>
+    </tr>
+	<tr>
+      <th>Purpose of reservation:</th>
+      <td><textarea name="purpose" cols="40" rows="5" wrap="Virtual"></textarea></td>
+    </tr>
+    <tr><td></td><td><input type="submit" value="Submit" onsubmit="test()" ></td></tr>
+  </table>
 </form>
 
 {% endblock %}
