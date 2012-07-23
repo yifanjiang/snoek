@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.utils.encoding import smart_str, smart_unicode
 
 from odf.opendocument import OpenDocumentSpreadsheet
 from odf.style import Style, TextProperties, TableColumnProperties, Map
@@ -241,7 +242,12 @@ def download_activity(request, a_id):
     # input: An activity id
     # return: Rendering an ods file for download
     avt = Activity.objects.get(id = a_id)
-    filename = 'snoek-activity-' + str(avt.id) + '-' + str(avt.summary)
+    
+    if u'MSIE' in request.META['HTTP_USER_AGENT']:
+        filename = 'snoek-activity-' + str(avt.id) + '-' + smart_str(avt.summary, encoding="gb2312")
+    else:
+        filename = 'snoek-activity-' + str(avt.id) + '-' + smart_str(avt.summary)
+
     votes = Vote.objects.filter(activity = a_id)
 
     odf_table_list = []
