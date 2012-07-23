@@ -18,7 +18,7 @@ FUTURE
 
         - function Part
 
-                - Allow vote sponsor hide the overall results from UI, allow
+                * Allow vote sponsor hide the overall results from UI, allow
                   voters to show as anonymous voter.
 
                 - Support richer text area for activity descriptions/vote questions. Allow
@@ -46,7 +46,7 @@ FUTURE
 
                 - Vote in a specific range of users (individuals, groups)
 
-                - Interview arrangement module
+                - Interview arrangement module (contact: yfjiang)
 
                     The interview arrangement module is designed for
                     scheduling and supervising employee interview status.
@@ -78,6 +78,11 @@ FUTURE
                     the libreoffice template we are using to track employee
                     interview schedule and status. It could be something we
                     initialize the design of this Snoek module.
+
+                - groupwise integration investigate (contact: nwang, ysun)
+
+                - more friendly ui of 'who vote for what' (contact: yfjiang)
+                
         - UI
 
                 - Better UI with CSS design
