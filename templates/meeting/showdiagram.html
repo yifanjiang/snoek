@@ -30,20 +30,26 @@ function isDate(str)
 
 //stop hidden-->
 </script>
+<link rel="stylesheet" type="text/css" href="http://localhost/css/create_activity.css" />
+<form action="/meetingroom/showstatus/" class="ctavt" method="get" name="dayroom">
 <table>
-<tr>
-<form action="/meetingroom/showstatus/" method="get" name="dayroom" >
-<td><pre>          Date:  <input type="text" maxlength="12" name="date" onblur="isDate(this.value)"></pre></td>
-<td><pre>     MeetingRoom:  <select name="roomno" >
-        <option value="" selected>
-        {% for room in settings.ROOMNO %}
-            <option value="{{ room }}" > {{ room }}
-        {% endfor %}
-    </select>      </pre></td>
-<td><input type="submit" value="Submit" ></td>
-</form>
-</tr>
+  <tr>
+	<td>Date:</td>
+	<td><input type="text" name="date" onblur="isDate(this.value)"></td>
+  </tr>
+  <tr>
+	<td>MeetingRoom:</td>
+	<td><select name="roomno">
+          <option value="" selected>
+            {% for room in settings.ROOMNO %}
+          <option value="{{ room }}" > {{ room }}
+            {% endfor %}
+	    </select>
+    </td>
+  </tr>
 </table>
+<input class="button" type="submit" value="Submit">
+</form>
 
 {% for dia in diagrams %}
     <table id="vote_result" class="meeting">

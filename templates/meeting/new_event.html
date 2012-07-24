@@ -172,7 +172,8 @@ title="9" />
 
 {% endifequal %}
 
-<form action="/meetingroom/set_event/" method="post" name="event" >
+<link rel="stylesheet" type="text/css" href="http://localhost/css/create_activity.css" />
+<form action="/meetingroom/set_event/" class="ctavt" method="post" name="event" >
   <table>
     <tr>
 	  <th>Date:</th>
@@ -227,9 +228,9 @@ title="9" />
     </tr>
 	<tr>
       <th>Purpose of reservation:</th>
-      <td><textarea name="purpose" cols="40" rows="5" wrap="Virtual"></textarea></td>
+      <td><textarea name="purpose" cols="36" rows="5" wrap="Virtual"></textarea></td>
     </tr>
-    <tr><td></td><td><input type="submit" value="Submit" onsubmit="test()" ></td></tr>
+    <tr><td></td><td><input class="button" type="submit" value="Submit" onsubmit="test()" ></td></tr>
   </table>
 </form>
 

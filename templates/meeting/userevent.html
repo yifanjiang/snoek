@@ -9,10 +9,14 @@
 	<pre><h2 class="meeting">{{ user.username }}: you have reserved {{ forloop.revcounter}} meeting(s).</h2></pre>
     {% endif %}
 
-    <form action="/meetingroom/delevent_{{e.id}}/" method="get" name="del">
+
+	<link rel="stylesheet" type="text/css" href="http://localhost/css/create_activity.css" />
+    <form action="/meetingroom/delevent_{{e.id}}/" class="ctavt" method="get" name="del">
+	<table class="ctavt">
+	  <tr><td>{{ forloop.counter }}.&nbsp;&nbsp;{{ e.meeting_room.date }}   <input class="button" type="SUBMIT" value="Delete"></td></tr>
+	</table>
+	</form>
     <table id="vote_result">
-    <pre><font size=5>{{ forloop.counter }}.                          {{ e.meeting_room.date }}</font>   <input type="SUBMIT" value="Delete"></pre>
-    </form>
     <tr><th>Room {{ e.meeting_room.room_no }}</th><th> {{ e.start_time}} -- {{ e.end_time }} </th>
     <tr><th>Participants: </th><td>{% for a in e.getAud %}
         {% if not forloop.last %}
@@ -22,7 +26,6 @@
         {% endif %}
     {% endfor %}</td>
 <tr><th>Purpose: </th><td>&nbsp;{{ e.purpose }}</td>
-    </form>
     </table>
 {% empty %}
     <pre><h2 class="meeting"> {{ user.username }}: you have not reserved meeting yet.</h2></pre>

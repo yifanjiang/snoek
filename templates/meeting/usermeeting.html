@@ -9,7 +9,6 @@
         <pre><h2 class="meeting">{{ user.username }}: you have {{ forloop.revcounter}} meeting(s) to attend.</h2></pre>
     {% endif %}
 
-<!--<table style="margin-bottom:60px" BORDER=1 BGCOLOR=WHITE>-->
     <table id="vote_result">
     <pre><font size=5>{{ forloop.counter }}.                              {{ e.meeting_room.date }}</font></pre>
     <tr class="alt"><th>Room {{ e.meeting_room.room_no }}</th><th> {{ e.start_time}} -- {{ e.end_time }} </th>
