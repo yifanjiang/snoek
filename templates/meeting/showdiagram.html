@@ -32,23 +32,20 @@ function isDate(str)
 </script>
 <link rel="stylesheet" type="text/css" href="http://localhost/css/create_activity.css" />
 <form action="/meetingroom/showstatus/" class="ctavt" method="get" name="dayroom">
-<table>
+<table class="ctavt">
   <tr>
-	<td>Date:</td>
-	<td><input type="text" name="date" onblur="isDate(this.value)"></td>
-  </tr>
-  <tr>
-	<td>MeetingRoom:</td>
-	<td><select name="roomno">
+	<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:&nbsp;&nbsp;<input type="text" name="date" onblur="isDate(this.value)"></th>
+	<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MeetingRoom:</th>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select name="roomno" id="roomno">
           <option value="" selected>
             {% for room in settings.ROOMNO %}
           <option value="{{ room }}" > {{ room }}
             {% endfor %}
 	    </select>
     </td>
+	<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="button" type="submit" value="Submit"></td>
   </tr>
 </table>
-<input class="button" type="submit" value="Submit">
 </form>
 
 {% for dia in diagrams %}
