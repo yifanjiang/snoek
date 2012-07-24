@@ -80,10 +80,10 @@ form.ctavt input.submit{
     -moz-user-select: none;
     background-color: #F5F5F5;
     /* background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);*/
-    background-image: -moz-linear-gradient(center top , #0c0, #0e0);
+    background-image: -moz-linear-gradient(center top , #439539, #439539);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 2px 2px 2px 2px;
-    color: #333;
+    color: #eee;
     cursor: default;
     font-family: arial,sans-serif;
     font-size: 14px;
