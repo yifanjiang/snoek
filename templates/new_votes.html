@@ -1,41 +1,86 @@
 {% extends "base1.html" %}
 {% block content %}
-<b>Summary:</b>&nbsp;{{act.summary}} <br />
-<b>Description:</b>&nbsp;{{act.description}} <br />
-<b>Deadline:</b>&nbsp;{{act.deadline}} <br />
-<b>Category:</b>&nbsp;{{act.category}} <br />
-<br />
-<form action="/vote_submit{{act.id}}" method="post">
-  <div>
-     Summary for vote1:&nbsp;<input type="text" name="v1s" /><br />
-     Description for vote1:&nbsp;<input type="text" name="v1d" />
-     <div>
-	Question1:&nbsp;<input type="text" name="v1q1" />
-        <!--<span id="addquestion"></span>-->
-	<input type="button" value="+" onclick="addques(1)">
-        <span id="addquestion1"></span>
-     </div>
-     <span id="addsummary"></span>
-  </div><br /><br />
-  <input type="button" value="AnotherVote" onclick='addsumm()'/><br />
-  <input type="submit" value="Submit" />
-</form>
+
+<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/create_activity.css" />
+
 <script>
-var vote = 1;
-//var ques = 1;
 
-var addques = function (ques) {
-	var vid = vote;
-	var qid = ques;
-	qid += 1;
-	selecter="#addquestion"+vid
-	
-	$(selecter).append("<div>Question" + qid + ":&nbsp;<input type=\"text\" name=\"v\""+ vid + "q" + qid + "\" />&nbsp;<input type=\"button\" value=\"+\" onclick=\"addques("+qid+")\"><span id=\"addquestion"+vid+"\"></span></div>");
-}
+  $(document).ready( function() {
 
-var addsumm = function () {
-	vote += 1;
-	$('#addsummary').append('<br /><div>Summary for vote'+vote+':&nbsp;<input type="text" name="v'+vote+'s" />&nbsp;<br />Description for vote'+vote+':&nbsp;<input type="text" name="v'+vote+'d" /><span id="addsummary"></span><div>Question1:&nbsp;<input type="text" name="v'+vote+'q1" />&nbsp;<input type="button" value="+" onclick="addques(1)"><span id="addquestion'+vote+'"></span></div></div>');
-}
+                         add_vote();
+
+                     }
+  );
+
+  i = 1;
+
+  var add_question = function(s) {
+
+      vnum = s.parent().parent().attr("value");
+      qnum = s.index();
+
+      s.find('.button').remove();
+
+      s.after(
+          '<tr><th>Question ' + qnum + ':</th><td><input class=text type=text name=v' + vnum + 'q' + qnum + ' /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td></tr>'
+      );
+      
+  }
+
+  var add_vote = function() {
+
+      $("#v").append(
+
+          '<hr>' +
+
+          '<table class=ctavt value=' + i + '>' +
+
+          '<tr><th>Summary </th><td><input class="text" type="text" name=v' + i + 's /></td><td>&nbsp;</td></tr>' +
+
+          '<tr><th>Description </th><td><input class="text" type="text" name=v' + i + 'd /></td><td>&nbsp;</td></tr>' +
+
+          '<tr><th>Question 1:</th><td><input class=text type=text name=v' + i + 'q1 /></td><td>&nbsp;</td></tr>' +
+
+          '<tr><th>Question 2:</th><td><input class=text type=text name=v' + i + 'q2 /></td><td>&nbsp;</td></tr>' +
+
+          '<tr><th>Question 3:</th><td><input class=text type=text name=v' + i + 'q3 /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td></tr>'
+
+      );
+
+      i = i + 1;
+
+  }
+
 </script>
+
+
+<form class="ctavt" action="/vote_submit{{act.id}}" method="post">
+
+  <table class="ctavt">
+
+    <tr><th>Summary:</th><td>{{act.summary}}</td></tr>
+
+    <tr><th>Description:</th><td>{{act.description}}</td></tr>
+
+    <tr><th>Deadline:</th><td>{{act.deadline}}</td></tr>
+
+    <tr><th>Category:</th><td>{{act.category}}</td></tr>
+
+  </table>
+  
+</form>
+
+<form class="ctavt" action="/vote_submit{{act.id}}" method="post">
+
+  <div id="v">
+
+  </div>
+
+  <input class="button" type="button" value="Add Vote" onclick=add_vote() />
+  <input class="submit" type="submit" value="Submit" />
+
+</form>
+
+
+
 {%endblock%}

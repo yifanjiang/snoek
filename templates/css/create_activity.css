@@ -1,6 +1,8 @@
 form.ctavt table{
 
-    margin: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;        
     /* padding: 0; */
     /* border-spacing:0; */
     color: #666;
@@ -8,8 +10,10 @@ form.ctavt table{
 }
 
 form.ctavt input{
-
-    margin: 20px;
+    
+    margin-left: 20px;
+    margin-top: 6px;
+    margin-bottom: 10px;        
 
 }
 
@@ -69,4 +73,34 @@ form.ctavt input.button{
     min-width: 100px;
     padding: 0 8px;
     text-align: center;
+}
+
+form.ctavt input.submit{
+
+    -moz-user-select: none;
+    background-color: #F5F5F5;
+    /* background-image: -moz-linear-gradient(center top , #F5F5F5, #F1F1F1);*/
+    background-image: -moz-linear-gradient(center top , #0c0, #0e0);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 2px 2px 2px 2px;
+    color: #333;
+    cursor: default;
+    font-family: arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    height: 29px;
+    line-height: 27px;
+    min-width: 100px;
+    padding: 0 8px;
+    text-align: center;
+}
+
+hr{
+
+    margin: 20px;
+    /* padding: 0; */
+    /* border-spacing:0; */
+    color: green;
+    width: 60%;
+
 }
