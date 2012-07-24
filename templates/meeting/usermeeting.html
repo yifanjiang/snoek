@@ -9,19 +9,20 @@
         <pre><h2 class="meeting">{{ user.username }}: you have {{ forloop.revcounter}} meeting(s) to attend.</h2></pre>
     {% endif %}
 
-    <TABLE style="margin-bottom:60px" BORDER=1 BGCOLOR=WHITE>
-    <pre><Font size=5>{{ forloop.counter }}.                              {{ e.meeting_room.date }}</Font></pre>
-    <TR><TH WIDTH=15>Room {{ e.meeting_room.room_no }}</TH><TH WIDTH=450 ALIGN="left"> {{ e.start_time}} -- {{ e.end_time }} </TH>
-    <TR><TH WIDTH=15>Holder: </TH><TD WIDTH=450>&nbsp;{{ e.holder.username }}
-    <TR><TH WIDTH=15>Participants: </TH><TD WIDTH=450>{% for a in e.getAud %}
+<!--<table style="margin-bottom:60px" BORDER=1 BGCOLOR=WHITE>-->
+    <table id="vote_result">
+    <pre><font size=5>{{ forloop.counter }}.                              {{ e.meeting_room.date }}</font></pre>
+    <tr class="alt"><th>Room {{ e.meeting_room.room_no }}</th><th> {{ e.start_time}} -- {{ e.end_time }} </th>
+	<tr class="alt"><th>Holder: </th><td>&nbsp;{{ e.holder.username }}</td></tr>
+    <tr><th>Participants: </th><td>{% for a in e.getAud %}
         {% if not forloop.last %}
             &nbsp;{{ a.username }},
         {% else %}
             &nbsp;{{ a.username }}.
         {% endif %}
-    {% endfor %}</TD>
-    <TR><TH WIDTH=15>Purpose: </TH><TD WIDTH=450>&nbsp;{{ e.purpose }}</TD>
-    </TABLE>
+    {% endfor %}</td>
+<tr><th>Purpose: </th><td>&nbsp;{{ e.purpose }}</td>
+</table>
 {% empty %}
     <pre><h2 class="meeting"> {{ user.username }}: you have not reserved meeting yet.</h2></pre>
 {% endfor %}
