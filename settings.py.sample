@@ -111,3 +111,14 @@ ROOMNO        = (
     8,
     9,
 )
+
+# Snoek mail service settings
+server_name="snoek-no-reply"
+mail_prefix="[Snoek] "
+mail_postfix="suse.com"
+
+# Using local mail service or Novell LDAP mail service.
+# Now only local mail service is available.
+# local mail service:    mail_server="local"
+# LDAP mail service:     mail_server="LDAP"
+mail_server="local"
