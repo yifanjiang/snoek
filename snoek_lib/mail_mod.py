@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-  
 
+'''
+---------------Usage--------------------------- 
+from snoek.snoek_lib.mail_mod import sendmail
 
-# ---------------Usage--------------------------- 
-# from snoek.custom_lib.mail_mod import sendmail
-#
-# sendmail(to_list,subject,context_list))
-#     to_list: A list of addresses to send this mail to.
-#     subject: The subject of the mail.
-#     context_list: A list of messages to send.
-#
-# eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.","Message to send.")
+sendmail(to_list,subject,context_list))
+    to_list: A list of addresses to send this mail to.
+    subject: The subject of the mail.
+    context_list: A list of messages to send.
+
+eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.",["Message to send."])
+'''
 
 
 import smtplib
@@ -61,7 +62,7 @@ def sendmail(to_list,subject,context_list):
     subject: The subject of the mail.
     context_list: A list of messages to send.
 
-    eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.","Message to send.")
+    eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.",["Message to send."])
     '''
 
     if mail_server=="LDAP":

@@ -13,6 +13,9 @@ from snoek.meeting.models import *
 from snoek.meeting.MeetingDiagram import *
 from snoek import settings
 
+#import snoek.snoek_lib.mail_mod
+from snoek.snoek_lib.mail_mod import sendmail
+
 # Private Function
 ############
 def validation_check(event):
