@@ -16,6 +16,15 @@ FUTURE
         vote, view voting results and export the results to ODF document, we
         still got several features to be improved in the future:
 
+
+        - code base refarctory
+
+                * use fixture to manage data
+
+                * unify static contents to media directory
+
+                * use similar things with 'snoek.library.context_processors.custom_proc' to avoid transfer settings in each view.
+
         - function Part
 
                 * Allow vote sponsor hide the overall results from UI, allow
