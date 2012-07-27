@@ -126,25 +126,30 @@ def set_event(request):
 
     # Mail notification to all audiences
     # Mail subject
-    mail_subject="New meeting in room "+p['roomno']+" from "+str(starttime)+" to "+str(endtime)+" on "+str(pdate)
+    if p.has_key('mail'):
+        # Send mail notification when checkbox is checked
+        mail_subject="New meeting in room "+p['roomno']+" from "+str(starttime)+" to "+str(endtime)+" on "+str(pdate)
 
-    # Mail to list
-    mail_to_list=[]
-    for to_user in ulist:
-        mail_to_list.append(to_user+'@'+settings.MAIL_POSTFIX)
+        # Mail to list
+        mail_to_list=[]
+        for to_user in ulist:
+            mail_to_list.append(to_user+'@'+settings.MAIL_POSTFIX)
    
-    # Mail context
-    mail_context=[]
-    mail_context.append("Hi, you have been added by "+p['holder']+" for attending the meeting: \n")
-    mail_context.append("Date    :       %s" % (str(pdate)) )
-    mail_context.append("Time    :       %s  --  %s" % ( str(starttime), str(endtime) ))
-    mail_context.append("Location:       Room %s" % (p['roomno']))
-    mail_context.append("Meeting purpose:")
-    mail_context.append(p['purpose'])
-    mail_context.append(settings.MAIL_SIG)
+        # Mail context
+        mail_context=[]
+        mail_context.append("Hi, you have been added by "+p['holder']+" for attending the meeting: \n")
+        mail_context.append("Date    :       %s" % (str(pdate)) )
+        mail_context.append("Time    :       %s  --  %s" % ( str(starttime), str(endtime) ))
+        mail_context.append("Location:       Room %s" % (p['roomno']))
+        mail_context.append("Meeting purpose:")
+        mail_context.append(p['purpose'])
+        mail_context.append(settings.MAIL_SIG)
 
-    # Sendmail
-    sendmail(mail_to_list,mail_subject,mail_context)
+        # Sendmail
+        sendmail(mail_to_list,mail_subject,mail_context)
+    else:
+        #Do not send mail
+        pass
 
     #Show all events
     events = Event.objects.filter(holder=request.user).order_by("meeting_room")

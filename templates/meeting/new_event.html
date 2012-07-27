@@ -181,11 +181,11 @@ title="9" />
     </tr>
 	<tr>
 	  <th>StartTime:</th>
-	  <td><input type="text" maxlength="10" name="starttime" onblur="isTime(this.value)" title="time format: HH:MM"> <spam id="example">(eg: 08:30)</spam></td>
+	  <td><input type="text" maxlength="10" name="starttime" onblur="isTime(this.value)" title="time format: HH:MM"> <spam id="example">(eg: 8:30)</spam></td>
     </tr>
 	<tr>
       <th>EndTime:</th>
-	  <td><input type="text" maxlength="10" name="endtime" onblur="compareTime(document.event.starttime.value,this.value)" title="time format: HH:MM"> <spam id="example">(eg: 08:30)</spam></td>
+	  <td><input type="text" maxlength="10" name="endtime" onblur="compareTime(document.event.starttime.value,this.value)" title="time format: HH:MM"> <spam id="example">(eg: 10:30)</spam></td>
     </tr>
 	<tr>
       <th>MeetingRoom:</th>
@@ -229,6 +229,10 @@ title="9" />
 	<tr>
       <th>Purpose of reservation:</th>
       <td><textarea name="purpose" cols="36" rows="5" wrap="Virtual"></textarea></td>
+    </tr>
+	<tr>
+      <th>Mail notification:</th>
+      <td><input name="mail" type="checkbox" checked></td>
     </tr>
     <tr><td></td><td><input class="button" type="submit" value="Submit" onsubmit="test()" ></td></tr>
   </table>
