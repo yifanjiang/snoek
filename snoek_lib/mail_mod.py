@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-  
 
-'''
----------------Usage--------------------------- 
-from snoek.snoek_lib.mail_mod import sendmail
 
-sendmail(to_list,subject,context_list))
-    to_list: A list of addresses to send this mail to.
-    subject: The subject of the mail.
-    context_list: A list of messages to send.
-
-eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.",["Message to send."])
-'''
+# ---------------Usage--------------------------- 
+# from snoek.custom_lib.mail_mod import sendmail
+#
+# sendmail(to_list,subject,context_list))
+#     to_list: A list of addresses to send this mail to.
+#     subject: The subject of the mail.
+#     context_list: A list of messages to send.
+#
+# eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.","Message to send.")
 
 
 import smtplib
 from email.mime.text import MIMEText
-from snoek.settings import mail_server,server_name,mail_prefix,mail_postfix
+from snoek.settings import MAIL_SERVER,SERVER_NAME,MAIL_PREFIX,MAIL_POSTFIX
 
 # Private Function
 ############
@@ -25,13 +24,13 @@ def _sendmail_local(to_list,subject,context_list):
     Using local Host to send mail.
     '''
 
-    from_user=server_name+'< '+server_name+'@'+mail_postfix+' >'
+    from_user=SERVER_NAME+'< '+SERVER_NAME+'@'+MAIL_POSTFIX+' >'
     msg="\n".join(context_list)
 
     msg=MIMEText(_text=msg,_charset='utf-8')
     msg['From']=from_user
     msg['To']=";".join(to_list)
-    msg['Subject']=mail_prefix+subject
+    msg['Subject']=MAIL_PREFIX+subject
 
     try:
         smtp=smtplib.SMTP("localhost")
@@ -62,10 +61,10 @@ def sendmail(to_list,subject,context_list):
     subject: The subject of the mail.
     context_list: A list of messages to send.
 
-    eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.",["Message to send."])
+    eg. sendmail([xxx@suse.com,xxx@novell.com],"A subject.","Message to send.")
     '''
 
-    if mail_server=="LDAP":
+    if MAIL_SERVER=="LDAP":
         ret=_sendmail_LDAP(to_list,subject,context_list)
     else:
         ret=_sendmail_local(to_list,subject,context_list)
@@ -81,11 +80,11 @@ def main():
     '''
     # The configuration below are all in settings.py
     # Only for testing 
-    global mail_server,server_name,mail_prefix,mail_postfix
-    mail_server="local"
-    server_name="snoek-no-reply"
-    mail_prefix="[Snoek] "
-    mail_postfix="suse.com"
+    global MAIL_SERVER,SERVER_NAME,MAIL_PREFIX,MAIL_POSTFIX
+    MAIL_SERVER="local"
+    SERVER_NAME="snoek-no-reply"
+    MAIL_PREFIX="[Snoek] "
+    MAIL_POSTFIX="suse.com"
 
     to_list=["xxx@suse.com","xxx@suse.com"]
     subject="This is a test mail from snoek server. 注意：中文邮件。"
