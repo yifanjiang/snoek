@@ -1,0 +1,31 @@
+<div class="modal">
+<div class="modal-header">
+	<a href="#" class="cancel" style="float:right">&times;</a>
+	    <h3>书籍信息</h3>
+</div>
+
+<div class="modal-body">
+        
+		<label for="title"><b>书名</b></label>
+                  {{ book.title }}
+
+		<label for="ISBN"><b>ISBN</b></label>
+                {{ book.isbn }}
+
+		<label for="tagNumber"><b>编号</b></label>
+                  {{book.tagNumber}}
+            
+                <label for="briefIntro"><b>详细信息</b></label>
+                  {{book.briefIntro }}
+
+
+              <label for="bookCover"><b>封面</b></label>
+	      <img src="/media/{{ book.bookCover }}" />
+
+
+              <label for="borrower"><b>借书人</b></label>
+	      <a href="{{book.borrower.get_absolute_url}}">{{book.borrower}}</a>
+        
+</div>
+
+</div>

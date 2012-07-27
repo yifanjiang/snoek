@@ -1,0 +1,192 @@
+#app {
+background: url(/media/image/wood.jpg) #efefef;
+text-align: center;
+}
+
+/*
+#header {
+  border:10px ;
+  margin-top:10px;
+}
+	*/
+
+.whitebox, #footer {
+    margin: 100px auto 15px auto;
+    text-align: left;
+    background: #fff;
+    padding: 20px;
+    overflow: auto;
+    -webkit-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -moz-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+
+.whitebox img {
+    -webkit-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -moz-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;    
+}
+
+.whitebox img.button {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    position: relative;
+    top: 10px;
+}
+
+.whitebox .right {
+    float: right;
+}
+
+.whitebox li {
+    color: #000;
+    font-size: 12pt;
+    line-height: 1.6em;
+}
+
+.whitebox p {
+    font-size: 12pt;
+    line-height: 1.6em;    
+}
+
+.whitebox fieldset {
+    text-transform: uppercase;
+    font-size: 8pt;
+}
+
+.whitebox input[type=text], .whitebox input[type=password], .whitebox input[type=submit] {
+    margin-top: 5px;
+    text-transform: none;
+}
+
+.whitebox input[type=submit] {
+    font-size: 9pt;
+}
+
+
+.modal {
+    text-align: left;
+    margin-top:0px;
+}
+
+.bookmark {
+    background: #eee;
+    width: 220px;
+    font-family: arial;
+    font-size: 9pt;
+    margin-bottom: 10px;
+    color: #333;
+    padding-bottom:5px;
+    -webkit-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -moz-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -webkit-border-radius: 8px 8px 8px 8px;
+    -moz-border-radius: 8px 8px 8px 8px;
+    border-radius: 8px 8px 8px 8px;
+}
+
+.bookmark .thumb {
+    padding: 10px 30px 5px 30px;
+    background: #fff;
+    -webkit-border-radius: 8px 8px 0 0;
+    -moz-border-radius: 8px 8px 0 0;
+    border-radius: 8px 8px 0 0;
+    height: 213px;
+    overflow: hidden;
+}
+
+.bookmark .thumb img {
+    border: 1px solid #000;
+}
+
+.bookmark .thumb img:hover {
+    opacity: 0.8;
+}
+
+.bookmark .title {
+    font-weight: bold;
+    padding: 10px 10px 5px 10px;
+    background: #fff;
+    margin:auto;
+}        
+
+.bookmark .description {
+    background: #fff;
+    padding: 0px 10px 10px 10px;
+    font-size: 8pt;
+    -webkit-box-shadow: rgba(100, 100, 100, 0.3) 0 2px 2px;
+    -moz-box-shadow: rgba(100, 100, 100, 0.3) 0 2px 2px;
+    box-shadow: rgba(100, 100, 100, 0.3) 0 2px 2px;
+    margin-bottom: 10px;
+}
+
+.bookmark .editdelete {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0px;
+
+}
+
+.taglist {
+    width: 200px;
+    font-weight: bold;
+    font-size: 11pt;
+    margin: 0 0 15px 0;
+}
+
+.taglist a:link, .taglist a:visited {
+    font-weight: normal;
+    font-size: 10pt;
+    padding: 3px 6px;
+    background: #fff;
+    -webkit-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    -moz-box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    box-shadow: rgba(34, 25, 25, 0.5) 0 0 5px;
+    border-radius: 4px 4px 4px 4px;
+    margin: 0 3px 0 0;
+}
+
+/*
+ * .masonry,
+.masonry .masonry-brick {
+  -webkit-transition-duration: 0.7s;
+     -moz-transition-duration: 0.7s;
+       -o-transition-duration: 0.7s;
+          transition-duration: 0.7s;
+}
+
+.masonry {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.masonry .masonry-brick {
+  -webkit-transition-property: left, right, top;
+     -moz-transition-property: left, right, top;
+       -o-transition-property: left, right, top;
+          transition-property: left, right, top;
+}
+  */
+
+.box .wrap {
+    width: 420px;
+}
+
+.box p {
+    font-size: 10pt;
+    text-transform: none;
+    padding: 10px 0;
+    border-bottom: 1px dotted #ccc;
+    margin-bottom: 10px;
+}
+
+.box h2 {
+    margin: 0 0 10px 10px;
+}

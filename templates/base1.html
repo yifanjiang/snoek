@@ -2,9 +2,8 @@
 <html>
 <head>
 <title>Novell Beijing R&D Team Activities</title>
-<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/style.css" />
-<script language="JavaScript" src="{{settings.MEDIA_URL}}/jquery/jquery-1.6.4.js" type="text/javascript">
-</script>
+-<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/style.css" /> 
+<script language="JavaScript" src="{{settings.MEDIA_URL}}/jquery/jquery-1.6.4.js" type="text/javascript"> </script>
 </head>
 <body>
 <script language="javascript">
@@ -74,6 +73,14 @@
             <li><a href="/meetingroom/showevent">My reservation</a></li>
             <li><a href="/meetingroom/showmeeting">My meeting</a></li>
         </ul>
+
+	<li> 
+	    <a href="#">library</a>
+		<ul class="subnav">
+			<li><a href="{% url library_book_list %}">book list</a></li>
+			<li><a href="{% url library_readers %}">book reader list</a></li>
+		</ul>
+	</li>
     <li><a href="/about">About Us</a></li>
 </ul>
 </td></tr>

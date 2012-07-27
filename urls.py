@@ -57,3 +57,13 @@ urlpatterns += patterns('snoek.meeting.views',
     (r'^meetingroom/showstatus/$',           'show_status'),
     (r'^meetingroom/delevent_(\d+)/$',       'del_event'),
 )
+
+urlpatterns += patterns('',
+    url(r'^library/',include('library.urls')),
+)
+
+
+
+if settings.DEBUG:
+    urlpatterns += patterns("",
+            (r"^media/(?P<path>.*)$","django.views.static.serve",{'document_root':settings.MEDIA_ROOT}),)

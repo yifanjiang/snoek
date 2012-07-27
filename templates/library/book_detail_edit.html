@@ -1,0 +1,74 @@
+<div class="modal">
+<div class="modal-header">
+    <a href="#" class="cancel" style="float:right">&times;</a>
+    <h3>书籍信息</h3>
+</div>
+
+<div class="modal-body">
+
+	<form id="book-form"  enctype="multipart/form-data" method="POST" action="{% url library.views.update pk%}" >
+	{%csrf_token%}
+        <fieldset>
+        
+            <div class="clearfix">
+                  {{ form.title.errors }}
+                  <label for="title"><font color=red>书名</font></label>
+                <div class="input">
+                  {{ form.title }}
+                </div>
+            </div><!-- /clearfix -->
+
+            <div class="clearfix">
+                {{ form.isbn.errors }}
+                <label for="ISBN"><font color=red>ISBN</font></label>
+                <div class="input">
+                {{ form.isbn }}
+                </div>
+            </div><!-- /clearfix -->
+
+            <div class="clearfix">
+              <label for="tagNumber"><font color=red>编号</font></label>
+                {{ form.tagNumber.errors }}
+                <div class="input">
+                  {{form.tagNumber}}
+                </div>
+            </div><!-- /clearfix -->
+            
+            <div class="clearfix">
+                 {{ form.briefIntro.errors }}
+                 <label for="briefIntro"><b>详细信息</b></label>
+                <div class="input">
+                  {{ form.briefIntro }}
+                </div>
+            </div><!-- /clearfix -->
+
+
+            <div class="clearfix">
+              <label for="bookCover"><b>封面</b></label>
+                     {{ form.bookCover.errors }}
+                     <div class="input">
+                     {{ form.bookCover }}
+                     </div> 
+            </div><!-- /clearfix -->
+
+
+            <div class="clearfix">
+              <label for="borrower"><b>借书人</b></label>
+                {{ form.borrower.errors }}
+                <div class="input">
+                  {{ form.borrower }}
+                </div>
+            </div><!-- /clearfix -->
+        
+        </fieldset>
+</div>
+
+<div class="modal-footer">
+	{% if user.is_staff %}
+	<a type="submit" href="{%url library_book_delete pk%}" class="btn btn-danger delete" style="float:left">delete</a>
+	<a type="submit" href="#" name="submit" class="btn btn-success save" >save</a>
+	<a type="reset" class="btn cancel">canel</a>
+	{% endif %}
+</div>
+</form>
+</div>

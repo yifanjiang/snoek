@@ -1,0 +1,60 @@
+{% extends "base1.html" %}
+{% block content %}
+
+<!--<title>library</title>-->
+
+<link rel="stylesheet" type="text/css" href="{{ settings.MEDIA_URL }}/css/app.css" />
+<link rel="stylesheet" type="text/css" href="{{ settings.MEDIA_URL }}/css/bootstrap.min.css" />
+
+<script src="{{ settings.MEDIA_URL }}/js/jquery.min.js"></script>
+<script src="{{ settings.MEDIA_URL }}/js/jquery.form.js"></script>
+<script src="{{ settings.MEDIA_URL }}/js/jquery.masonry.min.js"></script>
+<script src="{{ settings.MEDIA_URL }}/js/bootstrap-modal.js"></script>
+
+<script src="{{ settings.MEDIA_URL }}/js/book.js"></script>
+<script src="{{ settings.MEDIA_URL }}/js/app.js"></script>
+
+
+{%load truncatechars%}
+
+</div>
+{%if user.is_staff%}
+<a class="btn btn-success" href="{% url library_book_create %}">New Book</a> 
+{% endif %}
+</div>
+
+<div id="edit-book">
+</div>
+
+<div id="app">
+	{%for book in book_list%}
+	<!--
+	<tr>
+		<td><a href="{{book.get_absolute_url}}">{{book.title}}</a></td>
+
+		<td><a href="{{book.borrower.get_absolute_url}}">{{book.borrower}}</a></td>
+	</tr>
+	-->
+	<div class="bookmark">
+		<div class="thumb"><img src=/media/{{book.bookCover}} style="width: 156px; height: 213px" /></div>
+		<div class="title">{{book.title}}</div>
+		<div class="description">{{book.briefIntro|truncatechars:80}}</div>
+		<div class="meta">
+			<span class="editdelete">
+				{%if not user.is_staff%}
+				<a href="{% url library_book_detail book.id %}" id="book{{book.id}}" class="btn btn-info view" >view</a>
+				{%else%}
+				<a href="{% url library_book_detail book.id %}" id="book{{book.id}}" class="btn btn-info edit" >edit</a>
+				{% endif %}
+			</span>
+		</div>
+	</div>
+	{%endfor%}
+</div>
+<!--
+<div id="footer">
+  CSS from <a href="http://bookmarkly.com/">http://bookmarkly.com<a>
+</div>
+-->
+
+{% endblock %}

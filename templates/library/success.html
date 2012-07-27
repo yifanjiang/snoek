@@ -1,0 +1,10 @@
+<div class="modal">
+	<div class="modal-body">
+		sucesss!<br><br>
+
+		<a href="/library" class="btn btn-danger" style="margin-right:10px" >跳转回主页</a>
+		{% if book and not book.bookCover%}
+			<a class="btn btn-info getinfo" style="float:left" href='{%url library.views.getBookInfo book.pk%}'>从豆瓣抓数据?</a>
+		{% endif %}
+	</div>
+</div>

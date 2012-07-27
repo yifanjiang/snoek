@@ -1,0 +1,10 @@
+{% extends "base1.html" %}
+{% block content %}
+
+{%for bookreader in bookreader_list%}
+<p>
+<a href="{%url library_reader bookreader.pk%}">{{bookreader.user}}</a>
+</p>
+{%endfor%}
+
+{% endblock %}
