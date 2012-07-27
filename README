@@ -9,6 +9,8 @@ spread, please pronounce them and translate.)
 Usage
 =====
 
+    Activities
+
         1. Login the web site and click an activity you are interested in
 
         2. Attend the vote by clicking Take Vote section
@@ -40,6 +42,17 @@ Usage
 
         5. You may change your password by clicking the tiny icon beside
         the user name
+
+    Meeting Room Reservation
+
+
+    Library
+
+        USAGE:
+
+            1. first add book reader in http://site/admin/ to ad a book reader
+            
+            2. choose book reader in EDIT
 
 
 Development Guide
@@ -146,3 +159,21 @@ patch to any of the contacts via:
     branch as a diff file with:
 
            git format-patch HEAD~1
+
+
+8. Library specific:
+   
+    Use celery to receive book information from internet
+    requires:
+       celery == 2.5.3
+       django-celery == 2.5.5
+       kumbo == 2.1.8
+
+    suggest using pip install them
+
+    1.start celery
+            python manage.py celeryd
+            
+    2.start django
+            python manage.py runserver           
+    
