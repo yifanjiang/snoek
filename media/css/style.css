@@ -1,4 +1,4 @@
-$imgurl = http://localhost/image/
+$imgurl = http://localhost/media/image/
 
 /* Makeshift CSS Reset */
 { margin: 0; padding: 0; }
@@ -14,8 +14,6 @@ body {
     /* width: 940px; */
     /* font: 13px/22px Helvetica, Arial, sans-serif; */
     /* background: #f0f0f0; */
-    /* background-image: url("http://localhost/image/final_most_green_rc2.png"); */
-    /* background: white url("http://localhost/image/final_most_green_rc2.png"); */
     background-repeat: repeat-y;
     background-position: center;
 

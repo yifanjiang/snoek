@@ -102,7 +102,7 @@ public ssh key to any of the contacts.
     2) To edit settings.py for your own testing environment, usually you only
     need to modify the MEDIA_URL value:
 
-       MEDIA_URL = 'http://localhost'
+       MEDIA_URL = 'http://localhost/media/'
 
     make it point to your static server's root URL. This makes the css, image,
     jquery canbe imported to Snoek.
