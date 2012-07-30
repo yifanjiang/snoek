@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseServerError
 #from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from snoek.meeting.models import *
 from snoek.meeting.MeetingDiagram import *
@@ -37,7 +38,7 @@ def validation_check(event):
 ############
 def index(request):
     # Show the basic functions
-    return render_to_response('meeting/index.html',{'user':request.user,'settings':settings})
+    return render_to_response('meeting/index.html',{'user':request.user}, context_instance=RequestContext(request))
 
 # Details function
 ############
@@ -45,25 +46,25 @@ def index(request):
 def show_meeting(request):
     # Show all meetings that need to attend
     meetings = Event.objects.filter(audience=request.user).order_by("meeting_room")
-    return render_to_response('meeting/usermeeting.html',{'user':request.user,'settings':settings,'meetings':meetings})
+    return render_to_response('meeting/usermeeting.html',{'user':request.user,'meetings':meetings}, context_instance=RequestContext(request))
 
 @login_required
 def show_event(request):
     # Show all meetings that hold by the login user
     events = Event.objects.filter(holder=request.user).order_by("meeting_room")
-    return render_to_response('meeting/userevent.html',{'user':request.user,'settings':settings,'events':events})
+    return render_to_response('meeting/userevent.html',{'user':request.user,'events':events}, context_instance=RequestContext(request))
 
 @login_required
 def new_event(request):
     alluser=User.objects.all()
-    return render_to_response('meeting/new_event.html',{'user':request.user,'settings':settings,'alluser':alluser})
+    return render_to_response('meeting/new_event.html',{'user':request.user, 'alluser':alluser}, context_instance=RequestContext(request))
 
 @login_required
 def del_event(request,e_id):
     event=Event.objects.get(id=e_id)
     event.delete()
     events = Event.objects.filter(holder=request.user).order_by("meeting_room")
-    return render_to_response('meeting/userevent.html',{'user':request.user,'settings':settings,'events':events})
+    return render_to_response('meeting/userevent.html',{'user':request.user,'events':events}, context_instance=RequestContext(request))
 
 @login_required
 def set_event(request):
@@ -153,7 +154,7 @@ def set_event(request):
 
     #Show all events
     events = Event.objects.filter(holder=request.user).order_by("meeting_room")
-    return render_to_response('meeting/userevent.html',{'user':request.user,'settings':settings,'events':events})
+    return render_to_response('meeting/userevent.html',{'user':request.user,'events':events}, context_instance=RequestContext(request))
 
 def get_status(request):
     # Show meeting room status of today
@@ -169,7 +170,7 @@ def get_status(request):
         dia.setEvents()
         diagram_list.append(dia)
 
-    return render_to_response('meeting/showdiagram.html',{'user':request.user,'settings':settings,'diagrams':diagram_list})
+    return render_to_response('meeting/showdiagram.html',{'user':request.user,'diagrams':diagram_list}, context_instance=RequestContext(request))
 
 def show_status(request):
     # Show all meeting room status
@@ -240,4 +241,4 @@ def show_status(request):
         dia.setEvents()
         diagram_list.append(dia)
 
-    return render_to_response('meeting/showdiagram.html',{'user':request.user,'settings':settings,'diagrams':diagram_list})
+    return render_to_response('meeting/showdiagram.html',{'user':request.user,'diagrams':diagram_list}, context_instance=RequestContext(request))

@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.utils.encoding import smart_str, smart_unicode
+from django.template import RequestContext
 
 from odf.opendocument import OpenDocumentSpreadsheet
 from odf.style import Style, TextProperties, TableColumnProperties, Map
@@ -34,14 +35,17 @@ def index(request, category = None):
     if category:                        # Show activities in a specific category.
         pass
     else:
-        return render_to_response('index.html', {'user': user,
-                                                 'settings': settings,
-                                                 'avt': reversed(list(Activity.objects.all()))})
+        return render_to_response('index.html',
+                                  {
+                                      'user': user,
+                                      'avt': reversed(list(Activity.objects.all()))
+                                   },
+                                  context_instance=RequestContext(request))
 
 def about(request):
 
     user = request.user
-    return render_to_response('about.html', {'user': user, 'settings': settings})
+    return render_to_response('about.html', {'user': user, 'settings': settings}, context_instance=RequestContext(request))
 
 # ACTIVITIES
 ############
@@ -80,15 +84,17 @@ def view_activity(request, a_id):
                                                      'has_voted': _hasVoted(user, avt),
                                                      'is_expired': _isExpired(avt),
                                                      'settings': settings
-                                                     })
+                                                     },
+                              context_instance=RequestContext(request))
 
 @login_required
 def view_create_activity(request,category):
     user=request.user
+    
     return render_to_response('new_activity.html',{'user':user,
                                                    'category':category,
-                                                   'settings':settings,
-						   'avt':reversed(list(Activity.objects.all()))})
+						   'avt':reversed(list(Activity.objects.all()))},
+                              context_instance=RequestContext(request))
 
 @login_required
 def view_update_activity(request,aid):
@@ -103,10 +109,9 @@ def view_update_activity(request,aid):
     if len(votetable)<2:
        votetable=votetable+['']*(2-len(votetable))
     return render_to_response('edit_activity.html',{'user':request.user,
-                                                    'settings':settings,
                                                     'avt':p,
                                                     'vq':votetable,
-                                                    'ql':range(1,6)})
+                                                    'ql':range(1,6)}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -120,8 +125,7 @@ def create_activity(request):
     p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(year,mon,day),category=s['category'])
     p.save()
     return render_to_response('new_votes.html',{'user':request.user,
-                                                'settings':settings,
-                                                'act':p})
+                                                'act':p}, context_instance=RequestContext(request))
 
 
 @login_required
@@ -176,7 +180,7 @@ def save_vote_in_activity(request,aid):
 
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,
-                                             'avt': reversed(list(Activity.objects.all()))})
+                                             'avt': reversed(list(Activity.objects.all()))}, context_instance=RequestContext(request))
 
 @login_required
 def delt_activity(request,aid):
@@ -284,7 +288,7 @@ def view_votes_by_all_users(request, a_id):
         vt = VoteTable(v.id)
         vote_tables.append({'vote': v, 'table': vt})
 
-    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user})
+    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user}, context_instance=RequestContext(request))
 
 @login_required
 def take_vote(request, a_id):
