@@ -103,7 +103,7 @@ body {
 {% ifequal settings.ROOMHOTPOT "ON" %}
 <!-- This field should be changed once the picture or meeting room change.Using ismap to find the coordinates -->
 <div style="position:absolute;left:550px; top:230px" >
-<a href="#"><img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" usemap="#bjmap" width=660; height=550 /></a>
+<a href="#"><img src="{{MEDIA_URL}}/image/beijing.png" title="BJ office site map" usemap="#bjmap" width=660; height=550 /></a>
 </div>
 
 <map name="bjmap" id="bjmap">
@@ -168,11 +168,11 @@ title="9" />
 {% else %}
 
 <div style="position:absolute;left:550px; top:230px" >
-<img src="{{settings.MEDIA_URL}}/image/beijing.png" title="BJ office site map" width=660; height=550 /></div>
+<img src="{{MEDIA_URL}}/image/beijing.png" title="BJ office site map" width=660; height=550 /></div>
 
 {% endifequal %}
 
-<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/create_activity.css" />
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/create_activity.css" />
 <form action="/meetingroom/set_event/" class="ctavt" method="post" name="event" >
   <table>
     <tr>

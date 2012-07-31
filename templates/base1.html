@@ -2,8 +2,8 @@
 <html>
 <head>
 <title>Novell Beijing R&D Team Activities</title>
-<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/style.css" /> 
-<script language="JavaScript" src="{{settings.MEDIA_URL}}/jquery/jquery-1.6.4.js" type="text/javascript"> </script>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/style.css" /> 
+<script language="JavaScript" src="{{MEDIA_URL}}/jquery/jquery-1.6.4.js" type="text/javascript"> </script>
 </head>
 <body>
 <script language="javascript">
@@ -34,13 +34,13 @@
 <table class="header_table">
 <tr>
 <header class="login">
-  <td><img src="{{settings.MEDIA_URL}}/image/snoek.png" width = 150 height = 50 alt="snoek logo"></td>
+  <td><img src="{{MEDIA_URL}}/image/snoek.png" width = 150 height = 50 alt="snoek logo"></td>
   <td><header class="title">Snoek v{{settings.VERSION}} - {{settings.TITLE}} </header></b></td>
   {% if user.is_authenticated %}
     <td align = right>
 
       Snoeker: {{user.username}}
-      <a href =  '/accounts/chpwd'><img src="{{settings.MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
+      <a href =  '/accounts/chpwd'><img src="{{MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
       <a href =  '/accounts/logout?next=/'>Logout</a>
 
     </td>

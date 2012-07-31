@@ -129,7 +129,7 @@ function delvote() {
                         {% autoescape off %}
                             {{ q.content }}
                             {% if q.hyperlink != "" and q.hyperlink != False %}
-                                <a href= {{q.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                                <a href= {{q.hyperlink}} target="_blank"> <img src = {{MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
                             {% endif %}
                         {% endautoescape %}
                         <br/>
@@ -172,7 +172,7 @@ function delvote() {
                     {% for c in vt.table.col_head %}
                         <td><b>{{c.content}}
                         {% if c.hyperlink != "" and c.hyperlink != False %}
-                            <a href= {{c.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                            <a href= {{c.hyperlink}} target="_blank"> <img src = {{MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
                         {% endif %}
                         </b></td>
                     {% endfor %}
@@ -185,7 +185,7 @@ function delvote() {
                 <tr>
                     <td><b>{{ t.row_head.content }}
                     {% if t.row_head.hyperlink != "" and t.row_head.hyperlink != False %}
-                        <a href= {{t.row_head.hyperlink}} target="_blank"> <img src = {{settings.MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                        <a href= {{t.row_head.hyperlink}} target="_blank"> <img src = {{MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
                     {% endif %}
                     </b></td>
                     {% for rb in t.row_body %}

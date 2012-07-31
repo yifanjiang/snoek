@@ -10,7 +10,7 @@
     {% endif %}
 
 
-	<link rel="stylesheet" type="text/css" href="{{settings.MEDIA_URL}}/css/create_activity.css" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/create_activity.css" />
     <form action="/meetingroom/delevent_{{e.id}}/" class="ctavt" method="get" name="del">
 	<table class="ctavt">
 	  <tr><td>{{ forloop.counter }}.&nbsp;&nbsp;{{ e.meeting_room.date }}   <input class="button" type="SUBMIT" value="Delete"></td></tr>
