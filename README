@@ -1,4 +1,4 @@
-Novell Snoek 11/Nov/2011
+Novell Snoek 31/Jul/2012
 
 Contacts
 ========
@@ -9,7 +9,8 @@ spread, please pronounce them and translate.)
 Usage
 =====
 
-    Activities
+Activities
+----------
 
         1. Login the web site and click an activity you are interested in
 
@@ -43,57 +44,69 @@ Usage
         5. You may change your password by clicking the tiny icon beside
         the user name
 
-    Meeting Room Reservation
+Meeting Room Reservation
+------------------------
 
 
-    Library
+Library
+-------
 
-        USAGE:
+    USAGE:
 
-            1. first add book reader in http://site/admin/ to ad a book reader
+        1. first add book reader in http://site/admin/ to ad a book reader
             
-            2. choose book reader in EDIT
-
+        2. choose book reader in EDIT
 
 Development Guide
 =================
 
-* If you want to push the increnmental change of snoek, please send your
-public ssh key to any of the contacts.
+Get Code
+--------
 
-0a. git clone ssh://git@147.2.207.136/~/snoek.git
+If you want to push the increnmental change of snoek, please send your public
+ssh key to any of the contacts. You can retrieve the code by any of the
+method:
 
-[or]
+    git clone http://147.2.207.136/repo/snoek.git
+    git clone ssh://git@147.2.207.136/~/snoek.git
 
-0b. git clone http://147.2.207.136/repo/snoek.git
+Prerequisite
+------------
 
-1. You need dependencies to run Snoek:
+    * Python >= 2.6 (core python)
 
-    - Python 2.6 +
+    * Django == 1.2.4 ( python module )
 
-    - Django for python
+    * Odfpy == 0.9.2 ( python module )
 
-    - odfpy for python
+    * celery == 2.5.3 ( python module )
+    
+    * django-celery == 2.5.5 ( python module )
 
-    - A static http server (apache, lighttp, etc.)
+    * kumbo == 2.1.8 ( python module )
 
-    The Django and odfpy packs are put in the "dep" directory of the git repo.
+    * A static http server (apache, lighttp, etc.)    
+
+    *notice*
+
+        it is highly suggested to use 'pip install' to install python modules.
+
+Hosting static content
+----------------------
 
 2. Link the static content (css, image) to the root of your http server.
 
-        snoek/$ sudo ln -s $(readlink -f ./templates/css) $your_static_http_root
-        snoek/$ sudo ln -s $(readlink -f ./templates/image) $your_static_http_root
-        snoek/$ sudo ln -s $(readlink -f ./templates/jquery) $your_static_http_root
+        snoek/$ sudo ln -s $(readlink -f ./media) $your_static_http_root
 
-    The following is a substantial example of my development
-    environment. My static http root is in /srv/www/htdoc
+    The following is a substantial example of my development environment. My
+    static http root is in /srv/www/htdoc
 
         $ find /srv/www/htdocs/ -maxdepth 1 -type l | xargs ls -l
-        lrwxrwxrwx 1 root root 40 2011-09-26 10:58 /srv/www/htdocs/css -> /home/yifan/project/snoek/templates/css/
-        lrwxrwxrwx 1 root root 41 2011-09-26 10:45 /srv/www/htdocs/image -> /home/yifan/project/snoek/templates/image
-        lrwxrwxrwx 1 root root 43 2011-09-29 18:16 /srv/www/htdocs/jquery -> /home/yifan/project/snoek/templates/jquery/
 
-3. Create your own settings.py
+        lrwxrwxrwx 1 root root 32 2012-07-30 13:28 /srv/www/htdocs/media -> /home/yifan/project/snoek/media/
+
+Create settings.py
+------------------
 
     1) Make a Copy settings.py.sample
 
@@ -102,12 +115,13 @@ public ssh key to any of the contacts.
     2) To edit settings.py for your own testing environment, usually you only
     need to modify the MEDIA_URL value:
 
-       MEDIA_URL = 'http://localhost/media/'
+        MEDIA_URL = 'http://localhost/media/'
 
     make it point to your static server's root URL. This makes the css, image,
     jquery canbe imported to Snoek.
 
-4. Create your own database
+Create database
+---------------
 
     It is fairly simple to start a new empty database in snoek:
 
@@ -121,11 +135,15 @@ public ssh key to any of the contacts.
 
         snoek/$ cp db.sqlite.sample db.sqlite
 
-5. Run testing server
+Run testing server
+------------------
 
+   snoek/$ python manage.py runserver celyryd # this is particularly for library module
+   
    snoek/$ python manage.py runserver localhost:8080
 
-6. Test if it runs
+Play snoek
+----------
 
     1) Open you browser and visit the url:
 
@@ -140,7 +158,8 @@ public ssh key to any of the contacts.
 
         Normally you can play with Snoek now!
 
-6. The typical command of push your code to repo is:
+Patch submission process
+------------------------
 
    - You did some nice work of code improvement
 
@@ -150,7 +169,7 @@ public ssh key to any of the contacts.
 
    - snoek/$ git push
 
-7. If you are interested but do not have a ssh permission, please send a
+If you are interested but do not have a ssh permission, please send a
 patch to any of the contacts via:
 
     [quote from libreoffice community]
@@ -161,19 +180,3 @@ patch to any of the contacts via:
            git format-patch HEAD~1
 
 
-8. Library specific:
-   
-    Use celery to receive book information from internet
-    requires:
-       celery == 2.5.3
-       django-celery == 2.5.5
-       kumbo == 2.1.8
-
-    suggest using pip install them
-
-    1.start celery
-            python manage.py celeryd
-            
-    2.start django
-            python manage.py runserver           
-    
