@@ -151,8 +151,8 @@ class VoteTable:
                     rowbody.append(0)
             table.append({'row_head': a.user, 'row_body': rowbody})
             rowbody = []
-        return table
 
+        return sorted(table, key=lambda k:k['row_head'].username)
 
     def _getVoterList(self):
 
