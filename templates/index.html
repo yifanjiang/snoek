@@ -82,10 +82,10 @@ function confirmRemoveActivity(aid){
     {% if a.user.id == user.id %}
         <a href = '#' onclick="confirmRemoveActivity({{a.id}})" class="strong">&nbsp;Delet&nbsp;</a>
         <a href = 'edit_activity{{a.id}}' class="strong">&nbsp;Edit&nbsp; </a>
-        <span class="text">&nbsp;({{a.total_votes}} people voted) </span>
+        <span class="text">&nbsp;[{{a.total_votes}} votes] </span>
         <br/>    
     {% else %}
-        <span class="text"> ({{a.total_votes}} people voted) </span>
+        <span class="text"> [{{a.total_votes}} votes] </span>
         <br/>
     {% endif %}
     <br/>
