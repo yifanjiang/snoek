@@ -70,23 +70,23 @@ function confirmRemoveActivity(aid){
 
     {% for a in avt %}
 
-    <a href = 'activity/{{ a.id }}' class="normal"> {{a.summary}} </a>&nbsp;
+    <a href = 'activity/{{ a.id }}' class="normal"> {{a.summary}}
+
+        {% if a.created_datetime.date != None %}
+              - {{a.created_datetime.date}} </a>&nbsp;
+        {% else %}
+              </a>&nbsp;
+        {% endif %}    
 
     <!-- show/hide edit delt button -->
     {% if a.user.id == user.id %}
-    <a href = '#' onclick="confirmRemoveActivity({{a.id}})" class="strong">&nbsp;Delet&nbsp;</a>
-    &nbsp;
-    <a href = 'edit_activity{{a.id}}' class="strong">&nbsp;Edit&nbsp;</a>
-        {% if a.created_datetime.date != None %}
-            <span class="text"> (Created on: {{a.created_datetime.date}}) </span>
-        {% endif %}
-    <br/>    
+        <a href = '#' onclick="confirmRemoveActivity({{a.id}})" class="strong">&nbsp;Delet&nbsp;</a>
+        <a href = 'edit_activity{{a.id}}' class="strong">&nbsp;Edit&nbsp; </a>
+        <span class="text">&nbsp;({{a.total_votes}} people voted) </span>
+        <br/>    
     {% else %}
-        {% if a.created_datetime.date != None %}
-            <span class="text"> (Created: {{a.created_datetime.date}}) </span>
-        {% endif %}
-    <br/>
-    
+        <span class="text"> ({{a.total_votes}} people voted) </span>
+        <br/>
     {% endif %}
     <br/>
     {% endfor%}

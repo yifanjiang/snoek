@@ -27,6 +27,13 @@ class Activity(models.Model):
                         result.append(a)
         return result
 
+    def getVoteNumber(self):
+        
+        first_vote = self.vote_set.all()[0]
+        return Answer.objects.filter(question__vote=first_vote).count()
+
+    total_votes = property(getVoteNumber)
+
 class Vote(models.Model):
 
     summary = models.CharField(max_length=100)
