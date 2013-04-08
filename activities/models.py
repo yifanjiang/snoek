@@ -10,6 +10,7 @@ class Activity(models.Model):
     deadline = models.DateField()
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
+    created_datetime = models.DateTimeField(auto_now_add=True, null=True)
 
     def getAllAnswers(self, voter=""):
         # voter is a User object

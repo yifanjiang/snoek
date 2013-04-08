@@ -76,12 +76,19 @@ function confirmRemoveActivity(aid){
     {% if a.user.id == user.id %}
     <a href = '#' onclick="confirmRemoveActivity({{a.id}})" class="strong">&nbsp;Delet&nbsp;</a>
     &nbsp;
-    <a href = 'edit_activity{{a.id}}' class="strong">&nbsp;Edit&nbsp;</a><br/>
+    <a href = 'edit_activity{{a.id}}' class="strong">&nbsp;Edit&nbsp;</a>
+        {% if a.created_datetime.date != None %}
+            <span class="text"> (Created on: {{a.created_datetime.date}}) </span>
+        {% endif %}
+    <br/>    
     {% else %}
+        {% if a.created_datetime.date != None %}
+            <div class="text"> (Created: {{a.created_datetime.date}}) </div>
+        {% endif %}
     <br/>
+    
     {% endif %}
     <br/>
-
     {% endfor%}
 
 </section>
