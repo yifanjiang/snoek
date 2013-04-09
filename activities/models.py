@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import datetime
 
 # Create your models here.
 
@@ -7,10 +8,18 @@ class Activity(models.Model):
 
     summary = models.CharField(max_length=100)
     description = models.TextField()
-    deadline = models.DateField()
+    deadline = models.DateTimeField()
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
-    created_datetime = models.DateTimeField(auto_now_add=True, null=True)
+    created = models.DateTimeField(default=datetime.datetime.now(), null=True)
+
+    # def save(self):
+    #     if not self.id:
+    #         self.created = datetime.datetime.now()
+    #     else:
+    #         self.updated = datetime.datetime.now()
+
+    #     super(Activity, self).save()
 
     def getAllAnswers(self, voter=""):
         # voter is a User object
@@ -29,8 +38,11 @@ class Activity(models.Model):
 
     def getVoteNumber(self):
         
-        first_vote = self.vote_set.all()[0]
-        return Answer.objects.filter(question__vote=first_vote).count()
+        all_votes = self.vote_set.all()
+        if all_votes:
+            return Answer.objects.filter(question__vote=all_votes[0]).count()            
+        else:
+            return 0
 
     total_votes = property(getVoteNumber)
 

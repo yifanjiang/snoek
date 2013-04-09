@@ -118,11 +118,36 @@ def view_update_activity(request,aid):
 def create_activity(request):
     if request.method=='POST':
        s=request.POST
-    datelist=s['deadline'].split('-')
-    year=int(datelist[0])
-    mon=int(datelist[1])
-    day=int(datelist[2])
-    p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(year,mon,day),category=s['category'])
+
+    year = datetime.MINYEAR
+    month = 1
+    day = 1
+    hour = 0
+    minute = 0
+    datelist = []
+    timelist = []    
+
+    dt = s['deadline'].split(' ')
+
+    if len(dt) == 2:
+        date=dt[0]
+        time=dt[1]
+        timelist=time.split(':')        
+    elif len(dt) == 1:
+        date=dt[0]        
+    
+    datelist=date.split('-')
+
+    if len(datelist) == 3:
+        year = int(datelist[0][:4])
+        month = int(datelist[1][:2])
+        day = int(datelist[2][:2])
+
+    if len(timelist) == 2:
+        hour = int(timelist[0][:2])
+        minute = int(timelist[1][:2])
+
+    p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.datetime(year, month, day, hour, minute),category=s['category'])
     p.save()
     return render_to_response('new_votes.html',{'user':request.user,
                                                 'act':p}, context_instance=RequestContext(request))
@@ -199,13 +224,50 @@ def delt_activity(request,aid):
     return HttpResponseRedirect('/')
 
 @login_required
-def update_activity(request,aid):
+def update_activity(request, aid):
+
     if request.method=='POST':
        s=request.POST
-    dl=s['deadline'].split('-')
-    p=Activity(id=aid,user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.date(int(dl[0]),int(dl[1]),int(dl[2])),category=s['category'])
+
+    year = datetime.MINYEAR
+    month = 1
+    day = 1
+    hour = 0
+    minute = 0
+    datelist = []
+    timelist = []    
+
+    dt = s['deadline'].split(' ')
+
+    if len(dt) == 2:
+        date=dt[0]
+        time=dt[1]
+        timelist=time.split(':')        
+    elif len(dt) == 1:
+        date=dt[0]        
+    
+    datelist=date.split('-')
+
+    if len(datelist) == 3:
+        year = int(datelist[0][:4])
+        month = int(datelist[1][:2])
+        day = int(datelist[2][:2])
+
+    if len(timelist) == 2:
+        hour = int(timelist[0][:2])
+        minute = int(timelist[1][:2])
+        
+    p = Activity(aid)
+    p.user = request.user
+    p.summary = s['summary']
+    p.description = s['description']
+    p.category=s['category']
+    p.deadline=datetime.datetime(year, month, day, hour, minute)    
+
     p.save()
+    
     lenvote=len(Vote.objects.filter(activity=p))
+    
     for v in Vote.objects.filter(activity=p):
         if s[str(v.id)]=='':
            for q in Question.objects.filter(vote=v):
@@ -415,7 +477,5 @@ def _hasVoted(usr, avt):
 
 def _isExpired(avt):
     # return if activity is expired
-
     d = avt.deadline
-    return datetime.datetime(d.year, d.month, d.day) <= datetime.datetime.now()
-
+    return datetime.datetime(d.year, d.month, d.day, d.hour, d.minute) <= datetime.datetime.now()

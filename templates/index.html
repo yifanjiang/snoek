@@ -72,8 +72,8 @@ function confirmRemoveActivity(aid){
 
     <a href = 'activity/{{ a.id }}' class="normal"> {{a.summary}}
 
-        {% if a.created_datetime.date != None %}
-              - {{a.created_datetime.date}} </a>&nbsp;
+        {% if a.created.date != None %}
+              - {{a.created.date}} </a>&nbsp;
         {% else %}
               </a>&nbsp;
         {% endif %}    
