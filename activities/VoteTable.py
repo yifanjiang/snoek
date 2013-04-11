@@ -164,3 +164,65 @@ class VoteTable:
                 ul.append(a.user)
 
         return ul
+
+class IntegralVoteTable:
+
+    def __init__(self, vts = []):
+
+        self.vts = vts
+        self.col_head = self.getColHead()
+        self.row_head = self.getRowHead()
+        self.bodywithrow = self.getBodyWithRow()
+        self.title = "Results as one"
+
+    def isValid(self):
+        return False if len(self.vts) < 2 else True
+
+    def getColHead(self):
+        # [ Object Question, Object Question, ...]
+        colhead = []
+
+        for v in self.vts:
+            colhead =  colhead + list(v.questions)
+
+        return colhead
+
+    def getRowHead(self):
+        # [ Object User, Object User, ...]
+        ul = []
+        v = Vote.objects.get(pk=self.vts[0].id)
+        for q in v.question_set.all():
+            for a in q.answer_set.all():
+                ul.append(a.user)
+        return ul
+    
+    def getBodyWithRow(self):
+        # [0,1,1,0]
+        # [0,1,0,1]
+        # [1,0,1,0]
+        # ...
+        lst_user = self.row_head
+        lst_questions = self.col_head
+        
+        table = []
+
+        for i in range(len(lst_user)):
+            table.append({'user':'', 'answers':[]})
+            for j in range(len(lst_questions)):
+                table[i]['user'] = lst_user[i]
+                table[i]['answers'].append(0)
+
+        index = 0
+
+        for usr in lst_user:
+            jndex = 0
+            for q in lst_questions:
+                for a in q.answers:
+                    if usr in a.voters:
+                        table[index]['answers'][jndex] = 1
+                jndex = jndex + 1
+            index = index + 1
+
+        # return table
+        return sorted(table, key=lambda k:k['user'].username)
+                

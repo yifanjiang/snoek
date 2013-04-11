@@ -6,11 +6,39 @@
 {% autoescape off %}                                		
 <h3>Who Vote What for - <a href="/activity/{{avt.id}}">{{avt.summary}}</a></h3>
 
+<h2>
+  Table as one
+</h2>
 
+<table id="who_vote_what">
+  <tr>
+    <th>{{ integral_votetable.title}}</th>
+
+    {% for col in integral_votetable.col_head %}
+    <td><b>{{col.content}}</b></td>
+    {% endfor %}
+  </tr>
+
+  {% for row in integral_votetable.bodywithrow %}
+
+  <tr>
+    <td><b>{{row.user.username}}</b></td>
+
+    {% for answer in row.answers %}
+    <td align = center><img src="{{MEDIA_URL}}/image/{{answer}}.png"></td>        
+    {% endfor %}      
+
+  </tr>
+
+  {% endfor %}  
+
+</table>
+
+<h2>
+  Table per vote
+</h2>
 
         {% for vt in vote_tables %}
-
-
             <table id="who_vote_what">
                 <tr>
                   <th>{{vt.vote.summary}}</th>
@@ -20,12 +48,13 @@
 	    	</tr>
 
 		{% for r in vt.table.user_table %}
+
 		<tr>
                 <td><b>{{r.row_head}}</b></td>
 
-         	{% for rb in r.row_body %}
+         	    {% for rb in r.row_body %}
                 <td align = center><img src="{{MEDIA_URL}}/image/{{rb}}.png"></td>
-		{% endfor %}
+		        {% endfor %}
 		</tr>
                 {% endfor%}
             </table>
@@ -34,4 +63,3 @@
 {% endautoescape %}
 
 {% endblock %}
-

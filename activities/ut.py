@@ -1,4 +1,4 @@
-from snoek.activities.VoteTable import VoteTable
+from snoek.activities.VoteTable import VoteTable, IntegralVoteTable
 from snoek.activities.views import _toODSFile
 from snoek.activities.views import _toODSTable
 from snoek.activities.views import _hasVoted
@@ -47,8 +47,27 @@ from odf.table import Table, TableColumn, TableRow, TableCell
 # ods_table.append(_toODSTable(vt_4))
 
 # _toODSFile(ods_table, 'myods')
-usr = User.objects.get(pk = 6)
-avt = Activity.objects.get(pk = 2)
+# usr = User.objects.get(pk = 6)
+# avt = Activity.objects.get(pk = 2)
 
-print _hasVoted(usr, avt)
+# print _hasVoted(usr, avt)
+
+def run():
+    v1 = Vote.objects.get(pk=1)
+    v2 = Vote.objects.get(pk=2)
+    # v3 = Vote.objects.get(pk=3)
+    # v4 = Vote.objects.get(pk=4)
+    # v5 = Vote.objects.get(pk=5)
+    # v6 = Vote.objects.get(pk=6)        
+    # iv = IntegralVoteTable([v1, v2, v3, v4, v5, v6])
+    iv = IntegralVoteTable([v1, v2])
+    
+    # print iv.col_head
+    # print '----------------------------------------------------------------------------------------------------'
+    # print iv.row_head
+    print iv.bodywithrow
+
+
+
+
 

@@ -21,7 +21,7 @@ from snoek import settings
 # from snoek.activities.models import Answer
 # from snoek.activities.models import Question
 
-from snoek.activities.VoteTable import VoteTable
+from snoek.activities.VoteTable import VoteTable, IntegralVoteTable
 
 # First Page
 ############
@@ -345,12 +345,13 @@ def view_votes_by_all_users(request, a_id):
     avt = Activity.objects.get(id = a_id)
     vote_tables = []
     votes = Vote.objects.filter(activity = a_id)
+    integral_votetable = IntegralVoteTable(list(votes))    
 
     for v in votes:
         vt = VoteTable(v.id)
         vote_tables.append({'vote': v, 'table': vt})
 
-    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'settings': settings, 'user':user}, context_instance=RequestContext(request))
+    return render_to_response('whovotewhat.html', {'avt': avt, 'vote_tables': vote_tables, 'integral_votetable': integral_votetable,'settings': settings, 'user':user}, context_instance=RequestContext(request))
 
 @login_required
 def take_vote(request, a_id):

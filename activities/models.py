@@ -85,6 +85,6 @@ class Answer(models.Model):
     user = models.ForeignKey(User)
 
     def getAllVoters(self):
-        return User.objects.filter(id = user)
+        return User.objects.filter(pk = self.user.id)
 
     voters = property(getAllVoters)
