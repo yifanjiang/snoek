@@ -11,7 +11,7 @@ class Activity(models.Model):
     deadline = models.DateTimeField()
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
-    created = models.DateTimeField(default=datetime.datetime.now(), null=True)
+    created = models.DateTimeField(default=datetime.datetime.now, null=True)
 
     # def save(self):
     #     if not self.id:
