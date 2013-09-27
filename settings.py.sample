@@ -133,6 +133,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 )
 
+# Override authentication function to make login username case insensitive
+AUTHENTICATION_BACKENDS = ('snoek.snoek_lib.backends.CaseInsensitiveAuthBackend',)
+
 # General Snoek configs
 VERSION = "1.0"
 TITLE = "Novell Beijing R&D Team Activities"
