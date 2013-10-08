@@ -2,3 +2,5 @@
 *~
 *.pyc
 .*.sw[op]
+db.sqlite
+settings.py
