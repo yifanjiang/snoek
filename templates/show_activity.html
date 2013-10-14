@@ -89,6 +89,8 @@ function delvote() {
 
 <h2>Activity</h2>
 
+
+
 {% if not user.is_authenticated and not is_expired%}
     <p><a href = "/accounts/login?next=/">Please login to attend vote</a>
 {% endif %}
@@ -104,7 +106,11 @@ function delvote() {
     <p class="general_error"> The Votes	has been expired ( on {{ avt.deadline }} )
 {% endif %}
 
-<p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+{% if avt.anonymous %}
+    <p> <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+{% else %}
+    <p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>      
+{% endif %}
 
 <!-- Show take vote for an authenticated user who hasn't voted yet -->
 
@@ -206,7 +212,12 @@ function delvote() {
         <br />
     {% endfor %}
 
-    <p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+{% if avt.anonymous %}
+    <p> <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+{% else %}
+    <p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>      
+{% endif %}
+      
 </section>
 
 </div>
