@@ -27,6 +27,12 @@ FUTURE
 
         - function Part
 
+                * Allow vote sponsor to duplicate an existed activity
+                  (all the votes got copied and the voter infomation
+                   got cleared up)
+
+                * OpenID support
+
                 * Allow vote sponsor hide the overall results from UI, allow
                   voters to show as anonymous voter.
 
@@ -94,7 +100,7 @@ FUTURE
 
                 - Appointmant mail investigate (contact: nwang, ysun)
 
-                - more friendly ui of 'who vote for what' (contact: yfjiang)
+                - More friendly ui of 'who vote for what' (contact: yfjiang)
                 
         - UI
 
