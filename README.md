@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-18 16:46:25 yifan"
+Time-stamp: "2014-07-18 16:49:49 yifan"
 
 ## Contacts
 
@@ -11,7 +11,7 @@ Please read aloud to fetch the email:
 
 ### Get the code
 
-You can retrieve the code by clone this repo:
+You can retrieve the code by cloning this repo:
 
     git@github.com:yifanjiang/snoek.git
 
@@ -29,7 +29,7 @@ You can retrieve the code by clone this repo:
 
 ### Hosting static content
 
-* Link the static content (css, image) to the root of your http server.
+Link the static content (css, image) to the root of your http server.
 
     snoek/$ sudo ln -s $(readlink -f ./media) $your_static_http_root
 
@@ -44,14 +44,14 @@ http root is in /srv/www/htdoc
 
 1. Make a Copy settings.py.sample
 
-    snoek/$ cp settings.py.sample .
+        snoek/$ cp settings.py.sample .
 
 2. To edit settings.py for your own testing environment, usually you
 only need to modify the MEDIA_URL value:
 
-    MEDIA_URL = 'http://localhost/media/'
+        MEDIA_URL = 'http://localhost/media/'
 
-make it point to your static server's root URL. This makes the css,
+to make it point to your static server's root URL. This makes the css,
 image, jquery canbe imported to Snoek.
 
 ### Create database
@@ -87,7 +87,7 @@ Normally you can play with Snoek now!
 
 ### Patch submission
 
-Let's just use ordinary process
+Let's just use any of the ordinary processes:
 
 1. Send a Pull Request from github
 
@@ -111,9 +111,9 @@ Let's just use ordinary process
 
     * If multiple votes are created in the activity, multiple tables would be generated to describe:
 
-        a. one dimension data for each votes
+        - one dimension data for each votes
 
-        b. two dimension data for for possible combinations of any two of the votes
+        - two dimension data for for possible combinations of any two of the votes
 
     * All voters' favourite choice can be found by clicking 'Who vote what' link
 
