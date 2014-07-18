@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-18 16:55:56 yifan"
+Time-stamp: "2014-07-18 16:57:01 yifan"
 
 ## Contacts
 
@@ -72,11 +72,11 @@ for your experiments, to make use of it, simple make a copy:
 
 To only run the voting system:
 
-   snoek/$ python manage.py runserver localhost:8080
+    snoek/$ python manage.py runserver localhost:8080
 
 To run celyryd supporting the book borrowing library:
 
-   snoek/$ python manage.py runserver celyryd
+    snoek/$ python manage.py runserver celyryd
 
 ### Play snoek
 
