@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-18 16:49:49 yifan"
+Time-stamp: "2014-07-18 16:55:56 yifan"
 
 ## Contacts
 
@@ -70,20 +70,22 @@ for your experiments, to make use of it, simple make a copy:
 
 ### Run testing server
 
-   snoek/$ python manage.py runserver celyryd # this is particularly for library module, not necessarily used in the voting system.
-   
+To only run the voting system:
+
    snoek/$ python manage.py runserver localhost:8080
+
+To run celyryd supporting the book borrowing library:
+
+   snoek/$ python manage.py runserver celyryd
 
 ### Play snoek
 
-1. Open you browser and visit the url http://localhost:8080/admin
+After running the testing server, open you browser and visit the url
+http://localhost:8080
 
-Login with the super user you set in the "Create database" section and
-try to create several users in the adminitration pages.
-
-2. Open you browser and visit the url http://localhost:8080
-
-Normally you can play with Snoek now!
+For administration, visit the url http://localhost:8080/admin and
+login with the super user you set in the "Create database"
+section. Ordinary users could be managed in the adminitration pages.
 
 ### Patch submission
 
@@ -123,7 +125,8 @@ Let's just use any of the ordinary processes:
 
 ### Library
 
-USAGE:
+Library is used for book borrowing management, not fully tested
+currently, but in case you are interested:
 
     1. first add book reader in http://site/admin/ to ad a book reader
 
