@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-18 16:57:01 yifan"
+Time-stamp: "2014-07-18 16:57:47 yifan"
 
 ## Contacts
 
@@ -100,27 +100,16 @@ Let's just use any of the ordinary processes:
 ### Activities
 
 1. Login the web site and click an activity you are interested in
-
 2. Attend the vote by clicking Take Vote section
-
     * You could only have one chance of voting at the moment
-
     * You will not be able to vote for an activity if it is outdated
-
 3. The statistics of votings are shown in the section Voting Results
-
     * If only one vote is in the activity, there will be only one table to describe the results
-
     * If multiple votes are created in the activity, multiple tables would be generated to describe:
-
         - one dimension data for each votes
-
         - two dimension data for for possible combinations of any two of the votes
-
     * All voters' favourite choice can be found by clicking 'Who vote what' link
-
     * The ODF format of voting results can be downloaded by click 'Download me'
-
     * You may change your password by clicking the tiny icon beside the user name
 
 ### Library
