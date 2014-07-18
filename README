@@ -1,10 +1,12 @@
-Novell Snoek 31/Jul/2012
+Time-stamp: <2014-07-18 10:02:32 yifan>
 
 Contacts
 ========
 
-yfjiang ysun sqiu AaaT suse DOT com (to avoid spam
-spread, please pronounce them and translate.)
+Please read aloud to fetch the email:
+
+    - yifanj2007 AT gmail DOT com
+    - yfjiang AT suse DOT com
 
 Usage
 =====
@@ -64,11 +66,7 @@ Get Code
 --------
 
 If you want to push the increnmental change of snoek, please send your public
-ssh key to any of the contacts. You can retrieve the code by any of the
-method:
-
-    git clone http://147.2.207.136/repo/snoek.git
-    git clone ssh://git@147.2.207.136/~/snoek.git
+ssh key to any of the contacts. You can retrieve the code by clone this repo.
 
 Prerequisite
 ------------
@@ -79,9 +77,9 @@ Prerequisite
 
     * Odfpy==0.9.2 ( python module )
 
-    * celery==2.5.3 ( python module )
+    * celery==2.5.3 ( python module ) # this is particularly for library module, not necessarily used in the voting system.
     
-    * django-celery==2.5.5 ( python module )
+    * django-celery==2.5.5 ( python module ) # this is particularly for library module, not necessarily used in the voting system.
 
     * kombu==2.1.8 ( python module )
 
@@ -138,7 +136,7 @@ Create database
 Run testing server
 ------------------
 
-   snoek/$ python manage.py runserver celyryd # this is particularly for library module
+   snoek/$ python manage.py runserver celyryd # this is particularly for library module, not necessarily used in the voting system.
    
    snoek/$ python manage.py runserver localhost:8080
 
@@ -149,8 +147,8 @@ Play snoek
 
         http://localhost:8080/admin
 
-        Login with the super user you set in the Step 4 and try to create
-        several users in the adminitration pages.
+        Login with the super user you set in the Step 4 and try to
+        create several users in the adminitration pages.
 
     2) Open you browser and visit the url:
 
@@ -158,25 +156,9 @@ Play snoek
 
         Normally you can play with Snoek now!
 
-Patch submission process
-------------------------
+Patch submission
+----------------
 
-   - You did some nice work of code improvement
+1. Send a Pull Request from github
 
-   - snoek/$ git commit -a -m 'your tips goes here'
-
-   - snoek/$ git pull -r
-
-   - snoek/$ git push
-
-If you are interested but do not have a ssh permission, please send a
-patch to any of the contacts via:
-
-    [quote from libreoffice community]
-    * create the patch file that you want to mail.  If you are in one
-    repository you can use git directly to get e.g. the last change in your
-    branch as a diff file with:
-
-           git format-patch HEAD~1
-
-
+2. Send a patch by email using `git format-patch` 
