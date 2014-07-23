@@ -37,32 +37,13 @@ urlpatterns = patterns('',
     (r'^activity/(\d+)/delvote/$',  del_vote),
 
     # User management
+    (r'^accounts/', include('registration.backends.default.urls')),
     (r'^accounts/logout.*$',        'django.contrib.auth.views.logout'),
     (r'^accounts/login.*$',         'django.contrib.auth.views.login'),
     (r'^accounts/chpwd/$',          'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
 
-
-
 #    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change_done'),
 )
-
-urlpatterns += patterns('snoek.meeting.views',
-    # Meeting room
-    (r'^meetingroom/$',                      'index'),
-    (r'^meetingroom/showmeeting/$',          'show_meeting'),
-    (r'^meetingroom/showevent/$',            'show_event'),
-    (r'^meetingroom/getstatus/$',            'get_status'),
-    (r'^meetingroom/booking/$',              'new_event'),
-    (r'^meetingroom/set_event/$',            'set_event'),
-    (r'^meetingroom/showstatus/$',           'show_status'),
-    (r'^meetingroom/delevent_(\d+)/$',       'del_event'),
-)
-
-urlpatterns += patterns('',
-    url(r'^library/',include('library.urls')),
-)
-
-
 
 if settings.DEBUG:
     urlpatterns += patterns("",

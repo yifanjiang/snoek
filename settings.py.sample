@@ -119,6 +119,7 @@ INSTALLED_APPS = (
     'djcelery',#support for task queue
     'kombu.transport.django',#support for task queue
     'django.contrib.messages',
+    'registration',
 )
 
 # Content process
@@ -133,7 +134,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
 )
 
-# Override authentication function to make login username case insensitive
 AUTHENTICATION_BACKENDS = ('snoek.snoek_lib.backends.CaseInsensitiveAuthBackend',)
 
 # General Snoek configs
@@ -172,3 +172,4 @@ Snoek-Server at\n"+MEDIA_URL
 # ldap  mail service: mail_server="LDAP"
 MAIL_SERVER="local"
 
+ACCOUNT_ACTIVATION_DAYS = 7
