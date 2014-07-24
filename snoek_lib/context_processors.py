@@ -1,5 +1,5 @@
 from django.template import RequestContext
-from snoek import settings
+import settings
 
 def custom_proc(request):
 		return {

@@ -5,7 +5,7 @@
 <p>Some thing wrong when submitting</p>
 {% endif %}
 
-<form method="post" action="{% url django.contrib.auth.views.login %}">
+<form method="post" action="{%  url "django.contrib.auth.views.login" %}">
 {% csrf_token %}
 <table>
 

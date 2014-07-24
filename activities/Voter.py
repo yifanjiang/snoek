@@ -1,4 +1,4 @@
-from snoek.activities.models import *
+from activities.models import *
 from django.contrib.auth.models import User
 
 class Voter():

@@ -19,7 +19,7 @@
 
 </div>
 {%if user.is_staff%}
-<a class="btn btn-success" href="{% url library_book_create %}">New Book</a> 
+<a class="btn btn-success" href="{%  url "library_book_create" %}">New Book</a> 
 {% endif %}
 </div>
 
@@ -42,9 +42,9 @@
 		<div class="meta">
 			<span class="editdelete">
 				{%if not user.is_staff%}
-				<a href="{% url library_book_detail book.id %}" id="book{{book.id}}" class="btn btn-info view" >view</a>
+				<a href="{%  url "library_book_detail" book.id %}" id="book{{book.id}}" class="btn btn-info view" >view</a>
 				{%else%}
-				<a href="{% url library_book_detail book.id %}" id="book{{book.id}}" class="btn btn-info edit" >edit</a>
+				<a href="{%  url "library_book_detail" book.id %}" id="book{{book.id}}" class="btn btn-info edit" >edit</a>
 				{% endif %}
 			</span>
 		</div>

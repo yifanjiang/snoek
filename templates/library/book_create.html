@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="modal-body">
-			<form id="book-form"  enctype="multipart/form-data" method="POST" action="{% url library.views.create %}">
+			<form id="book-form"  enctype="multipart/form-data" method="POST" action="{%  url "library.views.create" %}">
 				{%csrf_token%}
 				<fieldset>
 
@@ -63,7 +63,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="submit" name="submit" class="btn btn-success save" >保存</button>
-				<a href="{% url library_book_list %}" class="btn btn-info save" >返回</a>
+				<a href="{%  url "library_book_list" %}" class="btn btn-info save" >返回</a>
 			</div>
 		</form>
 </div>

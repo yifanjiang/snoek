@@ -3,7 +3,7 @@
 
 {%for bookreader in bookreader_list%}
 <p>
-<a href="{%url library_reader bookreader.pk%}">{{bookreader.user}}</a>
+<a href="{% url "library_reader" bookreader.pk%}">{{bookreader.user}}</a>
 </p>
 {%endfor%}
 
