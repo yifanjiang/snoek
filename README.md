@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-28 17:44:09 yifan"
+Time-stamp: "2014-07-28 18:27:32 yifan"
 
 ## Contacts
 
@@ -22,10 +22,10 @@ hack.
 Specifically for the sumasia14 logo contest, we will need to do the
 following stuff:
 
-    - update snoek to a recent stable/secure Django framework (1.6.5) (Done)
-    - add an registration feature (half way)
-    - add an openid login feature
-    - add picture support as voting questions
+* update snoek to a recent stable/secure Django framework (1.6.5) (Done)
+* add an registration feature (Done - mail template/UI need burnishing)
+* add an openid login feature
+* add picture support as voting questions
 
 ### Get the code
 
