@@ -12,7 +12,6 @@ class Activity(models.Model):
     category = models.CharField(max_length=30)
     user = models.ForeignKey(User)
     created = models.DateTimeField(default=datetime.datetime.now, null=True)
-    anonymous = models.BooleanField()
 
     # def save(self):
     #     if not self.id:
