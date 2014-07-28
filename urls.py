@@ -1,5 +1,5 @@
-from django.conf.urls.defaults import *
-from snoek.activities.views import *
+from django.conf.urls import patterns, include, url
+from activities.views import *
 from django.contrib import admin
 
 admin.autodiscover()

@@ -15,13 +15,13 @@ from odf.number import NumberStyle, CurrencyStyle, CurrencySymbol,  Number,  Tex
 from odf.text import P
 from odf.table import Table, TableColumn, TableRow, TableCell
 
-from snoek.activities.models import *
-from snoek import settings
+from activities.models import *
+import settings
 # from snoek.activities.models import Vote
 # from snoek.activities.models import Answer
 # from snoek.activities.models import Question
 
-from snoek.activities.VoteTable import VoteTable, IntegralVoteTable
+from activities.VoteTable import VoteTable, IntegralVoteTable
 
 # First Page
 ############

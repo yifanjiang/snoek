@@ -6,7 +6,7 @@
 
 <div class="modal-body">
 
-	<form id="book-form"  enctype="multipart/form-data" method="POST" action="{% url library.views.update pk%}" >
+	<form id="book-form"  enctype="multipart/form-data" method="POST" action="{%  url "library.views.update" pk%}" >
 	{%csrf_token%}
         <fieldset>
         
@@ -65,7 +65,7 @@
 
 <div class="modal-footer">
 	{% if user.is_staff %}
-	<a type="submit" href="{%url library_book_delete pk%}" class="btn btn-danger delete" style="float:left">delete</a>
+	<a type="submit" href="{% url "library_book_delete" pk%}" class="btn btn-danger delete" style="float:left">delete</a>
 	<a type="submit" href="#" name="submit" class="btn btn-success save" >save</a>
 	<a type="reset" class="btn cancel">canel</a>
 	{% endif %}

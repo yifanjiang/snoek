@@ -4,3 +4,8 @@
 .*.sw[op]
 db.sqlite
 settings.py
+bin/
+lib/
+lib64
+include/
+share/

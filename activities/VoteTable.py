@@ -1,5 +1,5 @@
-from snoek.activities.models import *
-from snoek.activities.Voter import Voter
+from activities.models import *
+from activities.Voter import Voter
 from django.contrib.auth.models import User
 
 

@@ -1,8 +1,8 @@
-from snoek.activities.VoteTable import VoteTable, IntegralVoteTable
-from snoek.activities.views import _toODSFile
-from snoek.activities.views import _toODSTable
-from snoek.activities.views import _hasVoted
-from snoek.activities.models import *
+from activities.VoteTable import VoteTable, IntegralVoteTable
+from activities.views import _toODSFile
+from activities.views import _toODSTable
+from activities.views import _hasVoted
+from activities.models import *
 
 from odf.opendocument import OpenDocumentSpreadsheet
 from odf.style import Style, TextProperties, TableColumnProperties, Map
