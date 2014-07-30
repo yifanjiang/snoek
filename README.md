@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-28 18:27:32 yifan"
+Time-stamp: "2014-07-30 16:48:20 yifan"
 
 ## Contacts
 
@@ -23,9 +23,13 @@ Specifically for the sumasia14 logo contest, we will need to do the
 following stuff:
 
 * update snoek to a recent stable/secure Django framework (1.6.5) (Done)
-* add an registration feature (Done - mail template/UI need burnishing)
-* add an openid login feature
-* add picture support as voting questions
+* add an registration feature (Done, need more testing and code review)
+* add an openid login feature (Done, need more testing and code review)
+* add picture support as voting items
+* unified UI adjustment
+    * registration page
+    * openid login page
+    * voting page
 
 ### Get the code
 
