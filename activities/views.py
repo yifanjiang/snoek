@@ -162,6 +162,8 @@ def create_activity(request):
 def save_vote_in_activity(request,aid):
     if request.method=='POST':
        r=request.POST
+       print(type(r))
+       print(repr(r))
     act=Activity.objects.get(id=aid)
 
     def parseVotes(dic_req):

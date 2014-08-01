@@ -2,15 +2,30 @@
 {% block content %}
 
 <link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/create_activity.css" />
+<script src="{{MEDIA_URL}}/js/jquery.ui.widget.js"></script>
+<script src="{{MEDIA_URL}}/js/jquery.iframe-transport.js"></script>
+<script src="{{MEDIA_URL}}/js/jquery.fileupload.js"></script>
 
 <script>
 
-  $(document).ready( function() {
+$(document).ready( function() {
+    add_vote();
+    $("#fileupload").change(function(){
+        readURL(this);
+        console.log("file changed");
+    });
+});
 
-                         add_vote();
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();            
+        reader.onload = function (e) {
+            $('#target').attr('src', e.target.result);
+        }
+    reader.readAsDataURL(input.files[0]);
+    }
+}
 
-                     }
-  );
 
   i = 1;
 
@@ -22,7 +37,7 @@
       s.find('.button').remove();
 
       s.after(
-          '<tr><th>Question ' + qnum + ':</th><td><input class=text type=text name=v' + vnum + 'q' + qnum + ' /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td></tr>'
+          '<tr><th>Question ' + qnum + ':</th><td><input class=text type=text name=v' + vnum + 'q' + qnum + ' /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td><td><input id="fileupload" type="file" name="files"' + qnum + ' ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>'
       );
       
   }
@@ -39,14 +54,13 @@
 
           '<tr><th>Description </th><td><input class="text" type="text" name=v' + i + 'd /></td><td>&nbsp;</td></tr>' +
 
-          '<tr><th>Question 1:</th><td><input class=text type=text name=v' + i + 'q1 /></td><td>&nbsp;</td></tr>' +
+          '<tr><th>Question 1:</th><td><input class=text type=text name=v' + i + 'q1 /></td><td>&nbsp;</td><td><input id="fileupload" type="file" name="files1"></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
 
-          '<tr><th>Question 2:</th><td><input class=text type=text name=v' + i + 'q2 /></td><td>&nbsp;</td></tr>' +
+          '<tr><th>Question 2:</th><td><input class=text type=text name=v' + i + 'q2 /></td><td>&nbsp;</td><td><input id="fileupload" type="file" name="files2" ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
 
-          '<tr><th>Question 3:</th><td><input class=text type=text name=v' + i + 'q3 /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td></tr>' +
+          '<tr><th>Question 3:</th><td><input class=text type=text name=v' + i + 'q3 /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td><td><input id="fileupload" type="file" name="files3" ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
 
           '</table>'
-
       );
 
       i = i + 1;
