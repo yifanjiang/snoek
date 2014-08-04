@@ -69,32 +69,11 @@ function readURL(input) {
 
 </script>
 
-
 <form class="ctavt" action="/vote_submit{{act.id}}" method="post">
-
-  <table class="ctavt">
-
-    <tr><th>Summary:</th><td>{{act.summary}}</td></tr>
-
-    <tr><th>Description:</th><td>{{act.description}}</td></tr>
-
-    <tr><th>Deadline:</th><td>{{act.deadline}}</td></tr>
-
-    <tr><th>Category:</th><td>{{act.category}}</td></tr>
-
-  </table>
-  
-</form>
-
-<form class="ctavt" action="/vote_submit{{act.id}}" method="post">
-
-  <div id="v">
-
-  </div>
-
-  <input class="button" type="button" value="Add Vote" onclick=add_vote() />
-  <input class="submit" type="submit" value="Submit" />
-
+    <table>
+        {{ formset }}
+    </table>
+    <input class="submit" type="submit" value="Submit" />
 </form>
 
 
