@@ -5,16 +5,46 @@
 <script src="{{MEDIA_URL}}/js/jquery.ui.widget.js"></script>
 <script src="{{MEDIA_URL}}/js/jquery.iframe-transport.js"></script>
 <script src="{{MEDIA_URL}}/js/jquery.fileupload.js"></script>
+<script src="{{MEDIA_URL}}/js/jquery.formset.js"></script>
 
 <script>
 
 $(document).ready( function() {
-    add_vote();
+    $('#myformset').formset();
+    $('.add_q').click(function() {
+        cloneMore($(this).parents('tr'));
+    });
     $("#fileupload").change(function(){
         readURL(this);
         console.log("file changed");
     });
 });
+function cloneMore(obj){
+    var str = obj.prev().find('label').html();
+    var pattern = /[0-9]+/;
+    str = str.match(pattern)[0];
+    var num = parseInt(str);
+    console.log(num);
+    var newrow_pic = obj.prev().clone(false);
+    var newrow_q   = obj.prev().prev().clone(false);
+    replaceTr(newrow_pic, 'pic', num);
+    replaceTr(newrow_q, 'q', num);
+    obj.before(newrow_q);
+    obj.before(newrow_pic);
+}
+function replaceTr(obj, str, num){
+    obj.find(':input').each(function() {
+        var name = $(this).attr('name').replace(str+num, str+(num+1));
+        console.log(name);
+        var id = 'id_' + name;
+        $(this).attr({'name': name, 'id': id}).val('');
+    });
+    obj.find('label').each(function() {
+        var newFor = $(this).attr('for').replace(str+num, str+(num+1));
+        $(this).attr('for',newFor);
+        $(this).html(str+(num+1)+':');
+    });
+}
 
 function readURL(input) {
     if (input.files && input.files[0]) {
@@ -39,39 +69,23 @@ function readURL(input) {
       s.after(
           '<tr><th>Question ' + qnum + ':</th><td><input class=text type=text name=v' + vnum + 'q' + qnum + ' /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td><td><input id="fileupload" type="file" name="files"' + qnum + ' ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>'
       );
-      
   }
 
   var add_vote = function() {
-
       $("#v").append(
-
-          '<hr>' +
-
-          '<table class=ctavt value=' + i + '>' +
-
-          '<tr><th>Summary </th><td><input class="text" type="text" name=v' + i + 's /></td><td>&nbsp;</td></tr>' +
-
-          '<tr><th>Description </th><td><input class="text" type="text" name=v' + i + 'd /></td><td>&nbsp;</td></tr>' +
-
-          '<tr><th>Question 1:</th><td><input class=text type=text name=v' + i + 'q1 /></td><td>&nbsp;</td><td><input id="fileupload" type="file" name="files1"></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
-
-          '<tr><th>Question 2:</th><td><input class=text type=text name=v' + i + 'q2 /></td><td>&nbsp;</td><td><input id="fileupload" type="file" name="files2" ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
-
-          '<tr><th>Question 3:</th><td><input class=text type=text name=v' + i + 'q3 /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td><td><input id="fileupload" type="file" name="files3" ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>' +
-
-          '</table>'
       );
-
       i = i + 1;
-
   }
 
 </script>
 
 <form class="ctavt" action="/vote_submit{{act.id}}" method="post">
-    <table>
-        {{ formset }}
+    {{ formset.management_form }}
+    <table id="myformset">
+        {% for form in formset %}
+            {{ form }}
+            <tr><td><a class="add_q" href="#">Add a Question</a></td></tr>
+        {% endfor %}
     </table>
     <input class="submit" type="submit" value="Submit" />
 </form>

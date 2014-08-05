@@ -70,6 +70,8 @@ class Question(models.Model):
     vote = models.ForeignKey(Vote)
     content = models.CharField(max_length=100)
     hyperlink = models.CharField(max_length=1000)
+    pic = models.ImageField(upload_to="photo/", height_field=500, width_field=500,
+                            null=True, blank=True)
 
     def getAnswersNumber(self):
         return len(Answer.objects.filter(question = self.id))

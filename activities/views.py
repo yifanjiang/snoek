@@ -164,22 +164,25 @@ def create_activity(request):
 def save_vote_in_activity(request,aid):
     if request.method=='POST':
        r=request.POST
+       print(repr(r))
     act=Activity.objects.get(id=aid)
     print(repr(aid))
 
 
-    formset = VoteFormSet(r)
-    if formset.is_valid():
-        data = formset.cleaned_data
-        print(repr(data))
-        for item in data:
-            vt = Vote(summary=item['summary'], description=item['descr'], activity=act)
-            vt.save()
-            for k in xrange(10):
-                qs = 'q' + str(k)
-                if qs in item:
-                    q = Question(content=qs, vote=vt)
-                    q.save()
+    #formset = VoteFormSet(r)
+    #data = formset.cleaned_data
+    #print(repr(data))
+    form_num = r['form-TOTAL_FORMS']
+    for i in xrange(int(form_num)):
+        vt = Vote(summary=r['form-'+str(i)+'-summary'],
+                  description=r['form-'+str(i)+'-descr'], activity=act)
+        vt.save()
+        for k in xrange(10):
+            qs = 'form-'+str(i)+'-q'+str(k)
+            pic= 'form-'+str(i)+'-pic'+str(k)
+            if qs in r:
+                q = Question(content=r[qs], pic=r[pic], vote=vt)
+                q.save()
 
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,

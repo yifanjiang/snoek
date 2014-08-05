@@ -1,2 +1,4 @@
-odfpy
+Django
 django_registration
+odfpy
+Pillow
