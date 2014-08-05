@@ -1,9 +1,0 @@
-{% extends "base1.html" %}
-{% block content %}
-<a href={{reader.get_absolute_url}}>{{reader}}</a> has borrowed {{count}} books
-{%for book in book_list%}
-<p>
-<a href="{{book.get_absolute_url}}">{{book}}</a>
-</p>
-{%endfor%}
-{% endblock %}

@@ -148,13 +148,8 @@ def create_activity(request):
         hour = int(timelist[0][:2])
         minute = int(timelist[1][:2])
 
-    if 'anonymous' in s:
-        anon = s['anonymous']
-    else:
-        anon = 0
-
     formset = VoteFormSet()
-    p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.datetime(year, month, day, hour, minute),anonymous=anon, category=s['category'])
+    p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.datetime(year, month, day, hour, minute),category=s['category'])
     p.save()
     return render_to_response('new_votes.html',{'user':request.user,
                               'act':p, 'formset':formset}, context_instance=RequestContext(request))
@@ -326,7 +321,7 @@ def view_votes_by_all_users(request, a_id):
     avt = Activity.objects.get(id = a_id)
     vote_tables = []
     votes = Vote.objects.filter(activity = a_id)
-    integral_votetable = IntegralVoteTable(list(votes))
+    integral_votetable = IntegralVoteTable(list(votes))    
 
     for v in votes:
         vt = VoteTable(v.id)

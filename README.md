@@ -1,4 +1,4 @@
-Time-stamp: "2014-07-18 16:57:47 yifan"
+Time-stamp: "2014-07-30 16:48:20 yifan"
 
 ## Contacts
 
@@ -9,6 +9,28 @@ Please read aloud to fetch the email:
 
 ## Development Guide
 
+### Goal of this sumasia14 branch
+
+While Snoek is a comprehensive office stuff management tool, we only
+use the voting part of the toy for the summit to decide summit logo
+designs. So most of the stuff unrelated with the voting subsystem has
+been taken out from this branch.
+
+To paly with the voting system, "activities" app is the core code to
+hack.
+
+Specifically for the sumasia14 logo contest, we will need to do the
+following stuff:
+
+* update snoek to a recent stable/secure Django framework (1.6.5) (Done)
+* add an registration feature (Done, need more testing and code review)
+* add an openid login feature (Done, need more testing and code review)
+* add picture support as voting items
+* unified UI adjustment
+    * registration page
+    * openid login page
+    * voting page
+
 ### Get the code
 
 You can retrieve the code by cloning this repo:
@@ -17,12 +39,9 @@ You can retrieve the code by cloning this repo:
 
 ### Prerequisite
 
-* Python>=2.6 (core python)
-* Django==1.2.4 (python module)
+* Python>=2.6.5 (core python)
+* Django==1.6.5 (python module)
 * Odfpy==0.9.2 (python module)
-* celery==2.5.3 (python module)
-* django-celery==2.5.5 (python module)
-* kombu==2.1.8 (python module)
 * A static http server (Apache, lighttp, etc.)
 
 *Notice:* It is highly suggested to use 'pip install' to install python modules.
@@ -74,10 +93,6 @@ To only run the voting system:
 
     snoek/$ python manage.py runserver localhost:8080
 
-To run celyryd supporting the book borrowing library:
-
-    snoek/$ python manage.py runserver celyryd
-
 ### Play snoek
 
 After running the testing server, open you browser and visit the url
@@ -111,12 +126,3 @@ Let's just use any of the ordinary processes:
     * All voters' favourite choice can be found by clicking 'Who vote what' link
     * The ODF format of voting results can be downloaded by click 'Download me'
     * You may change your password by clicking the tiny icon beside the user name
-
-### Library
-
-Library is used for book borrowing management, not fully tested
-currently, but in case you are interested:
-
-    1. first add book reader in http://site/admin/ to ad a book reader
-
-    2. choose book reader in EDIT

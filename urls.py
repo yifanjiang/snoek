@@ -41,8 +41,8 @@ urlpatterns = patterns('',
     (r'^accounts/logout.*$',        'django.contrib.auth.views.logout'),
     (r'^accounts/login.*$',         'django.contrib.auth.views.login'),
     (r'^accounts/chpwd/$',          'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
+    (r"^openid/", include("django_openid_auth.urls")),
 
-#    (r'^accounts/chpwd/$', 'django.contrib.auth.views.password_change_done'),
 )
 
 if settings.DEBUG:

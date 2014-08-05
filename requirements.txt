@@ -2,3 +2,4 @@ Django
 django_registration
 odfpy
 Pillow
+python-openid
