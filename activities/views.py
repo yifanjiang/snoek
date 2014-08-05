@@ -161,22 +161,22 @@ def save_vote_in_activity(request,aid):
        r=request.POST
        print(repr(r))
     act=Activity.objects.get(id=aid)
-    print(repr(aid))
 
 
     #formset = VoteFormSet(r)
-    #data = formset.cleaned_data
-    #print(repr(data))
     form_num = r['form-TOTAL_FORMS']
     for i in xrange(int(form_num)):
         vt = Vote(summary=r['form-'+str(i)+'-summary'],
                   description=r['form-'+str(i)+'-descr'], activity=act)
         vt.save()
-        for k in xrange(10):
+        for k in xrange(1, 10):
             qs = 'form-'+str(i)+'-q'+str(k)
             pic= 'form-'+str(i)+'-pic'+str(k)
             if qs in r:
-                q = Question(content=r[qs], pic=r[pic], vote=vt)
+                if pic in request.FILES:
+                    q = Question(content=r[qs], pic=request.FILES[pic], vote=vt)
+                else:
+                    q = Question(content=r[qs], vote=vt)
                 q.save()
 
     return render_to_response('index.html', {'user': request.user,

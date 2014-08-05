@@ -79,7 +79,7 @@ function readURL(input) {
 
 </script>
 
-<form class="ctavt" action="/vote_submit{{act.id}}" method="post">
+<form class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
     {{ formset.management_form }}
     <table id="myformset">
         {% for form in formset %}
