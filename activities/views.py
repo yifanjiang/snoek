@@ -22,6 +22,7 @@ import settings
 # from snoek.activities.models import Question
 
 from activities.VoteTable import VoteTable, IntegralVoteTable
+from .form_vote import VoteFormSet
 
 # First Page
 ############
@@ -147,61 +148,36 @@ def create_activity(request):
         hour = int(timelist[0][:2])
         minute = int(timelist[1][:2])
 
+    formset = VoteFormSet()
     p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.datetime(year, month, day, hour, minute),category=s['category'])
     p.save()
     return render_to_response('new_votes.html',{'user':request.user,
-                                                'act':p}, context_instance=RequestContext(request))
+                              'act':p, 'formset':formset}, context_instance=RequestContext(request))
 
 
 @login_required
 def save_vote_in_activity(request,aid):
     if request.method=='POST':
        r=request.POST
+       print(repr(r))
     act=Activity.objects.get(id=aid)
 
-    def parseVotes(dic_req):
 
-        size = 100
-        l_votes=[]
-        for i in range(size):
-            l_votes.append({"summary":'', "description":'', "questions":[]})
-
-        r_sum = re.compile("v(\d+)s")
-        r_des = re.compile("v(\d+)d")
-        r_que = re.compile("v(\d+)q\d+")
-
-        for k in dic_req.keys():
-
-            regmatch_sum = r_sum.match(k)
-            regmatch_des = r_des.match(k)
-            regmatch_que = r_que.match(k)
-
-            if regmatch_sum != None:
-                index = int(regmatch_sum.group(1))-1
-                key = regmatch_sum.group(0)
-                l_votes[index]['summary'] = dic_req[key]
-            elif regmatch_des != None:
-                index = int(regmatch_des.group(1))-1
-                key = regmatch_des.group(0)
-                l_votes[index]['description'] = dic_req[key]
-            elif regmatch_que != None:
-                index = int(regmatch_que.group(1))-1
-                key = regmatch_que.group(0)
-                l_votes[index]['questions'].append(dic_req[key])
-
-        return l_votes
-
-    l_votes = parseVotes(r)
-
-    for v in l_votes:
-        if v['summary'] != '':
-            vt = Vote(summary=v['summary'], description=v['description'], activity=act)
-            vt.save()
-            for q in v['questions']:
-                if q != '':
-                    Question(content=q,vote=vt).save()
-        else:
-            continue
+    #formset = VoteFormSet(r)
+    form_num = r['form-TOTAL_FORMS']
+    for i in xrange(int(form_num)):
+        vt = Vote(summary=r['form-'+str(i)+'-summary'],
+                  description=r['form-'+str(i)+'-descr'], activity=act)
+        vt.save()
+        for k in xrange(1, 10):
+            qs = 'form-'+str(i)+'-q'+str(k)
+            pic= 'form-'+str(i)+'-pic'+str(k)
+            if qs in r:
+                if pic in request.FILES:
+                    q = Question(content=r[qs], pic=request.FILES[pic], vote=vt)
+                else:
+                    q = Question(content=r[qs], vote=vt)
+                q.save()
 
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,

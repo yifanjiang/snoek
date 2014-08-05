@@ -128,8 +128,8 @@ function delvote() {
                         <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/>
                         {% autoescape off %}
                             {{ q.content }}
-                            {% if q.hyperlink != "" and q.hyperlink != False %}
-                                <a href= {{q.hyperlink}} target="_blank"> <img src = {{MEDIA_URL}}/image/open_new_window.png width=12 height=12 border=0 /></a>
+                            {% if q.pic != "" and q.pic != False %}
+                                <a href= "{{MEDIA_URL}}{{q.pic}}" target="_blank"> <img src = "{{MEDIA_URL}}{{q.pic}}" width=200 height=200 border=0 /></a>
                             {% endif %}
                         {% endautoescape %}
                         <br/>
