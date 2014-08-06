@@ -11,8 +11,8 @@
 
 $(document).ready( function() {
     $('#myformset').formset();
-    $('#form').on('click', '.add_q', function() {
-        console.log("add question clicked!!");
+    $('#form').on('click', '.add_q', function(e) {
+        e.preventDefault();
         cloneMore($(this).parents('tr'));
     });
     $("#fileupload").change(function(){
