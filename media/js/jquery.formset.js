@@ -136,7 +136,7 @@
             } else {
                 // Otherwise, use the last form in the formset; this works much better if you've got
                 // extra (>= 1) forms (thnaks to justhamade for pointing this out):
-                template = $('.' + options.formCssClass + ':last').clone(true).removeAttr('id');
+                template = $('.' + options.formCssClass + ':last').clone(true, true).removeAttr('id');
                 template.find('input:hidden[id $= "-DELETE"]').remove();
                 // Clear all cloned fields, except those the user wants to keep (thanks to brunogola for the suggestion):
                 template.find(childElementSelector).not(options.keepFieldValues).each(function() {
@@ -170,7 +170,7 @@
             }
             addButton.click(function() {
                 var formCount = parseInt(totalForms.val()),
-                    row = options.formTemplate.clone(true).removeClass('formset-custom-template'),
+                    row = options.formTemplate.clone(true, true).removeClass('formset-custom-template'),
                     buttonRow = $($(this).parents('tr.' + options.formCssClass + '-add').get(0) || this);
                 applyExtraClasses(row, formCount);
                 row.insertBefore(buttonRow).show();
