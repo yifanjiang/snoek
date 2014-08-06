@@ -11,7 +11,8 @@
 
 $(document).ready( function() {
     $('#myformset').formset();
-    $('.add_q').click(function() {
+    $('#form').on('click', '.add_q', function() {
+        console.log("add question clicked!!");
         cloneMore($(this).parents('tr'));
     });
     $("#fileupload").change(function(){
@@ -56,30 +57,9 @@ function readURL(input) {
     }
 }
 
-
-  i = 1;
-
-  var add_question = function(s) {
-
-      vnum = s.parent().parent().attr("value");
-      qnum = s.index();
-
-      s.find('.button').remove();
-
-      s.after(
-          '<tr><th>Question ' + qnum + ':</th><td><input class=text type=text name=v' + vnum + 'q' + qnum + ' /></td><td><input class=button type=button value=+ onclick=add_question($(this).parent().parent())></td><td><input id="fileupload" type="file" name="files"' + qnum + ' ></td><td><img id="target" src="####" alt="" height="90" width="90" ></td></tr>'
-      );
-  }
-
-  var add_vote = function() {
-      $("#v").append(
-      );
-      i = i + 1;
-  }
-
 </script>
 
-<form class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
+<form id="form" class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
     {{ formset.management_form }}
     <table id="myformset">
         {% for form in formset %}
