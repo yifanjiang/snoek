@@ -21,7 +21,7 @@ openid = {
 	sprite : null, // usually equals to locale, is set in
 	// openid-<locale>.js
 	signin_text : null, // text on submit button on the form
-	all_small : false, // output large providers w/ small icons
+	all_small : true, // output large providers w/ small icons
 	no_sprite : false, // don't use sprite image
 	image_title : '{provider}', // for image title
 
@@ -47,7 +47,7 @@ openid = {
 			openid_btns.append(box);
 		}
 		if (providers_small) {
-			openid_btns.append('<br/>');
+			// openid_btns.append('<br/>');
 			for (id in providers_small) {
 				box = this.getBoxHTML(id, providers_small[id], 'small', i++);
 				openid_btns.append(box);

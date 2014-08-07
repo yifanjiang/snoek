@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     # User management
     (r'^accounts/', include('registration.backends.default.urls')),
     (r'^accounts/logout.*$',        'django.contrib.auth.views.logout'),
-    (r'^accounts/login.*$',         'django.contrib.auth.views.login'),
+    (r'^accounts/login.*$',         'activities.views.login'),
     (r'^accounts/chpwd/$',          'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
     (r"^openid/", include("django_openid_auth.urls")),
 

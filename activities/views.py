@@ -1,7 +1,8 @@
 # Create your views here.
 import os, datetime, re
 
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate
+from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
@@ -23,6 +24,13 @@ import settings
 
 from activities.VoteTable import VoteTable, IntegralVoteTable
 from .form_vote import VoteFormSet
+
+def login(request):
+    kwargs = {
+        "template_name": "login.html"
+    }
+    
+    return auth_views.login(request, **kwargs)
 
 # First Page
 ############
