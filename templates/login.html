@@ -14,7 +14,9 @@
 
 <!-- <br/> -->
 
-<h2>Snoek Login</h2>
+<h2>openSUSE.Asia Summit 2014 Logo Contest </h2>
+
+<div id="main">
 
 <!-- Password Login -->
 <form method="post" action="{% url "activities.views.login" %}" id="login_form" name="flogin">
@@ -25,13 +27,13 @@
 
   <table>
     <tr>
-      <td>{{ form.username.label_tag }}</td>
+      <td>Username*</td>
       <td>{{ form.username }}</td>
       <td>&nbsp;</td>
     </tr>
 
     <tr>
-      <td>{{ form.password.label_tag }}</td>
+      <td>Password*</td>
       <td>{{ form.password }}</td>
       <td> <input type="submit" value="Sign-In" /> </td>
     </tr>
@@ -41,7 +43,6 @@
   <input type="hidden" name="next" value="{{ next }}" />
 
 </form>
-
 
 <!-- OpenID -->
 
@@ -64,6 +65,6 @@
   <!-- </fieldset> -->
 </form>
 
-
+</div>
 
 {% endblock %}
