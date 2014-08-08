@@ -120,7 +120,7 @@ KNOWN ISSUES:
         - The activity name cannot have '/', otherwise download odf will be failed
 
         - base1.html will cause severe performance issue in some firefox(3.6.6) as I noticed.
-        <div id="page-background"><img src="{{settings.MEDIA_URL}}/image/final_most_green_rc2.png" width="100%" height="100%" alt="Smile"></div>
+        <div id="page-background"><img src="{{settings.MEDIA_URL}}image/final_most_green_rc2.png" width="100%" height="100%" alt="Smile"></div>
 
         - Front page view of meeting room will probably show irregularly with specific web browser under certain resolution.
 
