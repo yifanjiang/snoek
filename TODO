@@ -36,7 +36,7 @@ FUTURE
                 - Support richer text area for activity descriptions/vote questions. Allow
                   add links to questions in activity creating phase.
 
-                - allow Activities creater to create votes and questions as
+                - allow Activities creater to *EDIT* votes and questions as
                   many as they want (rather than fixed number of votes and
                   questions)
 
