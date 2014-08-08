@@ -5,13 +5,10 @@
 <script src="{{MEDIA_URL}}/js/jquery.ui.widget.js"></script>
 <script src="{{MEDIA_URL}}/js/jquery.iframe-transport.js"></script>
 <script src="{{MEDIA_URL}}/js/jquery.fileupload.js"></script>
-<script src="{{MEDIA_URL}}/js/jquery.formset.js"></script>
+<script src="{{MEDIA_URL}}js/jquery.cloneform.js"></script>
 
 <script>
 $(document).ready( function() {
-    cloneMore($('.add_q').parents('tr'));
-    cloneMore($('.add_q').parents('tr'));
-    $('#myformset').formset();
     $('#form').on('click', '.add_q', function(e) {
         e.preventDefault();
         cloneMore($(this).parents('tr'));
@@ -61,14 +58,17 @@ function readURL(input) {
 </script>
 
 <form id="form" class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
-    {{ formset.management_form }}
-    <table id="myformset">
-        {% for form in formset %}
-            {{ form }}
-            <tr><td><a class="add_q" href="#">Add a Question</a></td></tr>
-        {% endfor %}
-    </table>
-    <input class="submit" type="submit" value="Submit" />
+    <fieldset class="clonable" id="vote1">{% for field in form %}
+        <div>
+            <label>{{field.label}}</label>{{field}}
+        </div>
+    {% endfor %}
+    <a class="add_q" href="#">Add a Question</a>
+    </fieldset>
+
+    <div id="formbuttons">
+        <input type="button" class="button" id="clonetrigger" value="Clone" />
+        <input type="submit" class="button" id="clonesubmit" value="Submit" />
 </form>
 
 

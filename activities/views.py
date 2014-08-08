@@ -22,7 +22,7 @@ import settings
 # from snoek.activities.models import Question
 
 from activities.VoteTable import VoteTable, IntegralVoteTable
-from .form_vote import VoteFormSet
+from .form_vote import VoteForm
 
 # First Page
 ############
@@ -148,11 +148,11 @@ def create_activity(request):
         hour = int(timelist[0][:2])
         minute = int(timelist[1][:2])
 
-    formset = VoteFormSet()
+    form = VoteForm(prefix='vote1', extra=3)
     p=Activity(user=request.user,summary=s['summary'],description=s['description'],deadline=datetime.datetime(year, month, day, hour, minute),category=s['category'])
     p.save()
     return render_to_response('new_votes.html',{'user':request.user,
-                              'act':p, 'formset':formset}, context_instance=RequestContext(request))
+                              'act':p, 'form':form}, context_instance=RequestContext(request))
 
 
 @login_required
