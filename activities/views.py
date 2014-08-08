@@ -175,9 +175,10 @@ def save_vote_in_activity(request,aid):
             if qs in r:
                 if pic in request.FILES:
                     q = Question(content=r[qs], pic=request.FILES[pic], vote=vt)
-                else:
+                    q.save()
+                elif r[qs] != "":
                     q = Question(content=r[qs], vote=vt)
-                q.save()
+                    q.save()
 
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,

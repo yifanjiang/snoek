@@ -12,10 +12,6 @@ class VoteForm(forms.Form):
     descr   = forms.CharField()
     q1      = forms.CharField()
     pic1    = forms.ImageField()
-    q2      = forms.CharField()
-    pic2    = forms.ImageField()
-    q3      = forms.CharField()
-    pic3    = forms.ImageField()
 
 VoteFormSet = formset_factory(VoteForm, extra=1)
 

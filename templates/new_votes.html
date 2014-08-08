@@ -8,8 +8,9 @@
 <script src="{{MEDIA_URL}}/js/jquery.formset.js"></script>
 
 <script>
-
 $(document).ready( function() {
+    cloneMore($('.add_q').parents('tr'));
+    cloneMore($('.add_q').parents('tr'));
     $('#myformset').formset();
     $('#form').on('click', '.add_q', function(e) {
         e.preventDefault();
