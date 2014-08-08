@@ -6,7 +6,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.utils.encoding import smart_str, smart_unicode
 from django.template import RequestContext
 
@@ -40,16 +40,19 @@ def index(request, category = None):
     # input: An activity id
     # return: Rendering an activity page
 
-    user = request.user
-    if category:                        # Show activities in a specific category.
-        pass
-    else:
-        return render_to_response('index.html',
-                                  {
-                                      'user': user,
-                                      'avt': reversed(list(Activity.objects.all()))
-                                   },
-                                  context_instance=RequestContext(request))
+    # return view_activity(request, Activity.objects.latest('id').id)
+    return redirect('/activity/' + str(Activity.objects.latest('id').id))
+
+    # user = request.user
+    # if category:                        # Show activities in a specific category.
+    #     pass
+    # else:
+    #     return render_to_response('index.html',
+    #                               {
+    #                                   'user': user,
+    #                                   'avt': reversed(list(Activity.objects.all()))
+    #                                },
+    #                               context_instance=RequestContext(request))
 
 def about(request):
 
