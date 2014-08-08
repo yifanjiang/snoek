@@ -16,7 +16,6 @@ FUTURE
         vote, view voting results and export the results to ODF document, we
         still got several features to be improved in the future:
 
-
         - code base refarctory
 
                 * use fixture to manage data
@@ -31,8 +30,6 @@ FUTURE
                   (all the votes got copied and the voter infomation
                    got cleared up)
 
-                * OpenID support
-
                 * Allow vote sponsor hide the overall results from UI, allow
                   voters to show as anonymous voter.
 
@@ -42,8 +39,6 @@ FUTURE
                 - allow Activities creater to create votes and questions as
                   many as they want (rather than fixed number of votes and
                   questions)
-
-                - Allow the activity deadline set to prcision of minutes
 
                 - Allow to search activities by creation date, deadline, etc.
 
@@ -138,3 +133,10 @@ Features implemented in hackweek 7:
     - Allow user to regret a vote and re-vote
 
     - Meeting room reservation implementation
+
+Features implemented in sumasia:
+================================
+
+    - OpenID support
+    - Picture vote
+    - Refactorizing of activitiy creation page
