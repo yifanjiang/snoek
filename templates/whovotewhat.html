@@ -25,7 +25,7 @@
     <td><b>{{row.user.username}}</b></td>
 
     {% for answer in row.answers %}
-    <td align = center><img src="{{MEDIA_URL}}/image/{{answer}}.png"></td>        
+    <td align = center><img src="{{MEDIA_URL}}image/{{answer}}.png"></td>        
     {% endfor %}      
 
   </tr>
@@ -53,7 +53,7 @@
                 <td><b>{{r.row_head}}</b></td>
 
          	    {% for rb in r.row_body %}
-                <td align = center><img src="{{MEDIA_URL}}/image/{{rb}}.png"></td>
+                <td align = center><img src="{{MEDIA_URL}}image/{{rb}}.png"></td>
 		        {% endfor %}
 		</tr>
                 {% endfor%}
