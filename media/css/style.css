@@ -96,7 +96,7 @@ header.title{
     color: #666;
     margin: 0;
     padding: 0px 0px 6px 0px;
-    font-size: 42px;
+    font-size: 24px;
     line-height: 44px;
     letter-spacing: -2px;
     font-weight: bold;
@@ -344,6 +344,13 @@ td.meeting{
     padding: 0;
     padding-left: 15px;
 
+}
+
+table#take_vote td{
+    font-weight: bold;
+    border: 100;
+    padding: 50px;
+    padding-left: 0;    
 }
 
 table.nav{
