@@ -21,7 +21,9 @@
 <!-- Password Login -->
 <img src="{{MEDIA_URL}}/image/chameleon.png" id="chameleon" />
 <br />
-<div id="logo_text">openSUSE.Asia Summit 2014 Logo Contest</div>
+<div id="logo_text">openSUSE.Asia Summit 2014</div>
+<div id="logo_text">Logo Contest</div>
+<br /><br />
 <form method="post" action="{% url "activities.views.login" %}" id="login_form" name="flogin">
   {% csrf_token %}
   {% if form.errors %}
