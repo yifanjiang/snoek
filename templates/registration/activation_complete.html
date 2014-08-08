@@ -4,7 +4,9 @@
 {% block content %}
 {% url 'auth_login' as auth_login_url %}
 {% blocktrans %}
+<font color="white">
 Thanks, activation complete!  You may now <a href='{{ auth_login_url }}'>login</a> using the username and password you set at registration.
+</font>
 {% endblocktrans %}
 {% endblock %}
 
