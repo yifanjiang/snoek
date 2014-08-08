@@ -43,7 +43,9 @@ $(document).ready(function(){
 			var srcid = 1;
 			$(fieldclone).find(':input').each(function(){
 				var s = $(this).attr("name"); 			
-				$(this).attr("name", s.replace(eval('/_'+srcid+'/ig'),'_'+settings.newid_)); 
+				$(this).attr("name", s.replace(eval('/vote'+srcid+'/i'),'vote'+settings.newid_)); 
+				var s = $(this).attr("id"); 			
+				$(this).attr("id", s.replace(eval('/vote'+srcid+'/i'),'vote'+settings.newid_)); 
 			});
 
 			//==> Locate Target Id <==//
@@ -61,4 +63,4 @@ $(document).ready(function(){
 		}
     };
 
-})(jQuery);    
+})(jQuery);

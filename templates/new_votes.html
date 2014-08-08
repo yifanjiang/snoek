@@ -58,12 +58,11 @@ function readURL(input) {
 </script>
 
 <form id="form" class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
-    <fieldset class="clonable" id="vote1">{% for field in form %}
+    <fieldset class="clonable">{% for field in form %}
         <div>
             <label>{{field.label}}</label>{{field}}
         </div>
     {% endfor %}
-    <a class="add_q" href="#">Add a Question</a>
     </fieldset>
 
     <div id="formbuttons">

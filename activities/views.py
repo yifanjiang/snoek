@@ -22,7 +22,7 @@ import settings
 # from snoek.activities.models import Question
 
 from activities.VoteTable import VoteTable, IntegralVoteTable
-from .form_vote import VoteForm
+from .form_vote import VoteForm, VoteForm1
 
 # First Page
 ############
@@ -158,27 +158,27 @@ def create_activity(request):
 @login_required
 def save_vote_in_activity(request,aid):
     if request.method=='POST':
-       r=request.POST
-       print(repr(r))
+       print(repr(request.POST))
+       print(repr(request.FILES))
     act=Activity.objects.get(id=aid)
 
-
-    #formset = VoteFormSet(r)
-    form_num = r['form-TOTAL_FORMS']
-    for i in xrange(int(form_num)):
-        vt = Vote(summary=r['form-'+str(i)+'-summary'],
-                  description=r['form-'+str(i)+'-descr'], activity=act)
-        vt.save()
-        for k in xrange(1, 10):
-            qs = 'form-'+str(i)+'-q'+str(k)
-            pic= 'form-'+str(i)+'-pic'+str(k)
-            if qs in r:
-                if pic in request.FILES:
-                    q = Question(content=r[qs], pic=request.FILES[pic], vote=vt)
-                    q.save()
-                elif r[qs] != "":
-                    q = Question(content=r[qs], vote=vt)
-                    q.save()
+    v_num = 1
+    while ('vote{0}-summary'.format(v_num) in request.POST):
+        prefix = 'vote{0}'.format(v_num)
+        extra = request.POST.get(prefix+'-q_count')
+        print(prefix,extra)
+        vote = VoteForm(request.POST, request.FILES, prefix=prefix, extra=extra)
+        if vote.is_valid():
+            data = vote.cleaned_data
+            print(data)
+            vt = Vote(summary=data['summary'], description=data['descr'], activity=act)
+            vt.save()
+            for i in xrange(1,int(extra)+1):
+                print(i)
+                if data['q'+str(i)] or data['pic'+str(i)]:
+                    Question(content=data['q'+str(i)], pic=data['pic'+str(i)],
+                             vote=vt).save()
+        v_num += 1
 
     return render_to_response('index.html', {'user': request.user,
                                              'settings': settings,
