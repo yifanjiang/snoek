@@ -14,11 +14,14 @@
 
 <!-- <br/> -->
 
-<h2>openSUSE.Asia Summit 2014 Logo Contest </h2>
+
 
 <div id="main">
 
 <!-- Password Login -->
+<img src="{{MEDIA_URL}}/image/chameleon.png" id="chameleon" />
+<br />
+<div id="logo_text">openSUSE.Asia Summit 2014 Logo Contest</div>
 <form method="post" action="{% url "activities.views.login" %}" id="login_form" name="flogin">
   {% csrf_token %}
   {% if form.errors %}
@@ -27,15 +30,17 @@
 
   <table>
     <tr>
-      <td>Username*</td>
+      <td id="login_label">Username*</td>
       <td>{{ form.username }}</td>
+      <td>&nbsp;</td>
       <td>&nbsp;</td>
     </tr>
 
     <tr>
-      <td>Password*</td>
+      <td id="login_label">Password*</td>
       <td>{{ form.password }}</td>
-      <td> <input type="submit" value="Sign-In" /> </td>
+      <td> <input id="login_submit" type="submit" value="Sign-In" /> </td>
+      <td> <a href="/accounts/register/"> Register </a> </td>      
     </tr>
 
   </table>

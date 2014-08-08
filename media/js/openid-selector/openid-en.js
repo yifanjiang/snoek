@@ -92,5 +92,5 @@ var providers_small = {
 openid.locale = 'en';
 openid.sprite = 'en'; // reused in german& japan localization
 openid.demo_text = 'In client demo mode. Normally would have submitted OpenID:';
-openid.signin_text = 'Sign-In';
+openid.signin_text = 'OpenID Login';
 openid.image_title = 'log in with {provider}';

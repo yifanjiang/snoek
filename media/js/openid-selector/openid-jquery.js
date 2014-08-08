@@ -181,7 +181,7 @@ openid = {
 		var label = provider['label'];
 		var style = '';
 		if (label) {
-			html = '<p>' + label + '</p>';
+			html = '<p id="login_label">' + label + '</p>';
 		}
 		if (provider['name'] == 'OpenID') {
 			id = this.input_id;
@@ -189,7 +189,7 @@ openid = {
 			style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 		}
 		html += '<input id="' + id + '" type="text" style="' + style + '" name="' + id + '" value="' + value + '" />'
-				+ '<input id="openid_submit" type="submit" value="' + this.signin_text + '"/>';
+				+ '&nbsp;<input id="openid_submit" type="submit" value="' + this.signin_text + '"/>';
 		input_area.empty();
 		input_area.append(html);
 		$('#' + id).focus();

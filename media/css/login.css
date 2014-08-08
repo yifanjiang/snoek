@@ -7,25 +7,74 @@ body {
     background:  url("intro-bg.jpg");
 }
 
-h2 {
+/* h2 { */
 
-    /* margin-left: 37.895%; */
-    /* margin-right: 37.895%; */
-    margin-left: 29.895%;
-    margin-right: 29.895%;    
-    padding-top: 9.375em;
-    margin-bottom: 0.75em;
-    display: block;
-    position: relative;
-    color: rgb(200, 253, 100);
+/*     margin-left: 29.895%; */
+/*     margin-right: 29.895%;     */
+/*     padding-top: 9.375em; */
+/*     margin-bottom: 0.75em; */
+/*     display: block; */
+/*     position: relative; */
+/*     color: rgb(200, 253, 100); */
 
+/* } */
+
+a {
+	-moz-outline-style: none;
+    text-decoration: none;
+    font-size: 9pt;
+}
+
+p {
+
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: bold; */
+    /* font-style: italic; */
+    font-size: 10pt;
+    color: #444;
+}
+
+p#logo_text {
+
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: bold; */
+    /* font-style: italic; */
+    /* font-size: 10pt;     */
+    /* color: #444; */
+}
+
+p#login_label {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-weight: bold; */
+    font-style: italic;
+    font-size: 10pt;
+    color: #444;
+}
+
+div#logo_text {
+
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 22pt;
+    color: #444;
+    text-align:center;
+
+}
+
+img#chameleon {
+    width: 30%;
+    height: 30%;
+    margin-left: 36%;
 }
 
 #main {
 
-    background: none repeat scroll 0% 0% white;
-    margin-left: 21.649%;
-    margin-right: 21.649%;
+    background: none repeat scroll 0% 0% rgba(255,255,255,0.75) ;
+    /* margin-left: 21.649%; */
+    /* margin-right: 21.649%; */
+    margin-top: 15%;
+    margin-left: 31.649%;
+    margin-right: 31.649%;
     padding-right: 16.495%;
     padding-left: 0px;
     box-shadow: 0px 0px 0.375em rgb(134, 149, 168);
@@ -35,21 +84,110 @@ h2 {
 
 input {
 
-    height: 2.25em;
-    font-family: "CambridgeRound","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 1em;
-    line-height: 1.5em;
-    border-style: solid;
-    border-width: 0.071em;
-    padding: 0.304em;
-    -moz-box-sizing: border-box;
-    box-shadow: 0px 0px 0.667em rgba(81, 105, 133, 0.25) inset;
+/*     height: 1.25em; */
+/*     font-family: "CambridgeRound","Helvetica Neue",Helvetica,Arial,sans-serif; */
+/*     font-size: 1em; */
+/*     line-height: 1.5em; */
+/*     border-style: solid; */
+/*     border-width: 0.071em; */
+/*     padding: 0.304em; */
+/*     -moz-box-sizing: border-box; */
+/*     box-shadow: 0px 0px 0.667em rgba(81, 105, 133, 0.25) inset; */
+/*     /\* width: 100%; *\/ */
+/*     background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.5); */
+/*     color: rgb(69, 69, 69); */
+/*     border-color: rgb(69, 69, 69); */
+/*     vertical-align: top; */
+/*     outline: 0px none; */
+
+    border: 1px solid #F0F3ED;
     width: 100%;
-    background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.5);
-    color: rgb(69, 69, 69);
-    border-color: rgb(69, 69, 69);
-    vertical-align: top;
-    outline: 0px none;    
+    background-color: #F0F3ED;
+    font-size: 14px;
+    padding: 1px;
+
+}
+
+td {
+
+    padding: 3.5px;
+
+}
+
+td#login_label {
+
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 10pt;    
+    color: #444;
+    
+}
+
+input#openid_submit {
+
+    display: inline;
+    width: 108px;
+    height:1.5em;
+    font-size: small;
+
+}
+
+input#login_submit {
+
+    height:1.5em;
+    width: 54px;
+    font-size: small;
+
+}
+
+#openid_identifier {
+
+/*     height: 1.25em; */
+/*     font-family: "CambridgeRound","Helvetica Neue",Helvetica,Arial,sans-serif; */
+/*     font-size: 1em; */
+/*     line-height: 1.5em; */
+/*     border-style: solid; */
+/*     border-width: 0.071em; */
+/*     padding: 0.304em; */
+/*     -moz-box-sizing: border-box; */
+/*     box-shadow: 0px 0px 0.667em rgba(81, 105, 133, 0.25) inset; */
+/*     /\* width: 100%; *\/ */
+/*     background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.5); */
+/*     color: rgb(69, 69, 69); */
+/*     border-color: rgb(69, 69, 69); */
+/*     vertical-align: top; */
+/*     outline: 0px none; */
+
+border: 1px solid #F0F3ED;
+width: 50%;
+background-color: #F0F3ED;
+font-size: 14px;
+
+}
+
+#openid_identifier, #openid_username {
+
+/*     height: 1.25em; */
+/*     font-family: "CambridgeRound","Helvetica Neue",Helvetica,Arial,sans-serif; */
+/*     font-size: 1em; */
+/*     line-height: 1.5em; */
+/*     border-style: solid; */
+/*     border-width: 0.071em; */
+/*     padding: 0.304em; */
+/*     -moz-box-sizing: border-box; */
+/*     box-shadow: 0px 0px 0.667em rgba(81, 105, 133, 0.25) inset; */
+/*     /\* width: 100%; *\/ */
+/*     background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.5); */
+/*     color: rgb(69, 69, 69); */
+/*     border-color: rgb(69, 69, 69); */
+/*     vertical-align: top; */
+/*     outline: 0px none; */
+
+    border: 1px solid #F0F3ED;
+    width: 50%;
+    background-color: #F0F3ED;
+    font-size: 14px;
 
 }
 
@@ -66,21 +204,15 @@ input {
 	This code is licensed under the New BSD License.
 */
 
-#openid_form {
+/*
+	Simple OpenID Plugin
+	http://code.google.com/p/openid-selector/
+	
+	This code is licensed under the New BSD License.
+*/
 
-    font-family: "CambridgeRound","Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 1em;
-    line-height: 1.5em;
-    border-style: none;
-    padding: 0.304em;
-    -moz-box-sizing: border-box;
-    box-shadow: 0px 0px 0.667em rgba(81, 105, 133, 0.25) inset;
-    width: 100%;
-    background: none repeat scroll 0% 0% rgba(255, 255, 255, 0.5);
-    color: rgb(69, 69, 69);
-    border-color: rgb(69, 69, 69);
-    vertical-align: top;
-    outline: 0px none;
+#openid_form {
+	width: 580px;
 }
 
 #openid_form legend {
@@ -93,7 +225,7 @@ input {
 
 #openid_input_area {
 	clear: both;
-	padding: 10px;
+	padding: none;
 }
 
 #openid_btns, #openid_btns br {
@@ -101,65 +233,46 @@ input {
 }
 
 #openid_highlight {
-	padding: 3px;
-	background-color: #FFFCC9;
+	/* padding: 0.005em; */
+	background-color: #333;
 	float: left;
+	width: 24px;
+	height: 24px;
+/* fix for IE 6 only: http://en.wikipedia.org/wiki/CSS_filter#Underscore_hack */
+	_width: 26px;
+	_height: 26px;
+	margin: 3px;
+	float: left;
+    border: 1px solid #ccc;
+	box-shadow: 1px 1px 2px #666;
+    -moz-box-shadow: 1px 1px 2px #666;
+	-webkit-box-shadow: 1px 1px 2px #666;
+
 }
 
 .openid_large_btn {
 	width: 100px;
 	height: 60px;
 /* fix for IE 6 only: http://en.wikipedia.org/wiki/CSS_filter#Underscore_hack */
-	_width: 104px;
-	_height: 64px;
+	_width: 102px;
+	_height: 62px;
 
-	border: 2px solid #DDD;
-	border-right: 2px solid #ccc;
-	border-bottom: 2px solid #ccc;
+	border: 1px solid #DDD;
 	margin: 3px;
 	float: left;
-	border-radius: 5px;	
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 2px 2px 4px #ddd;
-	-moz-box-shadow: 2px 2px 4px #ddd;
-	-webkit-box-shadow: 2px 2px 4px #ddd;
-}
-
-.openid_large_btn:hover {
-	margin: 4px 0 0 6px;
-	border: 2px solid #999;
-	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
 }
 
 .openid_small_btn {
 	width: 24px;
 	height: 24px;
 /* fix for IE 6 only: http://en.wikipedia.org/wiki/CSS_filter#Underscore_hack */
-	_width: 28px;
-	_height: 28px;
+	_width: 26px;
+	_height: 26px;
 
-	border: 2px solid #DDD;
-	border-right: 2px solid #ccc;
-	border-bottom: 2px solid #ccc;
+	border: 1px solid #DDD;
 	margin: 3px;
 	float: left;
-	border-radius: 5px;	
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	box-shadow: 2px 2px 4px #ddd;
-	-moz-box-shadow: 2px 2px 4px #ddd;
-	-webkit-box-shadow: 2px 2px 4px #ddd;
-}
 
-.openid_small_btn:hover {
-	margin: 4px 0 0 6px;
-	border: 2px solid #999;
-	box-shadow: none;
-	-moz-box-shadow: none;
-	-webkit-box-shadow: none;
 }
 
 a.openid_large_btn:focus {
