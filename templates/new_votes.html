@@ -9,40 +9,35 @@
 
 <script>
 $(document).ready( function() {
+    $('div:has(input[type=hidden])').hide();      //hide the q_count
+    $('fieldset div:lt(3)').removeClass('field');
     $('#form').on('click', '.add_q', function(e) {
         e.preventDefault();
-        cloneMore($(this).parents('tr'));
+        clonequestion(this);
     });
     $("#fileupload").change(function(){
         readURL(this);
         console.log("file changed");
     });
 });
-function cloneMore(obj){
-    var str = obj.prev().find('label').html();
-    var pattern = /[0-9]+/;
-    str = str.match(pattern)[0];
-    var num = parseInt(str);
-    console.log(num);
-    var newrow_pic = obj.prev().clone(false);
-    var newrow_q   = obj.prev().prev().clone(false);
-    replaceTr(newrow_pic, 'pic', num);
-    replaceTr(newrow_q, 'q', num);
-    obj.before(newrow_q);
-    obj.before(newrow_pic);
-}
-function replaceTr(obj, str, num){
-    obj.find(':input').each(function() {
-        var name = $(this).attr('name').replace(str+num, str+(num+1));
-        console.log(name);
-        var id = 'id_' + name;
-        $(this).attr({'name': name, 'id': id}).val('');
-    });
-    obj.find('label').each(function() {
-        var newFor = $(this).attr('for').replace(str+num, str+(num+1));
-        $(this).attr('for',newFor);
-        $(this).html(str+(num+1)+':');
-    });
+function clonequestion(obj){
+    var q_count = $(obj).parents('fieldset').find('input').first().val();
+    $(obj).parents('fieldset').find('input').first().val(Number(q_count)+1);
+    console.log(q_count);
+    var newrow_pic = $(obj).parents('div').prev().clone();
+    var newrow_q = $(obj).parents('div').prev().prev().clone();
+	$(newrow_pic).add(newrow_q).find('input').each(function(){
+        var s = $(this).attr("name"); 			
+		$(this).attr("name", s.replace(eval('/[0-9]+$/i'), Number(q_count)+1)); 
+		var s = $(this).attr("id"); 			
+		$(this).attr("id", s.replace(eval('/[0-9]+$/i'), Number(q_count)+1)); 
+	});
+	$(newrow_pic).add(newrow_q).find('label').each(function(){
+        var s = $(this).html(); 			
+		$(this).html(s.replace(eval('/[0-9]+$/i'), Number(q_count)+1)); 
+	});
+    $(obj).parents('div').before(newrow_q);
+    $(obj).parents('div').before(newrow_pic);
 }
 
 function readURL(input) {
@@ -59,10 +54,11 @@ function readURL(input) {
 
 <form id="form" class="ctavt" action="/vote_submit{{act.id}}" method="post" enctype="multipart/form-data">
     <fieldset class="clonable">{% for field in form %}
-        <div>
+        <div class="field">
             <label>{{field.label}}</label>{{field}}
         </div>
     {% endfor %}
+    <div class="field"><a class="add_q" href="#">Add a Question</a></div>
     </fieldset>
 
     <div id="formbuttons">
