@@ -35,6 +35,7 @@ def login(request):
 # First Page
 ############
 
+@login_required
 def index(request, category = None):
     # Controller interface: View an activity
     # input: An activity id
