@@ -1,55 +1,14 @@
-form.ctavt table{
-
-    margin-left: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;        
-    /* padding: 0; */
-    /* border-spacing:0; */
-    color: #666;
+form.ctavt div {
+    margin: 5px;
 
 }
 
-
-form.ctavt input{
-    /*margin-left: 20px;*/
-    margin-top: 6px;
-    margin-bottom: 10px;
-}
-
-
-form.ctavt input.text{
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #FFFFFF;
-    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
-    border-right: 1px solid #D9D9D9;
-    border-style: solid; 
-    border-width: 1px;
-    width: 400px;
-    height: 20px;
-    font-size: large;
+form.ctavt label{
+    float: left;
+    width: 100px;
     font-weight: bold;
 }
 
-form.ctavt input.readonly_text{
-    -moz-border-bottom-colors: none;
-    -moz-border-image: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #ddd;
-    border-color: #C0C0C0 #D9D9D9 #D9D9D9;
-    border-right: 1px solid #D9D9D9;
-    border-style: solid;
-    border-width: 1px;
-    width: 400px;
-    height: 20px;
-    font-size: large;
-    font-weight: bold;
-}
 
 form.ctavt input.button{
 	
@@ -94,8 +53,17 @@ form.ctavt input.submit{
 
 hr{
     margin: 20px;
-    /* padding: 0; */
-    /* border-spacing:0; */
     color: green;
     width: 60%;
+}
+
+form.ctavt .field {
+    height: 29px;
+    float: left;
+    display: inline-block;
+    width: 45%;
+}
+.clonable {
+    width: 800px;
+    margin: 10px;
 }

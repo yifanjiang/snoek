@@ -130,6 +130,7 @@ function delvote() {
                {% for vt in votes %}
                     <td valign = top>
                     {% for q in vt.questions%}
+                        {% if q.content != "" or q.pic != "" %}
                         <input type="radio" name="vote{{vt.id}}" value="{{ q.id }}" id="{{ vt.id }}"/>
                         {% autoescape off %}
                             {{ q.content }}
@@ -137,6 +138,7 @@ function delvote() {
                                 <a href= "{{MEDIA_URL}}{{q.pic}}" target="_blank"> <img src = "{{MEDIA_URL}}{{q.pic}}" width=200 height=200 border=0 /></a>
                             {% endif %}
                         {% endautoescape %}
+                        {% endif %}
                         <br/>
                     {% endfor %}
                     </td>
