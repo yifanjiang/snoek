@@ -16,12 +16,12 @@ openid = {
 	cookie_name : 'openid_provider',
 	cookie_path : '/',
 
-	img_path : '../media/image/openid/images/',
+	img_path : '/media/image/openid/images/',
 	locale : null, // is set in openid-<locale>.js
 	sprite : null, // usually equals to locale, is set in
 	// openid-<locale>.js
 	signin_text : null, // text on submit button on the form
-	all_small : false, // output large providers w/ small icons
+	all_small : true, // output large providers w/ small icons
 	no_sprite : false, // don't use sprite image
 	image_title : '{provider}', // for image title
 
@@ -47,7 +47,7 @@ openid = {
 			openid_btns.append(box);
 		}
 		if (providers_small) {
-			openid_btns.append('<br/>');
+			// openid_btns.append('<br/>');
 			for (id in providers_small) {
 				box = this.getBoxHTML(id, providers_small[id], 'small', i++);
 				openid_btns.append(box);
@@ -181,7 +181,7 @@ openid = {
 		var label = provider['label'];
 		var style = '';
 		if (label) {
-			html = '<p>' + label + '</p>';
+			html = '<p id="login_label">' + label + '</p>';
 		}
 		if (provider['name'] == 'OpenID') {
 			id = this.input_id;
@@ -189,7 +189,7 @@ openid = {
 			style = 'background: #FFF url(' + this.img_path + 'openid-inputicon.gif) no-repeat scroll 0 50%; padding-left:18px;';
 		}
 		html += '<input id="' + id + '" type="text" style="' + style + '" name="' + id + '" value="' + value + '" />'
-				+ '<input id="openid_submit" type="submit" value="' + this.signin_text + '"/>';
+				+ '&nbsp;<input id="openid_submit" type="submit" value="' + this.signin_text + '"/>';
 		input_area.empty();
 		input_area.append(html);
 		$('#' + id).focus();

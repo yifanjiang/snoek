@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Novell Beijing R&D Team Activities</title>
-<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}/css/style.css" /> 
-<script src="//libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<title>openSUSE.Asia Summit 2014 Logo Contest</title>
+<link rel="stylesheet" type="text/css" href="{{MEDIA_URL}}css/style.css" /> 
+<script src="{{MEDIA_URL}}js/jquery.min.js"></script>
 </head>
 <body>
 <script language="javascript">
@@ -34,13 +34,12 @@
 <table class="header_table">
 <tr>
 <header class="login">
-  <td><img src="{{MEDIA_URL}}/image/snoek.png" width = 150 height = 50 alt="snoek logo"></td>
+  <td><img src="{{MEDIA_URL}}image/snoek.png" width = 150 height = 50 alt="snoek logo"></td>
   <td><header class="title">Snoek v{{settings.VERSION}} - {{settings.TITLE}} </header></b></td>
   {% if user.is_authenticated %}
-    <td align = right>
-
+    <td float = right>
       Snoeker: {{user.username}}
-      <a href =  '/accounts/chpwd'><img src="{{MEDIA_URL}}/image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
+      <a href =  '/accounts/chpwd'><img src="{{MEDIA_URL}}image/key.png" alt="Change your password" border = 0></a>&nbsp;&nbsp; &nbsp;
       <a href =  '/accounts/logout?next=/'>Logout</a>
 
     </td>
@@ -53,23 +52,23 @@
 </tr>
 
 </table>
-<table class="nav">
-<tr><td>
-<ul class="topnav">
-    <li><a href="/">Home</a></li>
-    <li>
-        <a href="#">Create an Activity</a>
-        <ul class="subnav">
-            <li><a href="/newteambuilding">Team Building</a></li>
-            <li><a href="/newclothes">Order Clothes</a></li>
-            <li><a href="/newothers">Others</a></li>
-        </ul>
-    </li>
-    <li><a href="/about">About Us</a></li>
-</ul>
-</td></tr>
+<!-- <table class="nav"> -->
+<!-- <tr><td> -->
+<!-- <ul class="topnav"> -->
+<!--     <li><a href="/">Home</a></li> -->
+<!--     <li> -->
+<!--         <a href="#">Create an Activity</a> -->
+<!--         <ul class="subnav"> -->
+<!--             <li><a href="/newteambuilding">Team Building</a></li> -->
+<!--             <li><a href="/newclothes">Order Clothes</a></li> -->
+<!--             <li><a href="/newothers">Others</a></li> -->
+<!--         </ul> -->
+<!--     </li> -->
+<!--     <li><a href="/about">About Us</a></li> -->
+<!-- </ul> -->
+<!-- </td></tr> -->
 
-</table>
+<!-- </table> -->
 {% block content %}{% endblock %}
 <br/><br/>
 <footer>

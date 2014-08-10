@@ -25,11 +25,11 @@ following stuff:
 * update snoek to a recent stable/secure Django framework (1.6.5) (Done)
 * add an registration feature (Done, need more testing and code review)
 * add an openid login feature (Done, need more testing and code review)
-* add picture support as voting items
+* add picture support as voting items (Done, thanks Xudong aka zxdvd)
 * unified UI adjustment
-    * registration page
-    * openid login page
-    * voting page
+    * registration page (done)
+    * openid login page (done)
+    * voting page (50%, making it more consistent with login page)
 
 ### Get the code
 

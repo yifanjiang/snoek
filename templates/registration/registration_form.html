@@ -2,10 +2,21 @@
 {% load i18n %}
 {% block title %}{% trans "Register for an account" %}{% endblock %}
 {% block content %}
+
+<div id="main">
+
+<!-- Password Login -->
+<img src="{{MEDIA_URL}}/image/chameleon.png" id="chameleon" />
+<br />
+<div id="logo_text">openSUSE.Asia Summit 2014 Logo Contest</div>
+
 <table>
     <form method='post' action=''>{% csrf_token %}
         {{ form }}
         <tr><td></td><td><input type="submit" value="{% trans "Send activation email" %}" /></td>
     </form>
 </table>
+
+</div>
+
 {% endblock %}
