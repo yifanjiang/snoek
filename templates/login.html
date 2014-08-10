@@ -74,4 +74,8 @@
 
 </div>
 
+<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+<a href="{% url 'social:begin' 'google-oauth' %}?next={{ request.path }}">Login with Google</a>
+<a href="{% url 'social:begin' 'google' %}?next={{ request.path }}">Login with Google</a>
+
 {% endblock %}
