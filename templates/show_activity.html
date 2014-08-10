@@ -51,12 +51,10 @@ function validatepolls() {
 
 function vote() {
 
-    document.getElementById('btn_vote').disabled='true';
-
     window.document.polls.action = "{{avt.id}}/vote/";
     p = checkpolls();
     if (p){
-
+        document.getElementById('btn_vote').disabled='true';
         window.document.polls.submit();
         return true;
     }else{
@@ -68,11 +66,10 @@ function vote() {
 
 function revote() {
 
-    document.getElementById('btn_revote').disabled='true';    
-
     window.document.polls.action = "{{avt.id}}/revote/";
     p = checkpolls();
     if (p){
+        document.getElementById('btn_revote').disabled='true';            
         window.document.polls.submit();
         return true;
     }else{
@@ -82,8 +79,6 @@ function revote() {
 }
 
 function delvote() {
-
-    document.getElementById('btn_delvote').disabled='true';    
 
     document.polls.action = "{{avt.id}}/delvote/";
     document.polls.submit();
