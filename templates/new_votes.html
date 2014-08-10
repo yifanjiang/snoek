@@ -9,8 +9,10 @@
 
 <script>
 $(document).ready( function() {
+    $('fieldset div input:first').val('3');
     $('div:has(input[type=hidden])').hide();      //hide the q_count
     $('fieldset div:lt(3)').removeClass('field');
+    form_template = $(".clonable:first").clone();
     $('#form').on('click', '.add_q', function(e) {
         e.preventDefault();
         clonequestion(this);
@@ -19,6 +21,19 @@ $(document).ready( function() {
         readURL(this);
         console.log("file changed");
     });
+
+	$('#clonetrigger').click(function(){
+		var clonecount = $(".clonable").length;	//how many clones do we already have?
+		var newid = Number(clonecount) + 1;		//Id of the new clone   
+		
+		$(".clonable:first").fieldclone({		//Clone the original elelement
+			newid_: newid,						//Id of the new clone, (you can pass your own if you want)
+			target_: $("#formbuttons"),			//where do we insert the clone? (target element)
+			insert_: "before",					//where do we insert the clone? (after/before/append/prepend...)
+			limit_: 4							//Maximum Number of Clones
+		});
+		return false;
+	});
 });
 function clonequestion(obj){
     var q_count = $(obj).parents('fieldset').find('input').first().val();

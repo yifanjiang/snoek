@@ -1,23 +1,3 @@
-//The jQuery Setup
-$(document).ready(function(){
-	
-	$('#clonetrigger').click(function(){
-		var yourclass=".clonable";  //The class you have used in your form
-		var clonecount = $(yourclass).length;	//how many clones do we already have?
-		var newid = Number(clonecount) + 1;		//Id of the new clone   
-		
-		$(yourclass+":first").fieldclone({		//Clone the original elelement
-			newid_: newid,						//Id of the new clone, (you can pass your own if you want)
-			target_: $("#formbuttons"),			//where do we insert the clone? (target element)
-			insert_: "before",					//where do we insert the clone? (after/before/append/prepend...)
-			limit_: 4							//Maximum Number of Clones
-		});
-		return false;
-	});
-
-});
-
-
 //The Plugin Script
 (function($) {
 
@@ -35,7 +15,8 @@ $(document).ready(function(){
 		if( (settings.newid_ <= (settings.limit_+1)) || (settings.limit_==0) ){	//Check the limit to see if we can clone
 
 			//==> Clone <==//
-			var fieldclone = $(this).clone();
+			//var fieldclone = $(this).clone();
+            var fieldclone = form_template;
 			var node = $(this)[0].nodeName;
 			var classes = $(this).attr("class");
 
