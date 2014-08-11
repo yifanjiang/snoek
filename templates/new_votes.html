@@ -22,10 +22,9 @@ $(document).ready( function() {
         console.log("file changed");
     });
 
-	$('#clonetrigger').click(function(){
+	$('#form').on('click', '#clonetrigger', function(){
 		var clonecount = $(".clonable").length;	//how many clones do we already have?
 		var newid = Number(clonecount) + 1;		//Id of the new clone   
-		
 		$(".clonable:first").fieldclone({		//Clone the original elelement
 			newid_: newid,						//Id of the new clone, (you can pass your own if you want)
 			target_: $("#formbuttons"),			//where do we insert the clone? (target element)
