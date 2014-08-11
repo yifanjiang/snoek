@@ -135,7 +135,7 @@ function delvote() {
                         {% autoescape off %}
                             {{ q.content }}
                             {% if q.pic != "" and q.pic != False %}
-                                <a href= "{{MEDIA_URL}}{{q.pic}}" target="_blank"> <img src = "{{MEDIA_URL}}{{q.pic}}" width=200 height=200 border=0 /></a>
+                                <a href= "{{MEDIA_URL}}{{q.pic}}" target="_blank"> <img src = "{{MEDIA_URL}}{{q.pic}}" width=100 height=100 border=0 /></a>
                             {% endif %}
                         {% endautoescape %}
                         {% endif %}
