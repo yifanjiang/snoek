@@ -26,13 +26,6 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": "db.sqlite",
-        #"USER": environ.get("USER", ""),
-        # "USER": "root",
-        # "PASSWORD": "",
-        # "OPTIONS": {
-        #     "init_command": "SET storage_engine=InnoDB",
-        #     },
-        # "STORAGE_ENGINE": "InnoDB"
         }
     }
 
@@ -111,7 +104,6 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    # "django_openid_auth",
     'social.apps.django_app.default',
     'django.contrib.messages',
     'activities',    
@@ -127,8 +119,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.core.context_processors.media",  
 	"django.core.context_processors.request",
 	'snoek_lib.context_processors.custom_proc',
-        'social.apps.django_app.context_processors.backends',
-        'social.apps.django_app.context_processors.login_redirect',
+    'social.apps.django_app.context_processors.backends',
+    'social.apps.django_app.context_processors.login_redirect',
 
 )
 
@@ -139,7 +131,6 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.yahoo.YahooOpenId',
     'social.backends.yahoo.YahooOAuth',
     'social.backends.suse.OpenSUSEOpenId',    
-    'django_openid_auth.auth.OpenIDBackend',
     'django.contrib.auth.backends.ModelBackend',
     'snoek_lib.backends.CaseInsensitiveAuthBackend',
 )
@@ -182,11 +173,3 @@ Snoek-Server at\n"+MEDIA_URL
 MAIL_SERVER="local"
 
 ACCOUNT_ACTIVATION_DAYS = 7
-
-#openid
-
-# SESSION_SERIALIZER = 'django.contrib.sessions.serializers.PickleSerializer'
-
-# OPENID_CREATE_USERS = True
-# OPENID_UPDATE_DETAILS_FROM_SREG = True
-
