@@ -10,12 +10,14 @@
 <br />
 <div id="logo_text">openSUSE.Asia Summit 2014 Logo Contest</div>
 
+<div class="chpwd">
 <table>
     <form method='post' action=''>{% csrf_token %}
         {{ form }}
         <tr><td></td><td><input type="submit" value="{% trans "Send activation email" %}" /></td>
     </form>
 </table>
+</div>
 
 </div>
 

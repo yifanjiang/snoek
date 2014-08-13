@@ -141,6 +141,14 @@ input#login_submit {
 
 }
 
+.chpwd label {
+    color: rgb(68, 68, 68);
+}
+
+.reg label {
+    color: rgb(68, 68, 68);
+}
+
 #openid_identifier {
 
 /*     height: 1.25em; */
