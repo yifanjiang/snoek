@@ -18,12 +18,18 @@
 
 <div id="main">
 
+
 <!-- Password Login -->
 <img src="{{MEDIA_URL}}/image/chameleon.png" id="chameleon" />
 <br />
 <div id="logo_text">openSUSE.Asia Summit 2014</div>
 <div id="logo_text">Logo Contest</div>
 <br /><br />
+<div align = center>
+<a href="{% url 'social:begin' 'opensuse' %}?next=/"><img src="{{MEDIA_URL}}/image/login/suse.png" width=160 height=36 /></a>
+<a href="{% url 'social:begin' 'google-oauth' %}?next=/"><img src="{{MEDIA_URL}}/image/login/google.png" width=160 height=36 /></a>
+<a href="{% url 'social:begin' 'yahoo' %}?next=/"><img src="{{MEDIA_URL}}/image/login/yahoo.png" width=160 height=36 /></a>
+</div>
 <form method="post" action="{% url "activities.views.login" %}" id="login_form" name="flogin">
   {% csrf_token %}
   {% if form.errors %}
@@ -51,27 +57,30 @@
 
 </form>
 
+
 <!-- OpenID -->
 
-<form action="/openid/login/" method="post" id="openid_form" name="fopenid">
-  {% csrf_token %}
-  <input type="hidden" name="action" value="verify" />
-  <!-- <fieldset> -->
-  <!--   <legend>OpenID Sign-in</legend> -->
-	<div id="openid_choice">
-	  <div id="openid_btns"></div>
-	</div>
-	<div id="openid_input_area">
-	  <!-- <input id="openid_identifier" name="openid_identifier" type="text" value="http://" /> -->
-	  <!-- <input id="openid_submit" type="submit" value=""/> -->
-	</div>
-	<noscript>
-	  <p>OpenID is service that allows you to log-on to many different websites using a single indentity.
-		Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p>
-	</noscript>
-  <!-- </fieldset> -->
-</form>
+<!-- <form action="/openid/login/" method="post" id="openid_form" name="fopenid"> -->
+<!--   {% csrf_token %} -->
+<!--   <input type="hidden" name="action" value="verify" /> -->
+<!--   <\!-- <fieldset> -\-> -->
+<!--   <\!--   <legend>OpenID Sign-in</legend> -\-> -->
+<!-- 	<div id="openid_choice"> -->
+<!-- 	  <div id="openid_btns"></div> -->
+<!-- 	</div> -->
+<!-- 	<div id="openid_input_area"> -->
+<!-- 	  <\!-- <input id="openid_identifier" name="openid_identifier" type="text" value="http://" /> -\-> -->
+<!-- 	  <\!-- <input id="openid_submit" type="submit" value=""/> -\-> -->
+<!-- 	</div> -->
+<!-- 	<noscript> -->
+<!-- 	  <p>OpenID is service that allows you to log-on to many different websites using a single indentity. -->
+<!-- 		Find out <a href="http://openid.net/what/">more about OpenID</a> and <a href="http://openid.net/get/">how to get an OpenID enabled account</a>.</p> -->
+<!-- 	</noscript> -->
+<!--   <\!-- </fieldset> -\-> -->
+<!-- </form> -->
 
 </div>
+
+
 
 {% endblock %}

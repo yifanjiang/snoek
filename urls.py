@@ -42,7 +42,8 @@ urlpatterns = patterns('',
     (r'^accounts/login.*$',         'activities.views.login'),
     (r'^accounts/chpwd/$',          'django.contrib.auth.views.password_change', {'post_change_redirect': '/'}),
 
-    (r"^openid/",                   include("django_openid_auth.urls")),
+    # (r"^openid/",                   include("django_openid_auth.urls")),
+    url('', include('social.apps.django_app.urls', namespace='social')),
 )
 
 if settings.DEBUG:
