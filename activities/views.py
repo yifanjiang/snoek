@@ -111,6 +111,8 @@ def view_create_activity(request,category):
 
 @login_required
 def view_update_activity(request,aid):
+    if True:
+        return
     p=Activity.objects.get(id=aid)
     vote=list(Vote.objects.filter(activity=p))
     votetable=[]
@@ -169,32 +171,30 @@ def create_activity(request):
 
 @login_required
 def save_vote_in_activity(request,aid):
+
     if request.method=='POST':
-       print(repr(request.POST))
-       print(repr(request.FILES))
-    act=Activity.objects.get(id=aid)
+       act=Activity.objects.get(id=aid)
+       if request.user != act.user:
+           raise PermissionDenied
 
-    v_num = 1
-    while ('vote{0}-summary'.format(v_num) in request.POST):
-        prefix = 'vote{0}'.format(v_num)
-        extra = request.POST.get(prefix+'-q_count')
-        print(prefix,extra)
-        vote = VoteForm(request.POST, request.FILES, prefix=prefix, extra=extra)
-        if vote.is_valid():
-            data = vote.cleaned_data
-            print(data)
-            vt = Vote(summary=data['summary'], description=data['descr'], activity=act)
-            vt.save()
-            for i in xrange(1,int(extra)+1):
-                print(i)
-                if data['q'+str(i)] or data['pic'+str(i)]:
-                    Question(content=data['q'+str(i)], pic=data['pic'+str(i)],
-                             vote=vt).save()
-        v_num += 1
+       v_num = 1
+       while ('vote{0}-summary'.format(v_num) in request.POST):
+           prefix = 'vote{0}'.format(v_num)
+           extra = request.POST.get(prefix+'-q_count')
+           vote = VoteForm(request.POST, request.FILES,
+                           prefix=prefix, extra=extra)
+           if vote.is_valid():
+               data = vote.cleaned_data
+               vt = Vote(summary=data['summary'],
+                         description=data['descr'], activity=act)
+               vt.save()
+               for i in xrange(1,int(extra)+1):
+                   if data['q'+str(i)] or data['pic'+str(i)]:
+                       Question(content=data['q'+str(i)],
+                                pic=data['pic'+str(i)],vote=vt).save()
+           v_num += 1
 
-    return render_to_response('index.html', {'user': request.user,
-                                             'settings': settings,
-                                             'avt': reversed(list(Activity.objects.all()))}, context_instance=RequestContext(request))
+       return redirect('/activity/{0}'.format(aid))
 
 @login_required
 def delt_activity(request,aid):

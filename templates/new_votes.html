@@ -41,6 +41,7 @@ function clonequestion(obj){
     var newrow_pic = $(obj).parents('div').prev().clone();
     var newrow_q = $(obj).parents('div').prev().prev().clone();
 	$(newrow_pic).add(newrow_q).find('input').each(function(){
+        $(this).val(null);                      //don't clone the value of input
         var s = $(this).attr("name"); 			
 		$(this).attr("name", s.replace(eval('/[0-9]+$/i'), Number(q_count)+1)); 
 		var s = $(this).attr("id"); 			
@@ -78,6 +79,7 @@ function readURL(input) {
     <div id="formbuttons">
         <input type="button" class="button" id="clonetrigger" value="Clone" />
         <input type="submit" class="button" id="clonesubmit" value="Submit" />
+    </div>
 </form>
 
 
