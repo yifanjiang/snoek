@@ -1,0 +1,34 @@
+Time-stamp: "2014-08-25 17:28:05 yifan"
+
+## openSUSE.Asia Summit Logo design contest rules
+
+* The voting will happen on the site deploying Snoek-opensuse.asia special edition:
+
+    http://vote.suse.org.cn
+
+* Snoek will allow you to vote for:
+
+    * The most favorite logo (score 4)
+    * The secondly favorite logo (score 2)
+    * The thirdly favorite logo (score 1)
+
+The score will be explained in the list item immediately after.
+
+* The way to caculate the winner logo will be by adding the scores:
+
+    * the most favorite logo x score 4 x per vote
+    * the secondly favorite logo x score 2 x per vote
+    * the thirdly favorite logo x score 1 x per vote
+
+Voters will be allowed to vote for the same logo across all the three
+levels of favorite items. For example, a user votes for "No.1
+candidate logo" in all the 3 levels, the "No.1 candidate logo" would
+get 7 (4 + 2 +1) score.
+
+A voter can only vote once per person :-)
+
+## Others
+
+* Any thing not clear, please do not hesitate to contact with the opensuse.asia commitee
+* Any unexpected server issue could report to the github repo owner (README.md)
+* If you are interested in Snoek code, feel free to contact
