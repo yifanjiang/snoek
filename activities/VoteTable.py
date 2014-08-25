@@ -30,10 +30,7 @@ class VoteTable:
 
     def getTableTitle(self):
 
-        if self.is2D():
-            return Vote.objects.get(id = self.v_id_row).summary + '.VS.' + Vote.objects.get(id = self.v_id_col).summary
-        else:
-            return Vote.objects.get(id = self.v_id_row).summary
+        return Vote.objects.get(id = self.v_id_row).summary        
 
     def getTableRowHead(self):
         # Row Head is a list of Questions
@@ -73,35 +70,11 @@ class VoteTable:
 
         table = []
         rowbody = []
-        if not self.is2D():
-        # generate 1D table
-            for q in self.row_head:
-                rowbody.append(q.answernumber)
-                table.append({'row_head': q, 'row_body': rowbody})
-                rowbody = []
-        else:
-        # generate 2D table
-            # the first row - column heads
-            # table.append({'row_head': 'HEAD of TABLE', 'row_body': self.col_head})
-            # Construct an empty table with all cell's value 0
-            for q in self.row_head:
-                for c in self.col_head:
-                    rowbody.append(0)            # fill up data in the empty table
-                table.append({'row_head': q, 'row_body': rowbody})
-                rowbody = []
 
-            # for u in User.objects.all():
-            for u in self.voters:
-                voter = Voter(u.id)
-                for c_q in self.col_head:
-                    for r_q in self.row_head:
-                        col_answer = voter.getAnswerOfQuestion(c_q)
-                        row_answer = voter.getAnswerOfQuestion(r_q)
-                        if (not col_answer == False) and (not row_answer == False):
-                            row_index = self.row_head.index(row_answer.question)
-                            col_index = self.col_head.index(col_answer.question)
-                            table[row_index]['row_body'][col_index] = table[row_index]['row_body'][col_index] + 1
-                            continue
+        for q in self.row_head:
+            rowbody.append(q.answernumber)
+            table.append({'row_head': q, 'row_body': rowbody})
+            rowbody = []
         return table
 
     def getTableBody(self):
