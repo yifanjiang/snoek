@@ -162,6 +162,34 @@ function delvote() {
             {% endif %}
 
             </form>
+        {% else %}
+
+            <table id="take_vote">
+               <tr>
+               {% for vt in votes %}
+                   <th>{{vt.summary}}</th>
+               {% endfor %}
+               </tr>
+
+               <tr>
+               {% for vt in votes %}
+                    <td valign = top>
+                    {% for q in vt.questions%}
+                        {% if q.content != "" or q.pic != "" %}
+                        {% autoescape off %}
+                            {{ q.content }}
+                            {% if q.pic != "" and q.pic != False %}
+                                <a href= "{{MEDIA_URL}}{{q.pic}}" target="_blank"> <img src = "{{MEDIA_URL}}{{q.pic}}" width=100 height=100 border=0 /></a>
+                            {% endif %}
+                        {% endautoescape %}
+                        {% endif %}
+                        <br/>
+                    {% endfor %}
+                    </td>
+                {% endfor %}
+                </tr>
+            </table>            
+
         {% endif %}
     {% endif %}
 </section>
