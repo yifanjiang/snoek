@@ -109,7 +109,7 @@ function delvote() {
     <p class="general_error"> The Votes	has been expired ( on {{ avt.deadline }} )
 {% endif %}
 
-<p> <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+<p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
 
 <!-- Show take vote for an authenticated user who hasn't voted yet -->
 
@@ -231,7 +231,7 @@ function delvote() {
         <br />
     {% endfor %}
 
-    <p><a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
+    <p><a href = "/whovotewhat/{{avt.id}}" class="strong">&nbsp;&nbsp;Who vote what&nbsp;&nbsp;</a>  <a href="/download_activity/{{ avt.id }}" class="strong" title="download voting result as OpenDocument Format"> &nbsp;&nbsp;Download me&nbsp;&nbsp; </a>
 </section>
 
 </div>
