@@ -203,7 +203,17 @@ function delvote() {
         <table id="vote_result">
             <tr class="alt">
                 <td><b>{{vt.vote.summary}}</b></td>
-                <td><b>Result</b></td>
+                {% if vt.table.is2D %}
+                    {% for c in vt.table.col_head %}
+                        <td><b>{{c.content}}
+                        {% if c.hyperlink != "" and c.hyperlink != False %}
+                            <a href= {{c.hyperlink}} target="_blank"> <img src = {{MEDIA_URL}}image/open_new_window.png width=12 height=12 border=0 /></a>
+                        {% endif %}
+                        </b></td>
+                    {% endfor %}
+                {% else %}
+                    <td><b>Result</b></td>
+                {% endif %}
             </tr>
 
             {% for t in vt.table.table_with_row %}

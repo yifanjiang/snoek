@@ -75,6 +75,10 @@ def view_activity(request, a_id):
     for v in votes:
         vote_tables.append({'vote': v, 'table': VoteTable(v.id)})
 
+    # Generate all possible 2D table
+    for i in range(len(votes)):
+        for j in range(i+1, len(votes)):
+            vote_tables.append({'vote': '', 'table': VoteTable(votes[i].id, votes[j].id)})
     #debug
     #for v in votes:
     #    for q in list(v.question_set.all()):
