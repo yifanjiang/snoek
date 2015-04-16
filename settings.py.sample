@@ -11,7 +11,7 @@ TEMPLATE_DEBUG = True
 #     ('[root]', '[Put Admin Email Here]'),
 # )
 
-MANAGERS = ADMINS
+#MANAGERS = ADMINS
 
 # DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
 # #YOUR HOME here
@@ -124,14 +124,15 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 	"django.core.context_processors.media",  
 	"django.core.context_processors.request",
 	'snoek_lib.context_processors.custom_proc',
-    'social.apps.django_app.context_processors.backends',
-    'social.apps.django_app.context_processors.login_redirect',
+        'social.apps.django_app.context_processors.backends',
+        'social.apps.django_app.context_processors.login_redirect',
 
 )
 
 AUTHENTICATION_BACKENDS = (
     
     'social.backends.suse.OpenSUSEOpenId',    
+#    'social.backends.suse.SUSEOpenId',    
     'social.backends.google.GoogleOAuth',    
     'social.backends.yahoo.YahooOpenId',
     'django.contrib.auth.backends.ModelBackend',
@@ -141,8 +142,8 @@ AUTHENTICATION_BACKENDS = (
 
 
 # General Snoek configs
-VERSION = "1.0"
-TITLE = "openSUSE.Asia Summit 2014 Logo Contest"
+VERSION = "2.0"
+TITLE = "SUSE Beijing R&D Team Activities"
 # Snoek Meeting configs
 STARTTIME     = 8
 ENDTIME       = 18
