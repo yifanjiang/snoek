@@ -1,5 +1,6 @@
 from django.contrib.auth.backends import ModelBackend
 from django.contrib.auth.models import User
+from social.backends.open_id import OpenIdAuth
 
 # Raw copy of code from http://blog.shopfiber.com/?p=220
 class CaseInsensitiveAuthBackend(ModelBackend):
@@ -16,3 +17,14 @@ class CaseInsensitiveAuthBackend(ModelBackend):
         return None
     except User.DoesNotExist:
       return None
+
+class SUSEOpenId(OpenIdAuth):
+    name = 'suse'
+    URL = 'https://www.suse.com/openid/user/'
+
+    def get_user_id(self, details, response):
+        """
+        Return user unique id provided by service. For openSUSE
+        the nickname is original.
+        """
+        return details['nickname']
