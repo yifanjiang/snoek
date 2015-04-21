@@ -132,11 +132,11 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 AUTHENTICATION_BACKENDS = (
 
     'social.backends.suse.OpenSUSEOpenId',
-#    'social.backends.suse.SUSEOpenId',
     'social.backends.google.GoogleOAuth',
     'social.backends.yahoo.YahooOpenId',
     'django.contrib.auth.backends.ModelBackend',
     'snoek_lib.backends.CaseInsensitiveAuthBackend',
+    'snoek_lib.backends.SUSEOpenId',
 
 )
 
