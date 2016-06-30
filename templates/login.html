@@ -22,14 +22,14 @@
 <!-- Password Login -->
 <img src="{{MEDIA_URL}}/image/chameleon.png" id="chameleon" />
 <br />
-<div id="logo_text">SUSE Snoek 2.0</div>
-<br />
+<div id="logo_text">openSUSE.Asia Summit 2014</div>
+<div id="logo_text">Logo Contest</div>
+<br /><br />
 <div align = center>
-<a href="{% url 'social:begin' 'suse' %}?next=/"><img src="{{MEDIA_URL}}/image/login/suse.png" width=160 height=36 /></a>
+<a href="{% url 'social:begin' 'opensuse' %}?next=/"><img src="{{MEDIA_URL}}/image/login/suse.png" width=160 height=36 /></a>
 <!-- <a href="{% url 'social:begin' 'google-oauth' %}?next=/"><img src="{{MEDIA_URL}}/image/login/google.png" width=160 height=36 /></a> -->
 <!-- <a href="{% url 'social:begin' 'yahoo' %}?next=/"><img src="{{MEDIA_URL}}/image/login/yahoo.png" width=160 height=36 /></a> -->
 </div>
-<br /><br /><br />
 <form method="post" action="{% url "activities.views.login" %}" id="login_form" name="flogin">
   {% csrf_token %}
   {% if form.errors %}
@@ -48,6 +48,7 @@
       <td id="login_label">Password*</td>
       <td>{{ form.password }}</td>
       <td> <input id="login_submit" type="submit" value="Sign-In" /> </td>
+      <td> <a href="/accounts/register/"> Register </a> </td>
     </tr>
 
   </table>
