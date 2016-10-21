@@ -18,17 +18,6 @@ class CaseInsensitiveAuthBackend(ModelBackend):
     except User.DoesNotExist:
       return None
 
-class SUSEOpenId(OpenIdAuth):
-    name = 'suse'
-    URL = 'https://www.suse.com/openid/user/'
-
-    def get_user_id(self, details, response):
-        """
-        Return user unique id provided by service. For openSUSE
-        the nickname is original.
-        """
-        return details['nickname']
-
 class openSUSEOpenId(OpenIdAuth):
     name = 'opensuse'
     URL = 'https://www.opensuse.org/openid/user/'
@@ -38,4 +27,5 @@ class openSUSEOpenId(OpenIdAuth):
         Return user unique id provided by service. For openSUSE
         the nickname is original.
         """
+
         return details['nickname']

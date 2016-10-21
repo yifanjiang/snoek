@@ -29,7 +29,7 @@ def login(request):
     kwargs = {
         "template_name": "login.html"
     }
-    
+
     return auth_views.login(request, **kwargs)
 
 # First Page
