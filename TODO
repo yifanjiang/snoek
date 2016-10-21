@@ -24,6 +24,8 @@ FUTURE
 
                 * use similar things with 'snoek.library.context_processors.custom_proc' to avoid transfer settings in each view.
 
+                * Refactorizing of activitiy creation page
+
         - function Part
 
                 * Allow vote sponsor to duplicate an existed activity
@@ -97,9 +99,35 @@ FUTURE
 
                 - More friendly ui of 'who vote for what' (contact: yfjiang)
                 
+                - Login page photo wall
+
+                  Initiating the wall with, say 5x4 size blocks of photos,
+                  hooking an "upload your artwork" button somewhere, if one
+                  uploads a photo, it replaces a random photo of the existed
+                  ones.
+
+                  Each photo on the wall is tagged with "Author" and "Life
+                  time". The "author" is the uploader and the "lifetime" shows
+                  the days the photo survives in the wall.
+
+                  Several Internet etiquette should be considered here
+                  (thanks weihua and weijiang ):
+
+                  * limited permission for the uploader continuously populates
+                    stuff on the wall to occupy every space :-) Especially
+                    by using script.
+
+                  * limited permission for inappropriate photo content (things
+                    look unusal by ordinary people)
+
+                  * limited permission to forbidden to populate the same photo
+                    repeatedly to make a marvelous view of the page.
+
+                  * encourage to upload images in a creative way
+
         - UI
 
-                - Better UI with CSS design
+                - Better UI designed with CSS and jquery
 
                 - Display activity creation date/time in front page
 
@@ -124,19 +152,6 @@ KNOWN ISSUES:
 
         - Front page view of meeting room will probably show irregularly with specific web browser under certain resolution.
 
-Features implemented in hackweek 7:
-===================================
 
-    - Activity management to allow user create her own activity
-      without asking admin to do so
 
-    - Allow user to regret a vote and re-vote
 
-    - Meeting room reservation implementation
-
-Features implemented in sumasia:
-================================
-
-    - OpenID support
-    - Picture vote
-    - Refactorizing of activitiy creation page
